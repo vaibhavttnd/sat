@@ -1,0 +1,12 @@
+.classpath
+.idea/*
+.project
+*.iml
+grailsw
+grailsw.bat
+wrapper/
+target/
+web-app/WEB-INF/tld/*
+web-app/META-INF/*
+
+
