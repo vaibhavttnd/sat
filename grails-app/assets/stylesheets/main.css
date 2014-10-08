@@ -1,596 +1,1250 @@
-/* FONT STACK */
-body,
-input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+body {
+    font-family: "Open Sans";
 }
 
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1.1;
+/*##########################For all ##########################*/
+.datepicker div.datepicker-days table.table-condensed tbody tr th {
+    font-size: 13px;
 }
 
-/* BASE LAYOUT */
-
-html {
-	background-color: #ddd;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
-	background-repeat: no-repeat;
-	height: 100%;
-	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+.datepicker div.datepicker-days table.table-condensed tbody tr td {
+    font-size: 13px;
 }
 
-html.no-cssgradients {
-	background-color: #aaa;
+.no-border {
+    border: none !important;
 }
 
-.ie6 html {
-	height: 100%;
+.changeLinkBackground {
+    background: #99ccff;
 }
 
-html * {
-	margin: 0;
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-top-margin {
+    margin-top: 0 !important;
+}
+
+.no-right-margin {
+    margin-right: 0 !important;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0 !important;
+}
+
+.no-left-margin {
+    margin-left: 0 !important;
+}
+
+no-bottom-padding {
+    padding-bottom: 0 !important;
+}
+
+.no-right-padding {
+    padding-right: 0 !important;
+}
+
+.no-top-padding {
+    padding-top: 0 !important;
+}
+
+.no-bottom-padding {
+    padding-bottom: 0 !important;
+}
+
+.bottom-margin-10 {
+    margin-bottom: 10 !important;
+}
+
+.right-margin-10 {
+    margin-right: 10px;
+}
+
+.right-margin-20 {
+    margin-right: 20px;
+}
+
+.top-padding-10 {
+    padding-top: 10px !important;
+}
+
+.top-padding-20 {
+    padding-top: 20px !important;
+}
+
+.table-visible tr th {
+    font-size: 14px !important;
+    padding: 5px !important;
+}
+
+.font16 {
+    font-size: 16px !important;
+}
+
+.font14 {
+    font-size: 14px !important;
+}
+
+left-margin-zero {
+    margin-left: 0 !important;
+}
+
+.datepicker {
+    width: 193px !important;
+}
+
+.foot {
+    clear: left !important;
+}
+
+.custom-form div.head span.text {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.custom-form div.head span.text h3 {
+    display: inline;
+}
+
+a {
+    outline: none !important;
+}
+
+th.head-text {
+    font-size: 14px !important;
+    text-align: center !important;
 }
 
 body {
-	background: #ffffff;
-	color: #333333;
-	margin: 0 auto;
-	max-width: 960px;
-	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-	   -moz-box-shadow: 0 0 0.3em #255b17;
-	-webkit-box-shadow: 0 0 0.3em #255b17;
-	        box-shadow: 0 0 0.3em #255b17;
+   /* padding-top: 40px;
+    /*position: relative;*/
 }
 
-#grailsLogo {
-	background-color: #abbf78;
+div.container-fluid div.nav-collapse ul.nav li.dropdown ul.dropdown-menu li a {
+    font-size: 13px !important;
 }
 
-/* replace with .no-boxshadow body if you have modernizr available */
-.ie6 body,
-.ie7 body,
-.ie8 body {
-	border-color: #255b17;
-	border-style: solid;
-	border-width: 0 1px;
+#user-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.ie6 body {
-	height: 100%;
+.custom-form {
+    padding: 30px 0;
 }
 
-a:link, a:visited, a:hover {
-	color: #48802c;
+.custom-form .body .content form {
+    padding-top: 10px;
 }
 
-a:hover, a:active {
-	outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
+#yearSelect {
+    width: 65px !important;
+    height: 22px !important;
+    margin: 8px 20px 0 10px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-h1 {
-	color: #48802c;
-	font-weight: normal;
-	font-size: 1.25em;
-	margin: 0.8em 0 0.3em 0;
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+    color: #ffffff;
+    font-size: 14px !important;
 }
 
-ul {
-	padding: 0;
+.navbar-inverse .brand {
+    font-size: 16px !important;
+    font-weight: bold;
 }
 
-img {
-	border: 0;
+#user-name {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
-/* GENERAL */
-
-#grailsLogo a {
-	display: inline-block;
-	margin: 1em;
+.content table tr td {
+    font-size: 11px;
+    text-align: center;
 }
 
-.content {
+/*###########################For dashboardForTrackable############################*/
+.outer {
+    width: 48%;
+    margin-top: 20px;
+    margin-left: 15px;
 }
 
-.content h1 {
-	border-bottom: 1px solid #CCCCCC;
-	margin: 0.8em 1em 0.3em;
-	padding: 0 0.25em;
+.head h3 {
+    margin: 0;
 }
 
-.scaffold-list h1 {
-	border: none;
+.head {
+    height: 9%;
+    vertical-align: middle !important;
+    border-radius: 15px 15px 0 0;
+    color: #000;
+    font-weight: bold;
+    text-align: left;
+    /*font-size: 16px;*/
+    /* line-height: 250%;*/
+    padding-bottom: 5px !important;
+    margin: 20px;
 }
 
-.footer {
-	background: #abbf78;
-	color: #000;
-	clear: both;
-	font-size: 0.8em;
-	margin-top: 1.5em;
-	padding: 1em;
-	min-height: 1em;
+.content table.table tbody tr th {
+    font-size: 12px;
+    text-align: center;
+    width: 18%;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
-.footer a {
-	color: #255b17;
+tbody tr td#selected-date {
+    text-align: left;
+    padding-left: 10px;
 }
 
-.spinner {
-	background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
-	height: 16px;
-	width: 16px;
-    padding: 0.5em;
-    position: absolute;
-    right: 0;
-	top: 0;
-	text-indent: -9999px;
+tbody tr#reason-block td {
+    text-align: left;
+    padding-left: 10px;
 }
 
-/* NAVIGATION MENU */
-
-.nav {
-	background-color: #efefef;
-	padding: 0.5em 0.75em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
-	zoom: 1;
+.custom-form .body .content table tr td .label {
+    width: 140px;
 }
 
-.nav ul {
-	overflow: hidden;
-	padding-left: 0;
-	zoom: 1;
+#dashboard td {
+    padding: 5px;
+    font-size: 10px;
+    text-align: center;
 }
 
-.nav li {
-	display: block;
-	float: left;
-	list-style-type: none;
-	margin-right: 0.5em;
-	padding: 0;
+.modal-content table tbody tr td {
+    text-align: left;
 }
 
-.nav a {
-	color: #666666;
-	display: block;
-	padding: 0.25em 0.7em;
-	text-decoration: none;
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+/*###########################All Forms############################*/
+.custom-form .head {
+
+    vertical-align: middle;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    font-weight: bold;
+    text-align: left;
+    font-size: 24px;
+    margin-left: 0px;
 }
 
-.nav a:active, .nav a:visited {
-	color: #666666;
+form {
+    margin-bottom: 0 !important;
 }
 
-.nav a:focus, .nav a:hover {
-	background-color: #999999;
-	color: #ffffff;
-	outline: none;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+.custom-form .foot {
+    text-align: right;
+    margin-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    clear: left;
 }
 
-.no-borderradius .nav a:focus, .no-borderradius .nav a:hover {
-	background-color: transparent;
-	color: #444444;
-	text-decoration: underline;
+.custom-form .body {
+    border: 1px solid #d3d3d3;
+    width: 100%;
+    padding-bottom: 5px;
+    border-radius: 6px;
+    clear: both;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
-	background-position: 0.7em center;
-	background-repeat: no-repeat;
-	text-indent: 25px;
+.custom-form .custom-control-label {
+    text-align: left;
+    font-weight: bold !important;
+    /* padding-left: 1px;*/
+    font-size: 14px;
 }
 
-.nav a.home {
-	background-image: url(../images/skin/house.png);
+.custom-form .custom-control {
+    text-align: left;
 }
 
-.nav a.list {
-	background-image: url(../images/skin/database_table.png);
+.custom-form .body .custom-control-label label {
+    font-weight: bold;
 }
 
-.nav a.create {
-	background-image: url(../images/skin/database_add.png);
+div.container div.body div.content table {
+    margin-left: 0;
+    padding-left: 0;
+
 }
 
-/* CREATE/EDIT FORMS AND SHOW PAGES */
-
-fieldset,
-.property-list {
-	margin: 0.6em 1.25em 0 1.25em;
-	padding: 0.3em 1.8em 1.25em;
-	position: relative;
-	zoom: 1;
-	border: none;
+div.container div.body div.content {
+    padding-left: 0;
 }
 
-.property-list .fieldcontain {
-	list-style: none;
-	overflow: hidden;
-	zoom: 1;
+.custom-form table {
+    margin: 0;
+
 }
 
-.fieldcontain {
-	margin-top: 1em;
+div.block_content p.span9 {
+    color: hsl(225, 73%, 57%);
+    float: left;
 }
 
-.fieldcontain label,
-.fieldcontain .property-label {
-	color: #666666;
-	text-align: right;
-	width: 25%;
+input {
+    height: 75px !important;
+    width: 220px;
+    font-size: 12px !important;
 }
 
-.fieldcontain .property-label {
-	float: left;
-}
-
-.fieldcontain .property-value {
-	display: block;
-	margin-left: 27%;
-}
-
-label {
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 0.25em 0 0;
-}
-
-input, select, textarea {
-	background-color: #fcfcfc;
-	border: 1px solid #cccccc;
-	font-size: 1em;
-	padding: 0.2em 0.4em;
-}
-
-select {
-	padding: 0.2em 0.2em 0.2em 0;
-}
-
-select[multiple] {
-	vertical-align: top;
+form table tbody tr td span.button input#Submit.btn {
+    margin-right: 40px;
 }
 
 textarea {
-	width: 250px;
-	height: 150px;
-	overflow: auto; /* IE always renders vertical scrollbar without this */
-	vertical-align: top;
+    width: 220px;
+    font-size: 12px;
 }
 
-input[type=checkbox], input[type=radio] {
-	background-color: transparent;
-	border: 0;
-	padding: 0;
+select {
+    vertical-align: text-top;
+    height: 25px !important;
+    font-size: 12px !important;
+    width: 220px;
+
 }
 
-input:focus, select:focus, textarea:focus {
-	background-color: #ffffff;
-	border: 1px solid #eeeeee;
-	outline: 0;
-	   -moz-box-shadow: 0 0 0.5em #ffffff;
-	-webkit-box-shadow: 0 0 0.5em #ffffff;
-	        box-shadow: 0 0 0.5em #ffffff;
+/*############################# For comp-OffRequest#############################*/
+#leave-balance {
+    margin-left: 150px;
 }
 
-.required-indicator {
-	color: #48802C;
-	display: inline-block;
-	font-weight: bold;
-	margin-left: 0.3em;
-	position: relative;
-	top: 0.1em;
+/*############################# For _addAttendance#############################*/
+#attendanceRecord .table-visible tr th {
+    font-size: 16px;
+    text-align: center;
+    width: 20%;
 }
 
-ul.one-to-many {
-	display: inline-block;
-	list-style-position: inside;
-	vertical-align: top;
+#attendanceRecord .body {
+    border: none;
 }
 
-.ie6 ul.one-to-many, .ie7 ul.one-to-many {
-	display: inline;
-	zoom: 1;
+#attendanceRecord .table-visible td {
+    width: 20%;
+    text-align: center;
+    font-size: smaller;
 }
 
-ul.one-to-many li.add {
-	list-style-type: none;
+#attendanceRecord .body .content {
+    margin-left: -30px;
 }
 
-/* EMBEDDED PROPERTIES */
-
-fieldset.embedded {
-	background-color: transparent;
-	border: 1px solid #CCCCCC;
-	margin-left: 0;
-	margin-right: 0;
-	padding-left: 0;
-	padding-right: 0;
-	   -moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
+.custom-form .body .content form table  tr td.custom-control select {
+    width: 220px !important;
 }
 
-fieldset.embedded legend {
-	margin: 0 1em;
+#saveLeaveRecord {
+    overflow: hidden;
+    margin: 0 0 20px;
 }
 
-/* MESSAGES AND ERRORS */
-
-.errors,
-.message {
-	font-size: 0.8em;
-	line-height: 2;
-	margin: 1em 2em;
-	padding: 0.25em;
+#info table.table tbody tr td {
+    font-size: 14px;
 }
 
-.message {
-	background: #f3f3ff;
-	border: 1px solid #b2d1ff;
-	color: #006dba;
-	   -moz-box-shadow: 0 0 0.25em #b2d1ff;
-	-webkit-box-shadow: 0 0 0.25em #b2d1ff;
-	        box-shadow: 0 0 0.25em #b2d1ff;
+#leaveBalance #data {
+    margin-left: 0;
 }
 
-.errors {
-	background: #fff3f3;
-	border: 1px solid #ffaaaa;
-	color: #cc0000;
-	   -moz-box-shadow: 0 0 0.25em #ff8888;
-	-webkit-box-shadow: 0 0 0.25em #ff8888;
-	        box-shadow: 0 0 0.25em #ff8888;
+div.container div.custom-form div.body div.content form table {
+    margin-left: 5px;
 }
 
-.errors ul,
-.message {
-	padding: 0;
+/*###################  For apply for optional holiday###################*/
+
+#list-of-holidays.custom-form {
+    margin-left: 30px;;
 }
 
-.errors li {
-	list-style: none;
-	background: transparent url(../images/skin/exclamation.png) 0.5em 50% no-repeat;
-	text-indent: 2.2em;
+#apply-for-optional-holiday div.body {
+    padding-top: 10px;
 }
 
-.message {
-	background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
-	text-indent: 2.2em;
+/*###################  For  showWaitingAttendance.gsp###################*/
+
+div#approved-leaves.custom-form div.content table.table-striped tbody tr th {
+    font-size: 13px;
+    padding: 7px;
+
 }
 
-/* form fields with errors */
+div#s2id_employee.select2-container {
+    font-size: 12px !important;
+    font-weight: normal !important;
 
-.error input, .error select, .error textarea {
-	background: #fff3f3;
-	border-color: #ffaaaa;
-	color: #cc0000;
 }
 
-.error input:focus, .error select:focus, .error textarea:focus {
-	   -moz-box-shadow: 0 0 0.5em #ffaaaa;
-	-webkit-box-shadow: 0 0 0.5em #ffaaaa;
-	        box-shadow: 0 0 0.5em #ffaaaa;
+/*###################  For _showAbsent.gsp###################*/
+
+/*
+#show-absent table.table thead tr td, th {
+    padding: 5px !important;
+    font-size: 12px;
+}
+*/
+
+/*html body div.container div#dashboard.span12 div.outer{
+    padding-left: 15px !important;
+}*/
+
+/*div#dashboard.span12 div.outer div.content table.table tbody tr.alternate td{
+font-size: 11px !important;
+}*/
+.attendenceException {
+    background: #d9e2f7;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 170px;
+    float: left;
+    margin: 5px 5px 5px 0;
+    cursor: pointer
 }
 
-/* same effects for browsers that support HTML5 client-side validation (these have to be specified separately or IE will ignore the entire rule) */
-
-input:invalid, select:invalid, textarea:invalid {
-	background: #fff3f3;
-	border-color: #ffaaaa;
-	color: #cc0000;
+.attendenceException input[type="radio"] {
+    float: left;
+    margin: 3px 5px 0 0;
+    display: none
 }
 
-input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
-	   -moz-box-shadow: 0 0 0.5em #ffaaaa;
-	-webkit-box-shadow: 0 0 0.5em #ffaaaa;
-	        box-shadow: 0 0 0.5em #ffaaaa;
+.ajax-spinner {
+    padding-top: 8px;
 }
 
-/* TABLES */
-
-table {
-	border-top: 1px solid #DFDFDF;
-	border-collapse: collapse;
-	width: 100%;
-	margin-bottom: 1em;
+.label {
+    font-weight: bold;
 }
 
-tr {
-	border: 0;
+/*######################For editContactDetail##################*/
+
+div.container .custom-form .body .content {
+    margin-left: 0;
 }
 
-tr>td:first-child, tr>th:first-child {
-	padding-left: 1.25em;
+#editContactDetail table tbody tr.heading td {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+    margin: 50px 5px;
 }
 
-tr>td:last-child, tr>th:last-child {
-	padding-right: 1.25em;
+.container .custom-form .body .content form#editContactDetail #foot {
+    text-align: right;
+
 }
 
-td, th {
-	line-height: 1.5em;
-	padding: 0.5em 0.6em;
-	text-align: left;
-	vertical-align: top;
+form#editContactDetail table.no-left-margin tbody tr td {
+    padding-left: 10px;
 }
 
-th {
-	background-color: #efefef;
-	background-image: -moz-linear-gradient(top, #ffffff, #eaeaea);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), color-stop(1, #eaeaea));
-	    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#ffffff', EndColorStr = '#eaeaea');
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#eaeaea')";
-	color: #666666;
-	font-weight: bold;
-	line-height: 1.7em;
-	padding: 0.2em 0.6em;
+#editContactDetail .body .table .td {
+    padding: 5px
 }
 
-thead th {
-	white-space: nowrap;
+.container .custom-form .body .content form#editContactDetail #foot #submit {
+    margin-right: 20px;
 }
 
-th a {
-	display: block;
-	text-decoration: none;
+/*######################For showContactDetail##################*/
+
+/*##########################For _list   (holidays) ##########################*/
+
+/*#holidays-list .table-visible tbody tr td {
+    font-size: 12px;
+    padding: 5px 50px;
+}*/
+
+/*##########################For list   (holidays) ##########################*/
+#holidays-show .body #holidays-list.span10 {
+    margin-left: 0;
+    padding-left: 0;
 }
 
-th a:link, th a:visited {
-	color: #666666;
+#holidays-show .body {
+    border: none;
 }
 
-th a:hover, th a:focus {
-	color: #333333;
+#holidays-show .head {
+    margin-left: 0;
 }
 
-th.sortable a {
-	background-position: right;
-	background-repeat: no-repeat;
-	padding-right: 1.1em;
+#holidays-show .head .span3 {
+    margin: 0;
+    padding-left: 0;
 }
 
-th.asc a {
-	background-image: url(../images/skin/sorted_asc.gif);
+#holidays-show .head .span2 {
+    text-align: center;
+    float: right;
+    margin-right: 63px;
 }
 
-th.desc a {
-	background-image: url(../images/skin/sorted_desc.gif);
+#holidays-show .head .span2 form {
+    margin-bottom: 0;
 }
 
-.odd {
-	background: #f7f7f7;
+/*For show (holidays)*/
+. custom-form . head #form-top form-top {
+    padding: 0;
+    margin: 0;
 }
 
-.even {
-	background: #ffffff;
+div.container div#holiday-detail.custom-form div.head span#form-top form {
+    float: right;
+    margin: 0;
 }
 
-th:hover, tr:hover {
-	background: #E1F2B6;
+#holiday-detail div.head span.span2 {
+    margin-left: 0;
 }
 
-/* PAGINATION */
-
-.pagination {
-	border-top: 0;
-	margin: 0;
-	padding: 0.3em 0.2em;
-	text-align: center;
-	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
-	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
-	        box-shadow: 0 0 3px 1px #AAAAAA;
-	background-color: #EFEFEF;
+#holiday-detail div.head span#form-top.span3 {
+    margin: 0;
+    padding: 0;
+    float: right;
 }
 
-.pagination a,
-.pagination .currentStep {
-	color: #666666;
-	display: inline-block;
-	margin: 0 0.1em;
-	padding: 0.25em 0.7em;
-	text-decoration: none;
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+#holiday-detail div.head span#form-top.span3 form {
+    margin: 0;
+    padding: 0;
+
 }
 
-.pagination a:hover, .pagination a:focus,
-.pagination .currentStep {
-	background-color: #999999;
-	color: #ffffff;
-	outline: none;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+div.container div#holiday-detail.custom-form div.head span#form-top.span3 form {
+    padding-right: 0;
 }
 
-.no-borderradius .pagination a:hover, .no-borderradius .pagination a:focus,
-.no-borderradius .pagination .currentStep {
-	background-color: transparent;
-	color: #444444;
-	text-decoration: underline;
+/*##########################For Admin|Employees   userList.gsp ##########################*/
+
+#user-list .head {
+    margin-right: 50px;
 }
 
-/* ACTION BUTTONS */
-
-.buttons {
-	background-color: #efefef;
-	overflow: hidden;
-	padding: 0.3em;
-	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
-	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
-	        box-shadow: 0 0 3px 1px #aaaaaa;
-	margin: 0.1em 0 0 0;
-	border: none;
+#user-list .head #actions {
+    text-align: right;
+    height: 20px;
+    margin-top: 15px;
+    margin-right: -48px;
+    float: right;
 }
 
-.buttons input,
-.buttons a {
-	background-color: transparent;
-	border: 0;
-	color: #666666;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0 0.25em 0;
-	overflow: visible;
-	padding: 0.25em 0.7em;
-	text-decoration: none;
-
-	   -moz-border-radius: 0.3em;
-	-webkit-border-radius: 0.3em;
-	        border-radius: 0.3em;
+#user-list div.head span#text.span2 {
+    margin: 0;
 }
 
-.buttons input:hover, .buttons input:focus,
-.buttons a:hover, .buttons a:focus {
-	background-color: #999999;
-	color: #ffffff;
-	outline: none;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-	   -moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
+#user-list div.body {
+    border: none;
 }
 
-.no-borderradius .buttons input:hover, .no-borderradius .buttons input:focus,
-.no-borderradius .buttons a:hover, .no-borderradius .buttons a:focus {
-	background-color: transparent;
-	color: #444444;
-	text-decoration: underline;
+#user-list div.body table {
+    width: 90%;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
-	background-position: 0.7em center;
-	background-repeat: no-repeat;
-	text-indent: 25px;
+#user-list div.body table tbody tr td {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
 }
 
-.ie6 .buttons input.delete, .ie6 .buttons input.edit, .ie6 .buttons input.save,
-.ie7 .buttons input.delete, .ie7 .buttons input.edit, .ie7 .buttons input.save {
-	padding-left: 36px;
+#user-list div.body table tbody tr td label {
+    padding: 0;
+    margin: 0;
 }
 
-.buttons .delete {
-	background-image: url(../images/skin/database_delete.png);
+#user-list div.body table tbody tr td input {
+    margin: 0;
 }
 
-.buttons .edit {
-	background-image: url(../images/skin/database_edit.png);
+#user-list div.body table tbody tr td label.employee-code {
+    padding: 2px 0;
+    margin: 0;
+    text-align: center;
 }
 
-.buttons .save {
-	background-image: url(../images/skin/database_save.png);
+#user-list div.body table tbody tr td.employee-name {
+    padding: 2px 10px;
+    margin: 0;
+    text-align: left;
 }
 
-a.skip {
-	position: absolute;
-	left: -9999px;
+#user-list div.body table tbody tr td.sick {
+    padding: 2px 10px;
+    margin: 0;
+    text-align: left;
+}
+
+#user-list div.body table tbody tr td.casual {
+    padding: 2px 10px;
+    margin: 0;
+    text-align: left;
+}
+
+#user-list div.body table tbody tr td.paid {
+    padding: 2px 10px;
+    margin: 0;
+    text-align: left;
+}
+
+#user-list div.body table tbody tr td.edit {
+    padding: 0px 10px;
+    margin: 0;
+    text-align: left;
+}
+
+#user-list div.body table tbody tr td input {
+    width: 100%;
+}
+
+/*##########################For addEmployee.gsp ##########################*/
+#employee-add.custom-form div.body div.content form.form-horizontal table.span12 tbody tr td.custom-control div.input-append div.bootstrap-timepicker-widget {
+    width: 150px;
+    padding: 10px;
+}
+
+#employee-add.custom-form div.body div.content form.form-horizontal table.span12 tbody tr td.custom-control div.input-append div.bootstrap-timepicker-widget table {
+    margin: 0;
+}
+
+#employee-add table tbody tr td {
+    padding-left: 20px;
+}
+
+/*##########################For Employee|Show show.gsp ##########################*/
+#employeeProjectDetails {
+    padding-bottom: 50px;
+}
+
+#employee-details div.head span.actions form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#employee-details div.head span.actions {
+    display: inline;
+    float: right;
+    text-align: right;
+}
+
+#employee-details div.body div.content div.foot {
+    float: right;
+}
+
+#employee-details div.body {
+    border: none;
+}
+
+/*##########################For editEmployeeDetails ##########################*/
+
+#editEmployeeDetails div.body table.table-striped tbody tr td {
+    padding: 5px 5px 5px 10px;
+
+}
+
+#editEmployeeDetails div.body table.table-striped tbody tr td form.no-bottom-margin {
+    text-align: center;
+    width: 100%;
+}
+
+#editEmployeeDetails div.body {
+    border: none;
+}
+
+/*##########################For Projects|List   list.gsp##########################*/
+#project-list div.body table.table-hover thead tr th.sortable {
+    text-align: left;
+}
+
+#project-list.custom-form div.body div.content table.table-hover tbody tr td {
+    text-align: left;
+    font-size: 12px;
+}
+
+/*##########################For Project|show show.gsp ##########################*/
+div.container div.block div.body div.content table.table-striped tbody tr td {
+    text-align: left;
+}
+
+#project-show.custom-form div.head span.text h3.no-margin {
+    margin: 0;
+    padding: 0;
+}
+
+#project-team div.content {
+    margin-top: 10px;
+}
+
+/*##########################For Client|Edit edit.gsp ##########################*/
+#client-edit div.head span.actions {
+    text-align: right;
+}
+
+#client-edit div.head span.actions form {
+    display: inline;
+    float: right;
+}
+
+/*
+#client-edit div.body table.table-hover tbody tr td, th {
+    padding: 10px;
+}
+*/
+
+/*##########################For Client|show show.gsp ##########################*/
+div.container div.custom-form div.body div.content table tbody tr td.custom-control-lable a.btn {
+    display: inline;
+    margin-left: 100px;
+}
+
+div.container div.custom-form div.head span.actions form.no-bottom-margin {
+    display: inline;
+    padding: 0;
+}
+
+/* for Timepicker */
+div.bootstrap-timepicker-widget table tbody tr td input {
+    width: 37px !important;
+}
+
+/* for Shift List*/
+#shift-list.custom-form div.body table#shifts.table tbody tr td.span1 input#name {
+    width: 75px;
+}
+
+#shift-list.custom-form div.body table#shifts.table tbody tr td {
+    vertical-align: middle;
+
+}
+
+#shift-list div.body table#shifts.table tbody tr td.span1 input#inTimeInString, input#outTimeInString {
+    width: 100px;
+}
+
+#shift-list .body #shifts.table tbody tr td input#name {
+    margin-bottom: 0;
+}
+
+#shift-list div.body table#shifts.table tbody tr td.span1 .input-append .bootstrap-timepicker-widget table {
+    border: none;
+}
+
+#shift-list.custom-form div.body table#shifts.table tbody tr td.span1 div.input-append div.bootstrap-timepicker-widget table {
+    border: none !important;
+}
+
+/*
+################Add Employee Attendance#################################
+*/
+#addAttendance.body table.table {
+    font-size: 13px;
+}
+
+a.btn {
+    color: #fff !important;
+}
+
+#attendanceException.content form.form-horizontal table {
+    margin-left: 20px;
+}
+
+#saveLeaveRecord table.span5 {
+    margin-left: 20px;
+}
+
+#optionalHoliday.content form table {
+    margin-left: 32px;
+}
+
+#holiday_list.content table.table-visible tbody tr th {
+    font-size: 14px;
+    padding: 0px !important;
+}
+
+#waiting-leaves.block div.block_content table tbody tr td {
+    font-size: 12px !important;
+    padding-left: 10px;
+}
+
+#waiting-leaves.block div.block_content table thead tr th {
+    font-size: 14px !important;
+    text-align: left;
+
+}
+
+#allUserAbsentDetails table.table-striped thead tr th {
+    font-size: 14px;
+}
+
+div.input-append span.add-on {
+    height: 15px;
+}
+
+.select2-container .select2-choice {
+    width: 210px;
+    font-size: 12px !important;
+}
+
+div.select2-drop ul.select2-results li.select2-results-dept-0 div.select2-result-label {
+    font-size: 12px !important;
+    font-weight: normal !important;
+
+}
+
+div#nyroModalFull div#nyroModalWrapper div.wrapper div#nyroModalContent div#nyroModalContent h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#comp-off-request.content form table tbody tr td.custom-control-label {
+    padding-left: 20px;
+}
+
+#allUserAbsentDetails.content table.table-striped thead {
+    text-align: center;
+
+}
+
+/* for Timepicker */
+div.bootstrap-timepicker-widget table tbody tr td input {
+    width: 37px !important;
+}
+
+/*For Shift Create*/
+#shift-create .body .content #saveShift table tbody tr td .input-append input.timepicker {
+    width: 193px;
+
+}
+
+div.container div#shift-create.custom-form {
+    margin-left: 55px;
+}
+
+tr#reason-block {
+    margin-top: 5px;
+}
+
+.attendenceException label {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.bootstrap-timepicker-widget table tbody tr td {
+    padding-left: 0;
+    text-align: center !important;
+    font-size: 12px;
+}
+
+#attendanceRecord.custom-form div.body div.content form.no-padding table tbody tr  td {
+    padding-left: 0px !important;
+}
+
+#allUserAbsentDetails.content table.table-striped thead tr th div.input-append span.add-on {
+    height: 15px;
+}
+
+#allUserAbsentDetails.content table.table-striped thead tr th {
+    vertical-align: text-top;
+}
+
+#allUserAbsentDetails.content table.table {
+    margin-left: 30px;
+}
+
+div.container div.widget-header table.table thead tr th div.navbar div.navbar-inner
+div.body form table tbody tr td.custom-control-label {
+    padding-left: 20px;
+}
+
+div#absentReason.body {
+    border: 0px;
+}
+
+div#absentReason.body div.content table tbody tr th {
+    text-align: left;
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+
+div.content form table tbody tr td.custom-control input {
+    font-size: 12px;
+
+}
+
+.select2-container {
+    margin-bottom: 9px;
+
+}
+
+div#attendanceRecord.container div.head div.pull-right {
+    line-height: 0px;
+
+}
+
+div#attendanceRecord.container div.head {
+    padding-bottom: 20px;
+
+}
+
+table#leaveReportTable.table thead.left tr th.header {
+    padding-left: 20px;
+}
+
+div#show div.custom-form div.body div.content table.table tbody tr th {
+    text-align: left;
+}
+
+div#project-list.custom-form div.body div.content table.table thead tr th.sortable {
+    text-align: center;
+}
+
+div#loginForm div.inner form.custom-form div.custom-control-label div.span6  input.btn {
+    height: 75px !important;
+    font-size: 20px;
+}
+
+div#loginForm div.inner div.head h3 {
+    margin-left: 40px !important;
+}
+
+div#loginForm {
+    margin-top: 100px;
+    border: 2px;
+
+}
+
+tr#freeTextFilter td span div.input-append span.add-on {
+    padding-bottom: 1px;
+    padding-top: 2px;
+}
+
+div.container div.custom-form div.head span div.input-append {
+    padding: 5px;
+}
+
+tr#freeTextFilter td span div.input-append input#searchInput.span2 {
+    font-size: 12px !important;
+    height: 25px !important;
+    width: 200px !important;
+}
+
+div#edit-leave div#myModal.modal {
+    margin-top: -200px !important;
+}
+
+form#changeLeaveType div.modal-content table.table tbody tr td {
+    text-align: left;
+    font-size: 12px;
+    border: 0px !important;
+}
+
+table.table thead tr:first-child {
+    color: hsl(0, 0%, 33%);
+    font-size: 14px !important;
+    background: -moz-linear-gradient(center top, hsl(0, 0%, 93%) 0%, hsl(0, 0%, 85%) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #eeeeee 0%, #dadada 100%);
+}
+
+div#collapseOne.accordion-body div.accordion-inner {
+    margin-top: 50px;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(../fonts/wrapBootstrap/Normal400.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(../fonts/wrapBootstrap/Normal600.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(../fonts/wrapBootstrap/Italic400.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(../fonts/wrapBootstrap/Italic600.woff) format('woff');
+}
+
+input#freeText.span2 {
+    width: 220px;
+}
+
+div#accordion2.accordion div.accordion-group div.head {
+    margin-left: 15px;
+}
+
+div#collapseOne.accordion-body div.accordion-inner div.pull-right {
+    margin-bottom: 20px;
+}
+
+.accordion-toggle .caret {
+    margin-top: 8px;
+}
+
+b.required {
+    color: red;
+}
+
+div#accordion2.accordion div#collapseOne.accordion-body {
+    clear: both;
+    width: 100%;
+    /*margin-bottom: 20px;*/
+}
+
+div.container div.widget-header {
+    margin-top: 30px;
+}
+
+div#collapseOne.accordion-body table.table {
+    width: 70%;
+}
+
+#accordion2.accordion div.accordion-heading {
+    margin-top: 15px;
+    float: right;
+}
+
+#accordion2.accordion div.head {
+    font-size: 22px;
+    line-height: 60px;
+}
+
+#allUserAbsentDetails.content table.table thead tr th {
+    text-align: center;
+}
+
+#accordion2.accordion div.accordion-heading a.accordion-toggle i.icon-refresh {
+    margin-top: 4px;
+}
+
+table.table thead tr th {
+    text-align: center;
+}
+
+#employee-details.custom-form div.body div.content div.foot {
+    margin-right: 0px;
+}
+
+#editContact.custom-form div.head span.pull-right a {
+    font-size: 14px;
+}
+
+#editContact.custom-form div.widget-header span.top-padding-10 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+#user-list.custom-form div.head span#actions.span4 form div.pull-left {
+    padding-top: 0px !important;
+}
+
+#user-list.custom-form div.head span#text.span2 h3 {
+    vertical-align: top;
+}
+
+div.container div#project-list.custom-form div.head {
+    margin-left: 0 !important;
+}
+
+#project-list.custom-form div.head span div.input-append {
+    padding-top: 0px !important;
+}
+
+#project-list.custom-form div.head span.text {
+    margin-top: 0px !important;
+    text-align: match-parent;
+    padding-bottom: 20px;
+    margin-left: 20px;
+    padding-right: 20px;
+}
+
+html body div.container div#project-list.custom-form div.head span div.input-append {
+    margin-left: 25px;
+    padding: 15px;
+}
+
+#employee-details.custom-form div.head {
+    margin-right: 0px;
+}
+
+.errorElement {
+    border: 1px solid #ff0000 !important;
+}
+
+div.widget-header div#accordion2.accordion div.head {
+    margin: 0px !important;
+}
+
+div#user-list.custom-form div.head span#text.span2 {
+    line-height: 1;
+}
+
+div#user-list.custom-form div.body table.table tbody#fbody tr td {
+    padding: 10px;
+}
+
+div#holidays-show.custom-form div.head span.span2 {
+    margin-right: 45px;
+}
+
+div#accordion2.accordion div.accordion-heading a.accordion {
+    padding-right: 0px;
+}
+
+div#shift-list.custom-form div.body table#shifts.table tbody tr td.edit {
+    text-align: center;
+}
+
+div#project-show.custom-form div.head {
+    margin-left: 30px;
+}
+
+div#project-show.custom-form div.body div.content table.table-striped tbody tr td {
+    padding: 10px;
+    font-size: 12px;
+}
+
+div#project-team.custom-form div.head {
+    margin-left: 30px;
+    margin-bottom: 0px;
+}
+
+div#project-team.custom-form div.head span.actions span.button {
+    line-height: 1px;
+}
+
+div#attendanceException.content form.form-horizontal table tbody tr#name td {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+div#addAttendance.body table.table {
+    width: 82%;
+}
+
+div#addAttendance.body table.table tbody tr td {
+    text-align: center;
+}
+
+div#attendanceRecord.custom-form div.container div.head div.span2 input.btn {
+    margin-left: 100px;
+}
+
+html body div.container form.no-padding div#attendanceRecord.custom-form div.container div.head div.span2 a.btn {
+    margin-left: 85px;
+}
+
+form#saveShift table tbody tr td.custom-control div.input-append div.bootstrap-timepicker-widget {
+    padding-right: 30px !important;
+}
+
+div#leaveReport.custom-form div.head div.content.span12 table.table-visible tbody tr td {
+    text-align: left;
+}
+
+html body div.container div#leaveReport.custom-form div.head div.content {
+    margin-left: 0px !important;
+}
+
+div.dp3 span.add-on {
+    padding-top: 3px;
+    padding-bottom: 5px;
+    margin-top: 1px;
+
+}
+
+div.datepicker {
+    padding-right: 20px;
+}
+
+form#saveShift table tbody tr td {
+    padding-left: 10px;
+}
+
+div#update {
+    margin-left: 15px;
+}
+
+div#showContactDetails.custom-form div.head div.input-append {
+    margin-right: 50px;
+}
+
+div.tooltip {
+    margin-left: 30px;
+}
+
+.alert {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+tr.projects td {
+    vertical-align: top;
+}
+
+div#attendanceException.content table tbody tr td form.foot div.foot span.button input.second {
+    margin-right: 19px;
+}
+
+div#attendanceException.content table tbody tr.projects td.custom-control-label a.addProject {
+    margin-left: 11px;
+}
+
+.dropdown-menu {
+    z-index: 9999;
+}
+
+#editEmployeeDetails.custom-form div.body div.content form div.foot {
+    margin-left: 0px;
+}
+
+div#employee-details.custom-form div.body div.content table tbody tr td.custom-control-label {
+    padding-left: 10px;
+}
+
+/*.btn {
+    line-height: 15px;
+}*/
+
+td.date-entries select {
+    text-align: left;
+    width: 65px;
+}
+
+td.date-entries select[name=expiry_month] {
+    text-align: left;
+    width: 100px;
+}
+
+#abbreviationTable tr th{
+    font-size: 14px !important;
+    font-weight: bold;
 }

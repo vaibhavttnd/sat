@@ -1,10 +1,19 @@
-dataSource {
+/*dataSource {
     pooled = true
     jmxExport = true
     driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
+}*/
+dataSource {
+    pooled = true
+    driverClassName = "com.mysql.jdbc.Driver"
+    dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+    username = "root"
+    password = "igdefault"
+    logSql = true
 }
+
 hibernate {
     cache.use_second_level_cache = true
     cache.use_query_cache = false
@@ -19,7 +28,8 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:mysql://localhost:3306/TWEETAMP"
+            //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
     test {
@@ -30,8 +40,29 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
+            dbCreate = "update" // one of 'create', 'create-drop','update'
+            String mysqlUrl = System.getenv("CLEARDB_DATABASE_URL")
+            if (mysqlUrl) {
+                println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
+                println "Applying CLEARDB_DATABASE_URL settings"
+                URI dbUri = new URI(mysqlUrl);
+                username = dbUri.userInfo.split(":")[0]
+                password = dbUri.userInfo.split(":")[1]
+                String databaseUrl = "jdbc:${dbUri.scheme}😕
+                /${dbUri.host}${dbUri.path}"
+                if (dbUri.port > 0) {
+                    databaseUrl += ":${dbUri.port}"
+                }
+                String query = dbUri.query ?: "reconnect=true"
+                query += "&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+                databaseUrl += "?${query}"
+                url = databaseUrl
+            }
+
+
+            /*dbCreate = "update"
             url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            */
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

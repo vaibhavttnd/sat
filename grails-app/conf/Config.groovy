@@ -103,6 +103,8 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
+  //  debug 'org.springframework.security'
+
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -115,3 +117,62 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+grails.google.api.url = "https://www.googleapis.com/oauth2/v1/userinfo"
+def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}"
+
+oauth {
+    providers {
+        google {
+            api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+            key = '283780058333-u1n59cltp31lf204tog9kgsl0j01880d.apps.googleusercontent.com'
+            secret = 'Q8_QR7kgRR-Dq-qRb_4utM2b'
+            successUri = '/springSecurityOAuth/onSuccess'
+            //failureUri = '/oauth/google/error'
+            failureUri ='/'
+            callback = "${baseURL}/oauth/google/callback"
+            scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+        }
+    }
+}
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.tweetAmp.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.tweetAmp.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.tweetAmp.Role'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashBoard/home'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/':               ['permitAll'],
+        '/assets/**':      ['permitAll'],
+        '/**/js/**':       ['permitAll'],
+        '/**/fonts/**':       ['permitAll'],
+        '/fonts/**':       ['permitAll'],
+        '/**/css/**':      ['permitAll'],
+        '/**/images/**':   ['permitAll'],
+        '/**/favicon.ico': ['permitAll'],
+        '/login/**':        ['permitAll'],
+        '/logout/**':       ['permitAll'],
+        '/oauth/**':        ['permitAll'],
+        '/dashBoard/**':        ['ROLE_USER'],
+        '/springSecurityOAuth/**' : ['permitAll'],
+        '/twitter4j/**' : ['permitAll']
+]
+
+// Added by the Spring Security OAuth plugin:
+grails.plugin.springsecurity.oauth.active = true
+grails.plugin.springsecurity.oauth.domainClass = "com.tweetAmp.GoogleUser"
+grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri="/springSecurityOAuth/askToLinkOrCreateAccount"
+//grails.plugins.springsecurity.oauth.registration.roleNames = [Role.ROLE_USER]
+//security.logout.postOnly = false
+
+//twiiter settings
+twitter4j {
+    enableTwitter4jController = false  // To avoid intruders to use controller all together.
+    'default' {
+        debugEnabled           = false
+        OAuthConsumerKey       = '5JyqR5PajwOc0EK9tHlKMRx2g'
+        OAuthConsumerSecret    = 'cAshX3H3CtGplMoqjbb8h576DvAXhyXomr57KwltI8RV7cv5g3'
+    }
+}
+
+grails.allowedDomain="intelligrape.com"
