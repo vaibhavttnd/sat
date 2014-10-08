@@ -48,8 +48,7 @@ environments {
                 URI dbUri = new URI(mysqlUrl);
                 username = dbUri.userInfo.split(":")[0]
                 password = dbUri.userInfo.split(":")[1]
-                String databaseUrl = "jdbc:${dbUri.scheme}😕
-                /${dbUri.host}${dbUri.path}"
+                String databaseUrl = "jdbc:${dbUri.scheme}://${dbUri.host}${dbUri.path}"
                 if (dbUri.port > 0) {
                     databaseUrl += ":${dbUri.port}"
                 }
