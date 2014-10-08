@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0864b35a-eeb3-476e-a851-79da7c06165e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/Config.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TweetAmp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,8 +112,8 @@
       <file leaf-file-name="Config.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32994923" vertical-offset="1215" max-vertical-offset="2760">
-              <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.17766498" vertical-offset="1305" max-vertical-offset="2760">
+              <caret line="94" column="58" selection-start-line="94" selection-start-column="58" selection-end-line="94" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -1949,12 +1950,12 @@
       <workItem from="1412658683542" duration="18952000" />
       <workItem from="1412699557652" duration="3599000" />
       <workItem from="1412742026373" duration="4724000" />
-      <workItem from="1412747720955" duration="13947000" />
+      <workItem from="1412747720955" duration="14589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243376000" />
+    <option name="totallyTimeSpent" value="244018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -2459,8 +2460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32994923" vertical-offset="1215" max-vertical-offset="2760">
-          <caret line="94" column="28" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.17766498" vertical-offset="1305" max-vertical-offset="2760">
+          <caret line="94" column="58" selection-start-line="94" selection-start-column="58" selection-end-line="94" selection-end-column="58" />
           <folding />
         </state>
       </provider>
