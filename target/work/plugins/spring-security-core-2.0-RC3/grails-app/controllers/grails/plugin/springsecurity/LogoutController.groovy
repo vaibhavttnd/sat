@@ -32,7 +32,6 @@ class LogoutController {
 		}
 
 		// TODO put any pre-logout code here
-        //redirect(controller: 'login', action: 'auth')
 		redirect uri: SpringSecurityUtils.securityConfig.logout.filterProcessesUrl // '/j_spring_security_logout'
 	}
 }

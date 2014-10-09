@@ -156,15 +156,15 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/oauth/**':        ['permitAll'],
         '/dashBoard/**':        ['ROLE_USER'],
         '/springSecurityOAuth/**' : ['permitAll'],
-        '/twitter4j/**' : ['permitAll']
+        '/twitter4j/**' : ['permitAll'],
+        '/console/**': ['ROLE_USER'],
+        '/plugins/console*/**': ['ROLE_USER']
 ]
 
 // Added by the Spring Security OAuth plugin:
 grails.plugin.springsecurity.oauth.active = true
 grails.plugin.springsecurity.oauth.domainClass = "com.tweetAmp.GoogleUser"
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri="/springSecurityOAuth/askToLinkOrCreateAccount"
-//grails.plugins.springsecurity.oauth.registration.roleNames = [Role.ROLE_USER]
-//security.logout.postOnly = false
 
 //twiiter settings
 twitter4j {

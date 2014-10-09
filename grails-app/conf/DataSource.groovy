@@ -27,28 +27,8 @@ hibernate {
 environments {
     development {
         dataSource {
-
-            dbCreate = "update" // one of 'create', 'create-drop','update'
-            println System.getenv("MYSQL_VAR")
-            println System.getenv("JAVA_OPTS")
-            String mysqlUrl = "mysql://b04665eadec216:edad6d81@us-cdbr-iron-east-01.cleardb.net/heroku_6eb475bbf2e8ee7?reconnect=true"
-            if (mysqlUrl) {
-                println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
-                println "Applying CLEARDB_DATABASE_URL settings"
-                URI dbUri = new URI(mysqlUrl);
-                username = dbUri.userInfo.split(":")[0]
-                password = dbUri.userInfo.split(":")[1]
-                String databaseUrl = "jdbc:${dbUri.scheme}://${dbUri.host}${dbUri.path}"
-                if (dbUri.port > 0) {
-                    databaseUrl += ":${dbUri.port}"
-                }
-                String query = dbUri.query ?: "reconnect=true"
-                query += "&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
-                databaseUrl += "?${query}"
-                url = databaseUrl
-            }
-                /* dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-                 url = "jdbc:mysql://localhost:3306/TWEETAMP"*/
+                 dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+                 url = "jdbc:mysql://localhost:3306/TWEETAMP"
             //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
@@ -60,31 +40,8 @@ environments {
     }
     production {
         dataSource {
-      /*      dbCreate = "update" // one of 'create', 'create-drop','update'
-            String mysqlUrl = "mysql://b04665eadec216:edad6d81@us-cdbr-iron-east-01.cleardb.net/heroku_6eb475bbf2e8ee7?reconnect=true"
-            //String mysqlUrl = System.getenv("CLEARDB_DATABASE_URL")
-            if (mysqlUrl) {
-                println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
-                println "Applying CLEARDB_DATABASE_URL settings"
-                URI dbUri = new URI(mysqlUrl);
-                username = dbUri.userInfo.split(":")[0]
-                password = dbUri.userInfo.split(":")[1]
-                String databaseUrl = "jdbc:${dbUri.scheme}://${dbUri.host}${dbUri.path}"
-                if (dbUri.port > 0) {
-                    databaseUrl += ":${dbUri.port}"
-                }
-                String query = dbUri.query ?: "reconnect=true"
-                query += "&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
-                databaseUrl += "?${query}"
-                url = databaseUrl
-            }*/
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/TWEETAMP"
-
-
-            /*dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            */
+            dbCreate = "update"
+            url = "jdbc:mysql://localhost:3306/tweetamp"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

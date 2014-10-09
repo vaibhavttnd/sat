@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TweetAmp.iml" filepath="$PROJECT_DIR$/TweetAmp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TweetAmp-grailsPlugins.iml" filepath="$PROJECT_DIR$/TweetAmp-grailsPlugins.iml" />
     </modules>
   </component>
 </project>
