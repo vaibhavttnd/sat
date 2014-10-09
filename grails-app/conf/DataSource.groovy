@@ -31,7 +31,7 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop','update'
             println System.getenv("MYSQL_VAR")
             println System.getenv("JAVA_OPTS")
-            String mysqlUrl = "mysql://b56a0fc016a8e3:21b54d1b@us-cdbr-iron-east-01.cleardb.net/heroku_9fd01d8d9beebfb?reconnect=true"
+            String mysqlUrl = "mysql://b04665eadec216:edad6d81@us-cdbr-iron-east-01.cleardb.net/heroku_6eb475bbf2e8ee7?reconnect=true"
             if (mysqlUrl) {
                 println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
                 println "Applying CLEARDB_DATABASE_URL settings"
@@ -60,8 +60,9 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop','update'
-            String mysqlUrl = System.getenv("CLEARDB_DATABASE_URL")
+      /*      dbCreate = "update" // one of 'create', 'create-drop','update'
+            String mysqlUrl = "mysql://b04665eadec216:edad6d81@us-cdbr-iron-east-01.cleardb.net/heroku_6eb475bbf2e8ee7?reconnect=true"
+            //String mysqlUrl = System.getenv("CLEARDB_DATABASE_URL")
             if (mysqlUrl) {
                 println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
                 println "Applying CLEARDB_DATABASE_URL settings"
@@ -76,7 +77,9 @@ environments {
                 query += "&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
                 databaseUrl += "?${query}"
                 url = databaseUrl
-            }
+            }*/
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/TWEETAMP"
 
 
             /*dbCreate = "update"
