@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0864b35a-eeb3-476e-a851-79da7c06165e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TweetAmp-grailsPlugins.iml" afterPath="$PROJECT_DIR$/TweetAmp-grailsPlugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TweetAmp.iml" afterPath="$PROJECT_DIR$/TweetAmp.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stacktrace.log" afterPath="$PROJECT_DIR$/target/stacktrace.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/work/web.xml.tmp" afterPath="$PROJECT_DIR$/target/work/web.xml.tmp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TweetAmp.iws" />
@@ -64,8 +61,8 @@
       <file leaf-file-name="DataSource.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55837566" vertical-offset="615" max-vertical-offset="1710">
-              <caret line="63" column="134" selection-start-line="63" selection-start-column="134" selection-end-line="63" selection-end-column="134" />
+            <state vertical-scroll-proportion="0.7715736" vertical-offset="489" max-vertical-offset="1695">
+              <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -1888,12 +1885,12 @@
       <workItem from="1412699557652" duration="3599000" />
       <workItem from="1412742026373" duration="4724000" />
       <workItem from="1412747720955" duration="16190000" />
-      <workItem from="1412830084608" duration="3912000" />
+      <workItem from="1412830084608" duration="6094000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249531000" />
+    <option name="totallyTimeSpent" value="251713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -2307,14 +2304,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/taglib/com/tweetAmp/TweetAmpTagsTagLib.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="735">
-          <caret line="28" column="130" selection-start-line="28" selection-start-column="130" selection-end-line="28" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="86259" max-vertical-offset="86865">
@@ -2377,10 +2366,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/taglib/com/tweetAmp/TweetAmpTagsTagLib.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="735">
+          <caret line="28" column="130" selection-start-line="28" selection-start-column="130" selection-end-line="28" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55837566" vertical-offset="615" max-vertical-offset="1710">
-          <caret line="63" column="134" selection-start-line="63" selection-start-column="134" selection-end-line="63" selection-end-column="134" />
+        <state vertical-scroll-proportion="0.7715736" vertical-offset="489" max-vertical-offset="1695">
+          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

@@ -61,8 +61,7 @@ environments {
     production {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop','update'
-            String mysqlUrl = "mysql://b56a0fc016a8e3:21b54d1b@us-cdbr-iron-east-01.cleardb.net/heroku_9fd01d8d9beebfb?reconnect=true"
-            //System.getenv("CLEARDB_DATABASE_URL")
+            String mysqlUrl = System.getenv("CLEARDB_DATABASE_URL")
             if (mysqlUrl) {
                 println ">>>>>> Got CLEARDB_DATABASE_URL: ${mysqlUrl}"
                 println "Applying CLEARDB_DATABASE_URL settings"
