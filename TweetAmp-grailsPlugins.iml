@@ -5,7 +5,6 @@
       <configuration>
         <webroots>
           <root url="file://$MODULE_DIR$/target/work/plugins/jquery-1.11.1/web-app" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.4.0/grails-app/views" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC3/grails-app/views" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-oauth-2.1.0-SNAPSHOT/grails-app/views" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/twitter4j-4.0.4.0/grails-app/views" relative="/" />
@@ -30,17 +29,7 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/asset-pipeline-1.9.6/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/asset-pipeline-1.9.6/grails-app/taglib" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7">
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/src/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/grails-app/services" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/grails-app/taglib" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/codenarc-0.21" />
-    <content url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.4.0">
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.4.0/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.4.0/grails-app/controllers" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/hibernate4-4.3.5.5">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate4-4.3.5.5/src/java" isTestSource="false" />
     </content>
@@ -97,7 +86,6 @@
       <library name="Grails User Library (TweetAmp-grailsPlugins)">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar!/" />
