@@ -92,7 +92,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
-        //grails.serverURL = "http://tweetamp.herokuapp.com"
+        grails.serverURL = "http://tweetamp.qa3.intelligrape.net"
     }
 }
 
