@@ -121,6 +121,7 @@ log4j.main = {
 
 grails.google.api.url = "https://www.googleapis.com/oauth2/v1/userinfo"
 def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}"
+grails.twitterCallbackUrl = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}"
 
 oauth {
     providers {
