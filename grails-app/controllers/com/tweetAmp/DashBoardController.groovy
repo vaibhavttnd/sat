@@ -50,12 +50,13 @@ class DashBoardController {
 
        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey?:''
        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret?:''
+       def callbackUrl = grailsApplication.config.grails.grails.serverURL?:"http://localhost:8080"
 
        Twitter twitter = new TwitterFactory().getInstance();
        twitter.setOAuthConsumer(consumerKey, consumerSecret)
        RequestToken requestToken = null
        try {
-           requestToken = twitter.getOAuthRequestToken("http://localhost:8080/dashBoard/callback");
+           requestToken = twitter.getOAuthRequestToken("${callbackUrl}/dashBoard/callback");
        }
        catch(TwitterException e){
            flash.message ="Error in signing into Twitter"
