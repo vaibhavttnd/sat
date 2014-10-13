@@ -85,7 +85,10 @@ class OauthController {
         session[oauthService.findSessionKeyForRequestToken(providerName)] = requestToken
         String url = oauthService.getAuthorizationUrl(providerName, requestToken)
 
-        url += "&hd="+grailsApplication.config.grails.allowedDomain
+        /* This code restricts the access to tweetAmp, uncomment it if you wish to restrict it for particular domains &
+        correspondingly make entries in the Config.groovy
+        url += "&hd="+grailsApplication.config.grails.allowedDomain*/
+
         RedirectHolder.setUri(params.redirectUrl)
         return redirect(url: url)
 

@@ -12,8 +12,7 @@
 
 <body>
 <div class = "container top-padding-10">
-    <div class="span12">
-    <div class="outer span2 no-left-margin">
+    <div class="outer-left no-left-margin">
 
     <div class="content">
     <table class="table table-striped table-hover table-condensed table-bordered">
@@ -28,7 +27,7 @@
         <g:if test="${statusUpdates}">
             <g:each in="${statusUpdates}" var="statusUpdate" status="i">
                 <tr class="${(i % 2) == 0 ? 'alternate' : null}">
-                   <td><t:tweet id = "${statusUpdate.getId()}" val="${statusUpdate.getText()}" isRetweetedByMe="${statusUpdate.isRetweeted()}" userAuthenticated="${accessToken}"/></td>
+                    <td><t:tweet statusUpdate = "${statusUpdate}" userAuthenticated="${accessToken}"/></td>
                 </tr>
             </g:each>
 
@@ -44,20 +43,18 @@
      </div>
      </div>
 
-    <div class="outer span2">
-           <div class = "rightDivInner">
-            <p>
-                <g:if test="${accessToken?.getScreenName()}">
-                    Welcome ${accessToken?.getScreenName()}</br>
-                    <input type="button" value="Revoke Access" onclick="javascript:revokeAccess()" class="revokeButton"/>
-                </g:if>
-                <g:else>
-                    <a href="/dashBoard/signInTwitter"><img title="Sign in with Twitter" alt="Sign in with Twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"></a>
-                </g:else>
-            </p>
-            </div>
+    <div class="outer-right">
+        <g:if test="${accessToken?.getScreenName()}">
+            <img src="../assets/twitterIcon.jpeg" style = "width: 30px; height: 25px;"> @${accessToken?.getScreenName()}
+            <ul class="nav pull-right">
+                <input type="button" value="Revoke Access" onclick="javascript:revokeAccess()" class="revokeButton"/>
+            </ul>
+        </g:if>
+        <g:else>
+            <a href="/dashBoard/signInTwitter"><img title="Sign in with Twitter" alt="Sign in with Twitter" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"></a>
+        </g:else>
     </div>
-    </div>
+
 </div>
 </body>
 

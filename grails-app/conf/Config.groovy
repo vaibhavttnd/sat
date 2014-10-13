@@ -88,6 +88,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.serverURL = "http://localhost:${System.getProperty('server.port', '8080')}"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -120,8 +121,8 @@ log4j.main = {
 }
 
 grails.google.api.url = "https://www.googleapis.com/oauth2/v1/userinfo"
-def baseURL = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}"
-grails.twitterCallbackUrl = grails.serverURL ?: "http://localhost:${System.getProperty('server.port', '8080')}"
+def baseURL = grails.serverURL ?: ""
+grails.twitterCallbackUrl = grails.serverURL ?: ""
 
 oauth {
     providers {
@@ -155,7 +156,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/login/**':        ['permitAll'],
         '/logout/**':       ['permitAll'],
         '/oauth/**':        ['permitAll'],
-        '/dashBoard/**':        ['ROLE_USER'],
+        '/dashBoard/**':        ['ROLE_USER','ROLE_ADMIN'],
+        '/user/**':        ['ROLE_ADMIN'],
         '/springSecurityOAuth/**' : ['permitAll'],
         '/twitter4j/**' : ['permitAll'],
         '/console/**': ['ROLE_USER'],
@@ -177,4 +179,4 @@ twitter4j {
     }
 }
 
-grails.allowedDomain="intelligrape.com"
+//grails.allowedDomain="intelligrape.com"

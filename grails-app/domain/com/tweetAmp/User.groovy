@@ -26,7 +26,7 @@ class User {
 		password column: '`password`'
 	}
 
-    static hasMany = [googleUsers: GoogleUser]
+    static hasMany = [googleUsers: GoogleUser,twitterCredentials:TwitterCredentials]
 
    	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role }

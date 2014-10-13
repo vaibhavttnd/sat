@@ -100,7 +100,7 @@ class UserService {
         {
             if(twitterCredentials){
                 Map<String, RateLimitStatus> rateLimitStatus = twitter.getRateLimitStatus("search");
-                RateLimitStatus searchTweetsRateLimit = rateLimitStatus.get("/search/tweets");
+           //     RateLimitStatus searchTweetsRateLimit = rateLimitStatus.get("/search/tweets");
             }
             statuses = twitter.getUserTimeline("IntelliGrape",new Paging (1, 50))
         }

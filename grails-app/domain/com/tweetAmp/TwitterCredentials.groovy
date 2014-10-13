@@ -6,9 +6,7 @@ class TwitterCredentials {
     String accessTokenSecret
     String screenName
     long twitterUserId
-    User user
 
-    static constraints = {
+    static belongsTo = [user:User]
 
-    }
 }

@@ -25,11 +25,6 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
                 <g:link class="brand" controller="dashBoard"
                         action="home">TweetAmp</g:link>
 
@@ -47,6 +42,9 @@
                         </a>
 
                         <ul class="dropdown-menu">
+                              <sec:ifAnyGranted roles="ROLE_ADMIN">
+                                  <li><g:link controller="user">Users</g:link></li>
+                              </sec:ifAnyGranted>
                               <li><g:link controller="j_spring_security_logout">Logout</g:link></li>
                         </ul>
 

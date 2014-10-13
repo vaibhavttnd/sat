@@ -1,5 +1,6 @@
 package com.tweetAmp
 
+import grails.plugin.springsecurity.annotation.Secured
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.TwitterFactory
@@ -23,7 +24,6 @@ class DashBoardController {
 
     def reTweet(long id){
 
-        User currentUser = springSecurityService.currentUser as User
         def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey?:''
         def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret?:''
 
@@ -35,7 +35,11 @@ class DashBoardController {
             AccessToken accessToken = new AccessToken(i.accessToken, i.accessTokenSecret)
             twitter.setOAuthAccessToken(accessToken)
             try {
-                twitter.retweetStatus(id)
+                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(i,id)
+                if(!tweetsRetweeted) {
+                    twitter.retweetStatus(id)
+                    new TweetsRetweeted(reTweetId:id,twitterCredential:i).save(flush: true);
+                }
             }
             catch(Exception e){
                 println "Error in retweeting status"
@@ -50,9 +54,9 @@ class DashBoardController {
 
        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey?:''
        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret?:''
-       def callbackUrl = grailsApplication.config.grails.twitterCallbackUrl?:"http://localhost:8080"
+       def callbackUrl = grailsApplication.config.grails.twitterCallbackUrl?:""
 
-       println "===callbackUrl=====${callbackUrl}========="
+       log.info("===callbackUrl=====${callbackUrl}=========")
 
        Twitter twitter = new TwitterFactory().getInstance();
        twitter.setOAuthConsumer(consumerKey, consumerSecret)
@@ -98,4 +102,5 @@ class DashBoardController {
         userService.revokeApp()
         redirect action :"home"
     }
+
 }
