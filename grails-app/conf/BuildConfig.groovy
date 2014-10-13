@@ -21,6 +21,16 @@ grails.project.fork = [
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
 
+codenarc {
+    ruleSetFiles = "file:grails-app/conf/CodeNarcRules.groovy"
+    reports = {
+        HtmlReport('html') {                  // Report type is 'html'
+            outputFile = 'target/CodeNarcReport.html'
+            title = 'My Test Code Narc Report'
+        }
+    }
+}
+
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -72,7 +82,7 @@ grails.project.dependency.resolution = {
         //runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
         runtime ':console:1.5.1'
-
+        provided ":codenarc:0.21"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
         //compile ":less-asset-pipeline:1.10.0"
