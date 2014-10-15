@@ -14,11 +14,9 @@ class DashBoardController {
     def userService
 
     def home(){
-
         User currentUser = springSecurityService.currentUser as User
         TwitterCredentials accessToken = TwitterCredentials.findByUser(currentUser)
         def updates = userService.getUserTweets(accessToken)
-
         render view: "/dashBoard",model: [statusUpdates: updates, accessToken: accessToken]
     }
 
@@ -79,7 +77,7 @@ class DashBoardController {
         Twitter twitter = session.twitter
         RequestToken requestToken = session.requestToken
         String verifier = request.getParameter("oauth_verifier");
-        AccessToken accessToken  = null;
+        AccessToken accessToken
         try{
             accessToken  = twitter.getOAuthAccessToken(requestToken, verifier);
             userService.saveTwitterCredentials(accessToken)

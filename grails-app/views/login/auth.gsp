@@ -5,34 +5,25 @@
 </head>
 
 <body>
-<div class="container-fluid" id='loginForm'>
-    <div class='inner '>
+<div class="col-md-4 col-md-offset-4" style="padding-top: 60px">
 
-        <div class='head'><h3><g:message code="springSecurity.login.header"/></h3></div>
+    <div class="form-signin mg-btm">
 
-        <g:if test='${flash.message}'>
-            <div class='login_message'>${flash.message}</div>
-        </g:if>
+        <div class="form-group">
+            <div class="social-box">
+                <div class="row mg-btm">
+                    <div class="col-md-12">
+                        <oauth:connect provider="google" id="google-connect-link" class="btn btn-danger btn-block">
+                            <i class="icon-facebook"></i>Login with Google
+                        </oauth:connect>
 
-        <%--<g:form controller="login" method='POST' id='loginForm' class='custom-form' autocomplete='off'>--%>
-            <div class="custom-control-label span8 ">
-
-                <div class="span6">
-                    <p class="pull-left">
-                        <oauth:connect provider="google" id="google-connect-link"><input type="button" value="IntelliGrape" class="btn btn-info span3" /></oauth:connect>
-                    </p>
-
+                    </div>
                 </div>
+
             </div>
-        <%--</g:form>--%>
+        </div>
     </div>
 </div>
-<script type='text/javascript'>
-    <!--
-    //(function () {
-    //    document.forms['loginForm'].elements['j_username'].focus();
-    //})();
-    // -->
-</script>
+
 </body>
 </html>
