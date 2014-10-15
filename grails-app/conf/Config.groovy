@@ -143,7 +143,7 @@ oauth {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.tweetAmp.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.tweetAmp.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.tweetAmp.Role'
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashBoard/home'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashBoard/index'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':               ['permitAll'],
         '/assets/**':      ['permitAll'],

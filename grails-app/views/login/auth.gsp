@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<div class="col-md-4 col-md-offset-4" style="padding-top: 60px">
+<div class="col-md-2 col-md-offset-5">
 
     <div class="form-signin mg-btm">
 
@@ -14,7 +14,7 @@
                 <div class="row mg-btm">
                     <div class="col-md-12">
                         <oauth:connect provider="google" id="google-connect-link" class="btn btn-danger btn-block">
-                            <i class="icon-facebook"></i>Login with Google
+                            <i class="fa fa-fw fa-google-plus"></i>Login with Google
                         </oauth:connect>
 
                     </div>

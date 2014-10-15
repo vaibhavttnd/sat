@@ -15,6 +15,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
     <g:javascript library="jquery" plugin="jquery"/>
     <asset:stylesheet src="bootstrap.css"/>
+    <asset:stylesheet src="sb-admin-2.js"/>
     <asset:stylesheet src="bootstrap-responsive.css"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="main.gsp"/>
@@ -23,51 +24,51 @@
 </head>
 
 <body>
+<div id="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <g:link class="navbar-brand" uri="/">TweetAmp</g:link>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <g:link class="brand" controller="dashBoard" action="home">TweetAmp</g:link>
-
-            <sec:ifLoggedIn>
-                <div class="nav-collapse collapse navbar-responsive-collapse">
-                    <ul class="nav pull-right">
-                        <li><t:userImg/></li>
-                        <li class="divider-vertical" style="margin: 0"></li>
+                <sec:ifLoggedIn>
+                    <ul class="nav navbar-right top-nav navbar-top-links">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <label><t:userName/><b class="caret"></b></label>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <t:userName/> <b class="caret"></b>
                             </a>
-
                             <ul class="dropdown-menu">
                                 <sec:ifAnyGranted roles="ROLE_ADMIN">
-                                    <li><g:link controller="user">Users</g:link></li>
+                                    <li>
+                                        <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                                    </li>
                                 </sec:ifAnyGranted>
-                                <li><g:link controller="j_spring_security_logout">Logout</g:link></li>
+
+                                <li>
+                                    <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
+                                </li>
                             </ul>
-
                         </li>
-
                     </ul>
-                </div>
-            </sec:ifLoggedIn>
+
+                </sec:ifLoggedIn>
+            </div>
         </div>
+    </nav>
+
+    <div class="container" style="padding-top: 70px;margin-bottom: 30px">
+        <g:layoutBody/>
     </div>
-</div>
 
-<div class="container">
-    <g:layoutBody/>
-</div>
+    <div class="footer" style="position: fixed; bottom: 0px; width: 100%;">
+        <div class="container">
+            <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">
+                <asset:image src="intelligrape.png"/>
+            </a></span></span>
 
-<div class="footer" style="position: fixed; bottom: 0px; width: 100%;">
-    <div class="container">
-        <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">
-            <asset:image src="intelligrape.png"/>
-        </a></span></span>
+            </p>
 
-        </p>
-
-        <p>© <a href="https://www.livsports.in" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>
+            <p>© <a href="https://www.livsports.in" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>
+        </div>
     </div>
 </div>
 </body>

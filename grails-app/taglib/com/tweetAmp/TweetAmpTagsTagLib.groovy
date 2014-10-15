@@ -15,30 +15,30 @@ class TweetAmpTagsTagLib {
     def springSecurityService
 
 
-    def userName = {attrs ->
+    def userName = { attrs ->
         if (springSecurityService.isLoggedIn()) {
             User user = springSecurityService.currentUser as User
             out << user.name
         }
     }
 
-    def tweet = {attrs ->
+    def tweet = { attrs ->
         Status status = attrs.statusUpdate
-        boolean reTweeted =  status.isRetweeted()
-        boolean validUser = attrs.userAuthenticated?:''
+        boolean reTweeted = status.isRetweeted()
+        boolean validUser = attrs.userAuthenticated ?: ''
         Date createdAt = status.getCreatedAt()
         Status retweetStatus = status.getRetweetedStatus();
         twitter4j.User curRTUser = retweetStatus?.getUser();
 
         out << "<div style = \"text-align:right\">"
         out << "<span style=\"padding-right:5px;\">"
-        if(status.isRetweet())
-            out << status.getUser().name+" retweeted : @"+curRTUser?.screenName +" - "+dateFormat.format(createdAt)
+        if (status.isRetweet())
+            out << status.getUser().name + " retweeted : @" + curRTUser?.screenName + " - " + dateFormat.format(createdAt)
         else
-            out << "@"+status.getUser().screenName +" - "+dateFormat.format(createdAt)
+            out << "@" + status.getUser().screenName + " - " + dateFormat.format(createdAt)
         out << "</span>"
 
-        if(!reTweeted && validUser)
+        if (!reTweeted && validUser)
             out << "<a href=\"/dashBoard/reTweet/${status.getId()}\" ><img style = \"width: 20px; height: 15px;\" src=\"../assets/reTweet.jpeg\" title=\"Retweet Status\" /></a>"
         out << "</div>"
 
@@ -47,20 +47,20 @@ class TweetAmpTagsTagLib {
         out << "</div>"
     }
 
-    def userImg={attrs ->
+    def userImg = { attrs ->
         if (springSecurityService.isLoggedIn()) {
             User user = springSecurityService.currentUser as User
-            out << "<img src=\"${user.picture}\" class=\"imgCustom\" />"
+            out << "<img src='${user.picture}' class='img-responsive img-circle' width='50' height='50'/>"
         }
     }
 
-    def showScreenNames = {attrs ->
-        if("NA".equals(attrs.val))
+    def showScreenNames = { attrs ->
+        if ("NA".equals(attrs.val))
             out << "NA"
-        else{
+        else {
             List screenNames = attrs.val
-            screenNames.each {i ->
-                out << i+"\t"
+            screenNames.each { i ->
+                out << i + "\t"
             }
         }
     }
