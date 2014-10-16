@@ -4,7 +4,6 @@ import com.tweetAmp.dto.TwitterCredentialDTO
 import twitter4j.Status
 import twitter4j.Twitter
 import twitter4j.TwitterException
-import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 import twitter4j.auth.RequestToken
 
@@ -28,7 +27,7 @@ class DashBoardController {
         twitterCredentials.each { TwitterCredentialDTO dto ->
             twitterService.retweet(dto, twitter, id)
         }
-
+        flash.success = "Status retweeted successfully"
         redirect action: "index"
     }
 
@@ -41,7 +40,7 @@ class DashBoardController {
             requestToken = twitter.getOAuthRequestToken("${callbackUrl}/dashBoard/callback");
         }
         catch (TwitterException e) {
-            flash.message = "Error in signing into Twitter : ${e.message}"
+            flash.error = "Error in signing into Twitter : ${e.message}"
         }
         session.twitter = twitter
         session.requestToken = requestToken
@@ -49,31 +48,26 @@ class DashBoardController {
         response.sendRedirect(requestToken.getAuthenticationURL());
     }
 
-    def callback() {
-
+    def callback(String oauth_verifier) {
         Twitter twitter = session.twitter
         RequestToken requestToken = session.requestToken
-        String verifier = request.getParameter("oauth_verifier");
-        AccessToken accessToken
         try {
-            accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
-            userService.saveTwitterCredentials(accessToken)
-        }
-        catch (TwitterException te) {
-            if (401 == te.getStatusCode()) {
-                flash.message = "Unable to get the access token. ${te.message}"
-                redirect(action: 'home')
-                te.printStackTrace()
+            AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, oauth_verifier);
+            TwitterCredentials twitterCredentials = userService.saveTwitterCredentials(accessToken)
+            if (twitterCredentials?.hasErrors()) {
+                flash.error = "Unable to connect to twitter"
+            } else {
+                flash.success = "Twitter account connected successfully"
             }
+        } catch (TwitterException te) {
+            flash.error = "Unable to get the access token. ${te.message}"
         }
-        session.twitter = null
-        session.requestToken = null
-
         redirect action: "index"
     }
 
     def revokeApp() {
         userService.revokeApp()
+        flash.success = "Twitter account removed successfully"
         redirect action: "index"
     }
 }

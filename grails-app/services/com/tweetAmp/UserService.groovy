@@ -107,7 +107,7 @@ class UserService {
         TwitterCredentials twitterCredentials = new TwitterCredentials(accessToken: accessToken.token,
                 accessTokenSecret: accessToken.tokenSecret, screenName: accessToken.getScreenName(),
                 twitterUserId: accessToken.getUserId(), user: currentUser)
-        twitterCredentials.save(flush: true)
+        twitterCredentials.save(flush: true, failOnError: true)
         return twitterCredentials
     }
 

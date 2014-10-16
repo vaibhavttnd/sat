@@ -60,6 +60,19 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <div class="row" style="padding-top: 75px">
+                <g:if test="${flash.success}">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        ${flash.success}
+                    </div>
+                </g:if>
+                <g:if test="${flash.error}">
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        ${flash.error}
+                    </div>
+                </g:if>
+
                 <g:layoutBody/>
             </div>
 

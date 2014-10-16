@@ -3,7 +3,7 @@ package com.tweetAmp
 class TweetAmpFilters {
 
     def filters = {
-        all(controller:'*', action:'*') {
+        all(controller: 'assets', action: '*', invert: true) {
             before = {
                 println "Logs : ${params}"
             }
