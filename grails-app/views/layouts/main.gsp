@@ -14,49 +14,57 @@
     <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
     <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
     <g:javascript library="jquery" plugin="jquery"/>
-    <asset:stylesheet src="bootstrap.css"/>
-    <asset:stylesheet src="sb-admin-2.js"/>
-    <asset:stylesheet src="bootstrap-responsive.css"/>
     <asset:stylesheet src="application.css"/>
-    <asset:stylesheet src="main.gsp"/>
+    <asset:stylesheet src="sb-admin-2.js"/>
     <asset:javascript src="bootstrap.js"/>
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
 </head>
 
 <body>
 <div id="wrapper">
+
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <g:link class="navbar-brand" uri="/">TweetAmp</g:link>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tweet Amp</a>
+        </div>
+        <sec:ifLoggedIn>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                            <li>
+                                <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                            </li>
+                        </sec:ifAnyGranted>
 
-                <sec:ifLoggedIn>
-                    <ul class="nav navbar-right top-nav navbar-top-links">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <t:userName/> <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <sec:ifAnyGranted roles="ROLE_ADMIN">
-                                    <li>
-                                        <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
-                                    </li>
-                                </sec:ifAnyGranted>
-
-                                <li>
-                                    <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
-                                </li>
-                            </ul>
+                        <li>
+                            <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
                         </li>
                     </ul>
-
-                </sec:ifLoggedIn>
-            </div>
-        </div>
+                </li>
+            </ul>
+        </sec:ifLoggedIn>
     </nav>
 
-    <div class="container" style="padding-top: 70px;margin-bottom: 30px">
-        <g:layoutBody/>
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="row" style="padding-top: 75px">
+                <g:layoutBody/>
+            </div>
+
+        </div>
+
     </div>
 
     <div class="footer" style="position: fixed; bottom: 0px; width: 100%;">

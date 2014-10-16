@@ -74,7 +74,7 @@ grails.project.dependency.resolution = {
        // compile ':cache:1.1.7'
         compile ":asset-pipeline:1.9.6"
         compile ":twitter4j:4.0.4.0"
-        compile ':spring-security-oauth:2.1.0-SNAPSHOT'
+        compile ':spring-security-oauth:2.1.0-RC4'
         compile ':spring-security-oauth-google:0.2'
 
         // plugins needed at runtime but not for compilation

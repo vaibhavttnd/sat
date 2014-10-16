@@ -50,7 +50,9 @@ class TweetAmpTagsTagLib {
     def userImg = { attrs ->
         if (springSecurityService.isLoggedIn()) {
             User user = springSecurityService.currentUser as User
-            out << "<img src='${user.picture}' class='img-responsive img-circle' width='50' height='50'/>"
+            if (user) {
+                out << "<img src='${user.picture}' class='img-responsive img-circle' width='50' height='20'/>"
+            }
         }
     }
 
