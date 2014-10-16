@@ -23,12 +23,7 @@ class DashBoardController {
     }
 
     def reTweet(long id) {
-        def twitterConfig = grailsApplication.config.twitter4j
-        String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
-        String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
-        Twitter twitter = new TwitterFactory().getInstance();
-        twitter.setOAuthConsumer(consumerKey, consumerSecret)
-
+        Twitter twitter = twitterService.twitter
         List<TwitterCredentialDTO> twitterCredentials = twitterService.getTwitterCredentials()
         twitterCredentials.each { TwitterCredentialDTO dto ->
             twitterService.retweet(dto, twitter, id)
