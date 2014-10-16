@@ -2,18 +2,6 @@ package com.tweetAmp
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.plugin.springsecurity.oauth.GoogleOAuthToken
-import grails.plugin.springsecurity.oauth.OAuthLoginException
-import grails.plugin.springsecurity.oauth.OAuthToken
-import grails.plugin.springsecurity.userdetails.GrailsUser
-import org.scribe.model.Token
-import org.scribe.model.Verifier
-import uk.co.desirableobjects.oauth.scribe.OauthProvider
-import uk.co.desirableobjects.oauth.scribe.SupportedOauthVersion
-import uk.co.desirableobjects.oauth.scribe.exception.MissingRequestTokenException
-
-import javax.servlet.http.HttpServletResponse
-
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.CredentialsExpiredException
@@ -21,6 +9,8 @@ import org.springframework.security.authentication.DisabledException
 import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
+
+import javax.servlet.http.HttpServletResponse
 
 @Secured('permitAll')
 class LoginController {

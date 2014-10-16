@@ -1,5 +1,7 @@
 package com.tweetAmp
 
+import com.tweetAmp.dto.TwitterCredentialDTO
+import twitter4j.Status
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.TwitterFactory
@@ -11,59 +13,40 @@ class DashBoardController {
     def springSecurityService
     def grailsApplication
     def userService
+    def twitterService
 
     def index() {
         User currentUser = springSecurityService.currentUser as User
         TwitterCredentials accessToken = TwitterCredentials.findByUser(currentUser)
-        def updates = userService.getUserTweets(accessToken)
-        [statusUpdates: updates, accessToken: accessToken]
+        List<Status> statuses = userService.getUserTweets(accessToken)
+        [statusUpdates: statuses, accessToken: accessToken]
     }
 
     def reTweet(long id) {
-
-        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey ?: ''
-        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret ?: ''
-
-        List<TwitterCredentials> twitterCredentials = TwitterCredentials.findAll()
+        def twitterConfig = grailsApplication.config.twitter4j
+        String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
+        String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
         Twitter twitter = new TwitterFactory().getInstance();
         twitter.setOAuthConsumer(consumerKey, consumerSecret)
 
-        twitterCredentials.each { i ->
-            AccessToken accessToken = new AccessToken(i.accessToken, i.accessTokenSecret)
-            twitter.setOAuthAccessToken(accessToken)
-            try {
-                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(i, id)
-                if (!tweetsRetweeted) {
-                    twitter.retweetStatus(id)
-                    new TweetsRetweeted(reTweetId: id, twitterCredential: i).save(flush: true);
-                }
-            }
-            catch (Exception e) {
-                println "Error in retweeting status"
-                e.printStackTrace()
-            }
+        List<TwitterCredentialDTO> twitterCredentials = twitterService.getTwitterCredentials()
+        twitterCredentials.each { TwitterCredentialDTO dto ->
+            twitterService.retweet(dto, twitter, id)
         }
 
-        redirect action: "home"
+        redirect action: "index"
     }
 
     def signInTwitter() {
-
-        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey ?: ''
-        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret ?: ''
         def callbackUrl = grailsApplication.config.grails.twitterCallbackUrl ?: ""
+        Twitter twitter = twitterService.twitter
 
-        log.info("===callbackUrl=====${callbackUrl}=========")
-
-        Twitter twitter = new TwitterFactory().getInstance();
-        twitter.setOAuthConsumer(consumerKey, consumerSecret)
         RequestToken requestToken = null
         try {
             requestToken = twitter.getOAuthRequestToken("${callbackUrl}/dashBoard/callback");
         }
         catch (TwitterException e) {
-            flash.message = "Error in signing into Twitter"
-            e.printStackTrace()
+            flash.message = "Error in signing into Twitter : ${e.message}"
         }
         session.twitter = twitter
         session.requestToken = requestToken
@@ -98,5 +81,4 @@ class DashBoardController {
         userService.revokeApp()
         redirect action: "index"
     }
-
 }

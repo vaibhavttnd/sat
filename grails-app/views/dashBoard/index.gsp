@@ -18,19 +18,13 @@
                 <table class="table table-striped table-hover table-condensed table-bordered">
                     <tbody>
                     <g:if test="${statusUpdates}">
-                        <g:each in="${statusUpdates}" var="statusUpdate" status="i">
+                        <g:each in="${statusUpdates}" var="status" status="i">
                             <tr class="${(i % 2) == 0 ? 'alternate' : ''}">
-                                <td><t:tweet statusUpdate="${statusUpdate}" userAuthenticated="${accessToken}"/></td>
+                                <td><t:tweet status="${status}" userAuthenticated="${accessToken}"/></td>
                             </tr>
                         </g:each>
 
                     </g:if>
-                    <g:else>
-                        <tr>
-                            <td>No Tweets Found
-                            </td>
-                        </tr>
-                    </g:else>
                     </tbody>
                 </table>
             </div>
@@ -48,7 +42,8 @@
                 <g:if test="${accessToken?.getScreenName()}">
                     <asset:image src="twitterIcon.jpeg" style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
                     <ul class="nav pull-right">
-                        <g:link controller="dashBoard" action="revokeApp" class="btn btn-danger" onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
+                        <g:link controller="dashBoard" action="revokeApp" class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
                     </ul>
                 </g:if>
                 <g:else>

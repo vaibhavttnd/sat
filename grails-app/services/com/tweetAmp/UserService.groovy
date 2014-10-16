@@ -21,6 +21,7 @@ import twitter4j.conf.ConfigurationBuilder
 class UserService {
 
     public static final String GOOGLE_USER_PROFILE_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
+    public static final String INTELLI_GRAPE = "IntelliGrape"
     def oauthService
     def springSecurityService
     def grailsApplication
@@ -44,11 +45,12 @@ class UserService {
 
     def OAuth2Token getOAuth2Token() {
 
-        OAuth2Token token = null;
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey ?: ''
-        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret ?: ''
+        def twitterConfig = grailsApplication.config.twitter4j
+        String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
+        String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
 
+        OAuth2Token token
+        ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setApplicationOnlyAuthEnabled(true);
         cb.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
 
@@ -62,16 +64,16 @@ class UserService {
         return token;
     }
 
-    def getUserTweets(TwitterCredentials twitterCredentials) {
-
-        def consumerKey = grailsApplication.config.twitter4j.'default'.OAuthConsumerKey ?: ''
-        def consumerSecret = grailsApplication.config.twitter4j.'default'.OAuthConsumerSecret ?: ''
+    List<Status> getUserTweets(TwitterCredentials twitterCredentials) {
+        def twitterConfig = grailsApplication.config.twitter4j
+        String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
+        String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
-        OAuth2Token token = getOAuth2Token();
-        AccessToken accessToken = null
+
 
         if (!twitterCredentials) {
+            OAuth2Token token = getOAuth2Token();
             cb.setApplicationOnlyAuthEnabled(true);
             cb.setOAuth2TokenType(token.getTokenType());
             cb.setOAuth2AccessToken(token.getAccessToken());
@@ -79,18 +81,16 @@ class UserService {
 
         cb.setOAuthConsumerKey(consumerKey);
         cb.setOAuthConsumerSecret(consumerSecret);
-        if (twitterCredentials) {
-            accessToken = new AccessToken(twitterCredentials?.accessToken, twitterCredentials?.accessTokenSecret)
-        }
-
         Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+
         if (twitterCredentials) {
+            AccessToken accessToken = new AccessToken(twitterCredentials?.accessToken, twitterCredentials?.accessTokenSecret)
             twitter.setOAuthAccessToken(accessToken)
         }
 
-        List<twitter4j.Status> statuses = []
+        List<Status> statuses = []
         try {
-            statuses = twitter.getUserTimeline("IntelliGrape", new Paging(1, 50))
+            statuses = twitter.getUserTimeline(INTELLI_GRAPE, new Paging(1, 50))
         }
         catch (TwitterException te) {
             if (401 == te.getStatusCode()) {
@@ -112,7 +112,6 @@ class UserService {
     }
 
     def revokeApp() {
-
         User currentUser = springSecurityService.currentUser as User
         def twitterCredentials = TwitterCredentials.findByUser(currentUser)
         twitterCredentials.delete(flush: true)

@@ -23,37 +23,9 @@ class TweetAmpTagsTagLib {
     }
 
     def tweet = { attrs ->
-        Status status = attrs.statusUpdate
-        boolean reTweeted = status.isRetweeted()
+        Status status = attrs.status
         boolean validUser = attrs.userAuthenticated ?: ''
-        Date createdAt = status.getCreatedAt()
-        Status retweetStatus = status.getRetweetedStatus();
-        twitter4j.User curRTUser = retweetStatus?.getUser();
-
-        out << "<div style = \"text-align:right\">"
-        out << "<span style=\"padding-right:5px;\">"
-        if (status.isRetweet())
-            out << status.getUser().name + " retweeted : @" + curRTUser?.screenName + " - " + dateFormat.format(createdAt)
-        else
-            out << "@" + status.getUser().screenName + " - " + dateFormat.format(createdAt)
-        out << "</span>"
-
-        if (!reTweeted && validUser)
-            out << "<a href=\"/dashBoard/reTweet/${status.getId()}\" ><img style = \"width: 20px; height: 15px;\" src=\"../assets/reTweet.jpeg\" title=\"Retweet Status\" /></a>"
-        out << "</div>"
-
-        out << "<div class=\"tweetClass\" >"
-        out << status.getText()
-        out << "</div>"
-    }
-
-    def userImg = { attrs ->
-        if (springSecurityService.isLoggedIn()) {
-            User user = springSecurityService.currentUser as User
-            if (user) {
-                out << "<img src='${user.picture}' class='img-responsive img-circle' width='50' height='20'/>"
-            }
-        }
+        out << render(template: "/dashBoard/tweet", model: [status: status, validUser: validUser])
     }
 
     def showScreenNames = { attrs ->
