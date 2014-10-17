@@ -8,6 +8,6 @@ class TweetsRetweeted {
 
     long reTweetId
 
-    static belongsTo = [twitterCredential: TwitterCredentials]
+    static belongsTo = [twitterCredential: TwitterCredential]
 
 }

@@ -22,7 +22,7 @@ class TwitterService {
     }
 
     List<TwitterCredentialDTO> getTwitterCredentials() {
-        TwitterCredentials.createCriteria().list {
+        TwitterCredential.createCriteria().list {
             projections {
                 groupProperty('screenName')
                 property('id')
@@ -38,11 +38,11 @@ class TwitterService {
     TweetsRetweeted retweet(TwitterCredentialDTO dto, Twitter twitter, Long id) {
         AccessToken accessToken = new AccessToken(dto.accessToken, dto.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
-        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredentials.load(dto.id), id)
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(dto.id), id)
         try {
             if (!tweetsRetweeted) {
                 twitter.retweetStatus(id)
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterCredentials.load(dto.id)).save(flush: true);
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterCredential.load(dto.id)).save(flush: true);
             }
         }
         catch (Exception e) {

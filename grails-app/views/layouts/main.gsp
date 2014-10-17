@@ -27,13 +27,10 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Tweet Amp</a>
+            <a class="navbar-brand" href="/">
+                <img src="http://abs.twimg.com/a/1412623444/images/oauth_application.png" style="width: 30px;height: 30px"/>
+                Tweet Amp
+            </a>
         </div>
         <sec:ifLoggedIn>
             <ul class="nav navbar-right top-nav">
@@ -42,11 +39,9 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <sec:ifAnyGranted roles="ROLE_ADMIN">
-                            <li>
-                                <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
-                            </li>
-                        </sec:ifAnyGranted>
+                        <li>
+                            <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                        </li>
 
                         <li>
                             <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>

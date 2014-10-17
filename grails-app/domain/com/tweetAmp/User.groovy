@@ -9,6 +9,7 @@ class User {
     String email
     String picture
     String name
+    TwitterCredential twitterCredential
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -20,13 +21,14 @@ class User {
         username blank: false
         email blank: false, unique: true
         password blank: false
+        twitterCredential nullable: true
     }
 
     static mapping = {
         password column: '`password`'
     }
 
-    static hasMany = [googleUsers: GoogleUser, twitterCredentials: TwitterCredentials]
+    static hasMany = [googleUsers: GoogleUser]
 
     Set<Role> getAuthorities() {
         UserRole.findAllByUser(this).collect { it.role }

@@ -1,6 +1,6 @@
 package com.tweetAmp
 
-class TwitterCredentials {
+class TwitterCredential {
 
     String accessToken
     String accessTokenSecret

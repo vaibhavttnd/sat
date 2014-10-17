@@ -16,7 +16,7 @@ class DashBoardController {
 
     def index() {
         User currentUser = springSecurityService.currentUser as User
-        TwitterCredentials accessToken = TwitterCredentials.findByUser(currentUser)
+        TwitterCredential accessToken = currentUser.twitterCredential
         List<Status> statuses = userService.getUserTweets(accessToken)
         [statusUpdates: statuses, accessToken: accessToken]
     }
@@ -53,7 +53,7 @@ class DashBoardController {
         RequestToken requestToken = session.requestToken
         try {
             AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, oauth_verifier);
-            TwitterCredentials twitterCredentials = userService.saveTwitterCredentials(accessToken)
+            TwitterCredential twitterCredentials = userService.saveTwitterCredentials(accessToken)
             if (twitterCredentials?.hasErrors()) {
                 flash.error = "Unable to connect to twitter"
             } else {

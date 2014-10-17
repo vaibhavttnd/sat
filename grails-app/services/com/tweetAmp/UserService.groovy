@@ -6,9 +6,6 @@ import grails.transaction.Transactional
 import org.apache.commons.lang.RandomStringUtils
 import org.scribe.model.Token
 import twitter4j.Paging
-import twitter4j.Query
-import twitter4j.QueryResult
-import twitter4j.RateLimitStatus
 import twitter4j.Status
 import twitter4j.Twitter
 import twitter4j.TwitterException
@@ -64,7 +61,7 @@ class UserService {
         return token;
     }
 
-    List<Status> getUserTweets(TwitterCredentials twitterCredentials) {
+    List<Status> getUserTweets(TwitterCredential twitterCredentials) {
         def twitterConfig = grailsApplication.config.twitter4j
         String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
         String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
@@ -101,19 +98,22 @@ class UserService {
         return statuses;
     }
 
-
-    TwitterCredentials saveTwitterCredentials(AccessToken accessToken) {
+    TwitterCredential saveTwitterCredentials(AccessToken accessToken) {
         User currentUser = springSecurityService.currentUser as User
-        TwitterCredentials twitterCredentials = new TwitterCredentials(accessToken: accessToken.token,
+        TwitterCredential twitterCredential = new TwitterCredential(accessToken: accessToken.token,
                 accessTokenSecret: accessToken.tokenSecret, screenName: accessToken.getScreenName(),
                 twitterUserId: accessToken.getUserId(), user: currentUser)
-        twitterCredentials.save(flush: true, failOnError: true)
-        return twitterCredentials
+        twitterCredential.save(flush: true)
+        if (!twitterCredential.hasErrors()) {
+            currentUser.twitterCredential = twitterCredential
+            currentUser.save(flush: true)
+        }
+        return twitterCredential
     }
 
     def revokeApp() {
         User currentUser = springSecurityService.currentUser as User
-        def twitterCredentials = TwitterCredentials.findByUser(currentUser)
+        def twitterCredentials = TwitterCredential.findByUser(currentUser)
         twitterCredentials.delete(flush: true)
     }
 
