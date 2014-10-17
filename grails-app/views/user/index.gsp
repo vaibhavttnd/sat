@@ -31,7 +31,7 @@
 
             <g:sortableColumn property="name" title="${message(code: 'user.name.label', default: 'Name')}" params="[q: params.q]"/>
             <g:sortableColumn property="email" title="${message(code: 'user.email.label', default: 'Email')}" params="[q: params.q]"/>
-            <g:sortableColumn property="enabled" title="${message(code: 'user.enabled.label', default: 'Enabled')}" params="[q: params.q]"/>
+            <g:sortableColumn property="twitterCredential" title="${message(code: 'user.twitterCredential.label', default: 'Twitter')}" params="[q: params.q]"/>
 
         </tr>
         </thead>
@@ -43,7 +43,7 @@
 
                 <td>${fieldValue(bean: user, field: "email")}</td>
 
-                <td><g:formatBoolean boolean="${user.enabled}"/></td>
+                <td>${user.twitterCredential?.screenName}</td>
 
             </tr>
         </g:each>
