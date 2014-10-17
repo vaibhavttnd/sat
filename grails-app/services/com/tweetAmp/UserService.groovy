@@ -111,9 +111,11 @@ class UserService {
         return twitterCredential
     }
 
-    def revokeApp() {
+    void revokeApp() {
         User currentUser = springSecurityService.currentUser as User
-        def twitterCredentials = TwitterCredential.findByUser(currentUser)
+        TwitterCredential twitterCredentials = currentUser.twitterCredential
+        currentUser.twitterCredential = null
+        currentUser.save()
         twitterCredentials.delete(flush: true)
     }
 
