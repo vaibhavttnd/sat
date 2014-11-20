@@ -85,6 +85,14 @@ ul.alert-dropdown {
     color: #fff;
 }
 
+.margin-20 {
+    margin: 20px;
+}
+
 .margin-t10 {
     margin-top: 10px;
+}
+
+.margin-b10 {
+    margin-bottom: 10px;
 }

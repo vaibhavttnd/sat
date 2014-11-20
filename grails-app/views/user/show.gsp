@@ -139,7 +139,7 @@
         </tr>
 
     </table>
-    <g:form style="margin:20px;">
+    <g:form class="margin-20">
         <g:hiddenField name="id" value="${userInstance?.id}"/>
         <g:link class="btn btn-info" action="create"
                 id="${userInstance?.id}"><g:message code="default.button.edit.label" default="Edit"/>&nbsp;<i
