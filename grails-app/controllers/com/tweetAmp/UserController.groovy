@@ -3,6 +3,7 @@ package com.tweetAmp
 import org.springframework.dao.DataIntegrityViolationException
 
 class UserController {
+    UserService userService
 
     static allowedMethods = [save: "POST", delete: "POST"]
 
@@ -24,18 +25,18 @@ class UserController {
         [userInstanceList: User.list(params), userInstanceTotal: User.count()]
     }
 
-    def create(Long id) {
-        def userInstance = id ? User.get(id) : new User(params)
+    def edit(Long id) {
+        User userInstance = id ? User.get(id) : null
         if (!userInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), null])
             redirect(action: "list")
         } else {
             [userInstance: userInstance]
         }
     }
 
-    def save(Long id, Long version) {
-        def userInstance = id ? User.get(id) : new User(params)
+    def update(Long id, Long version) {
+        User userInstance = id ? User.get(id) : null
         if (!userInstance) {
             flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
@@ -53,6 +54,9 @@ class UserController {
         }
 
         userInstance.properties = params
+        if(params.role){
+            userService.updateRoleForExistingUser(userInstance, Role.findById(params.long('role')))
+        }
 
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])

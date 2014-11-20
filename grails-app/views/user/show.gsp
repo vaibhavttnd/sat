@@ -13,10 +13,6 @@
         Show User
         <ul class="navbar-top-links pull-right">
             <li>
-                <g:link action="create" class="text-white"><i class="icon-plus-sign"></i>&nbsp;<g:message code="default.new.label"
-                                                                                       args="[entityName]"/></g:link>
-            </li>
-            <li>
                 <g:link action="list" class="text-white"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label"
                                                                                 args="[entityName]"/></g:link>
             </li>
@@ -89,6 +85,30 @@
         </tr>
 
         <tr>
+            <g:if test="${userInstance?.categories || false}">
+                <td><strong><g:message code="user.categories.label" default="Categories"/></strong></td>
+
+                <td><ul class="unstyled"><g:each in="${userInstance.categories}" var="c">
+                    <li><g:link controller="category" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
+                </g:each></ul></td>
+
+            </g:if>
+        </tr>
+
+        <tr>
+            <td><strong><g:message code="user.role.label" default="Role"/></strong></td>
+            <td>
+                <ul class="unstyled">
+                    <g:each in="${userInstance?.authorities}" var="role">
+                        <li>
+                            ${role.authority}
+                        </li>
+                    </g:each>
+                </ul>
+            </td>
+        </tr>
+
+        <tr>
             <g:if test="${userInstance?.accountExpired || true}">
                 <td><strong><g:message code="user.accountExpired.label" default="Account Expired"/></strong></td>
 
@@ -102,17 +122,6 @@
                 <td><strong><g:message code="user.accountLocked.label" default="Account Locked"/></strong></td>
 
                 <td><g:formatBoolean boolean="${userInstance?.accountLocked}"/></td>
-
-            </g:if>
-        </tr>
-
-        <tr>
-            <g:if test="${userInstance?.categories || false}">
-                <td><strong><g:message code="user.categories.label" default="Categories"/></strong></td>
-
-                <td><ul class="unstyled"><g:each in="${userInstance.categories}" var="c">
-                    <li><g:link controller="category" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
-                </g:each></ul></td>
 
             </g:if>
         </tr>
@@ -138,7 +147,7 @@
     </table>
     <g:form class="margin-20">
         <g:hiddenField name="id" value="${userInstance?.id}"/>
-        <g:link class="btn btn-info" action="create"
+        <g:link class="btn btn-info" action="edit"
                 id="${userInstance?.id}"><g:message code="default.button.edit.label" default="Edit"/>&nbsp;<i
                 class="icon-edit icon-white"></i></g:link>
         <g:actionSubmit class="btn btn-danger" action="delete"

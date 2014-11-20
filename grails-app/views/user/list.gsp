@@ -23,11 +23,6 @@
 
                 </g:form>
             </li>
-            <li>
-                <g:link action="create" class="text-white"><i class="icon-plus-sign"></i>&nbsp;<g:message
-                        code="default.new.label"
-                        args="[entityName]"/></g:link>
-            </li>
         </ul>
     </div>
 

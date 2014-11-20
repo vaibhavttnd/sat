@@ -1,11 +1,11 @@
-<%@ page import="com.tweetAmp.User" %>
+<%@ page import="com.tweetAmp.Role; com.tweetAmp.User" %>
 <div class="form-group">
     <label class="control-label hidden-phone" for="name">
         <g:message code="user.name.label" default="Name"/>
         <span class="required-indicator">*</span>
     </label>
 
-    <g:textField class="form-control required" name="name" required="" value="${userInstance?.name}"/>
+    <g:textField class="form-control required" name="name" readonly="" required="" value="${userInstance?.name}"/>
 
 </div>
 
@@ -15,7 +15,7 @@
         <span class="required-indicator">*</span>
     </label>
 
-    <g:textField class="form-control required" name="username" required="" value="${userInstance?.username}"/>
+    <g:textField class="form-control required" name="username" readonly="" required="" value="${userInstance?.username}"/>
 
 </div>
 
@@ -25,19 +25,22 @@
         <span class="required-indicator">*</span>
     </label>
 
-    <g:textField class="form-control required" name="email" required="" value="${userInstance?.email}"/>
+    <g:textField class="form-control required" name="email" readonly="" required="" value="${userInstance?.email}"/>
 
 </div>
 
-<div class="form-group">
-    <label class="control-label hidden-phone" for="password">
-        <g:message code="user.password.label" default="Password"/>
-        <span class="required-indicator">*</span>
-    </label>
+<sec:ifAnyGranted roles="ROLE_EDITOR, ROLE_ADMIN">
+    <div class="form-group">
+        <label class="control-label hidden-phone" for="role">
+            <g:message code="user.role.label" default="Role"/>
+            <span class="required-indicator">*</span>
+        </label>
 
-    <g:textField class="form-control required" name="password" required="" value=""/>
-
-</div>
+        <g:select name="role" from="${Role.list()}" value="${userInstance?.id ? userInstance?.authorities?.first()?.id : ''}"
+                  optionKey="id" optionValue="authority" class="form-control "
+                  required=""/>
+    </div>
+</sec:ifAnyGranted>
 
 <div class="form-group">
     <label class="control-label hidden-phone" for="accountExpired">
