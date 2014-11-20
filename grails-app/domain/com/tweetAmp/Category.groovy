@@ -3,13 +3,13 @@ package com.tweetAmp
 class Category {
 
     String name
-    String desc
+    String description
 
     static hasMany = [users: User]
 
     static constraints = {
         name nullable: false, blank: false
-        desc nullable: true
+        description nullable: true
     }
 
     static mapping = {
