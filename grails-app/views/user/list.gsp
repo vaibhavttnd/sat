@@ -13,7 +13,7 @@
     <div class="panel-heading">
         User : (Total : ${userInstanceTotal})
         <ul class="navbar-top-links pull-right">
-            <li>
+            <li class="float-left">
                 <g:form controller="user" action="index" method="get" style="margin-top: -4px;">
                     <div class="input-group-sm">
                         <input type="text" class="form-control search-query input-sm" placeholder="Search"
@@ -22,6 +22,11 @@
                     </div>
 
                 </g:form>
+            </li>
+            <li>
+                <g:link action="create" class="text-white"><i class="icon-plus-sign"></i>&nbsp;<g:message
+                        code="default.new.label"
+                        args="[entityName]"/></g:link>
             </li>
         </ul>
     </div>

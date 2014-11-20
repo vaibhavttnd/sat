@@ -46,10 +46,10 @@
                     <ul class="dropdown-menu">
                         <sec:ifAnyGranted roles="ROLE_ADMIN, 'ROLE_EDITOR'">
                             <li>
-                                <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                                <g:link controller="user" action="list"><i class="fa fa-fw fa-user"></i> Users</g:link>
                             </li>
                             <li>
-                                <g:link controller="category"><i class="fa fa-fw fa-group"></i> Categories</g:link>
+                                <g:link controller="category" action="list"><i class="fa fa-fw fa-group"></i> Categories</g:link>
                             </li>
                         </sec:ifAnyGranted>
 
