@@ -17,7 +17,7 @@
         User : (Total : ${userInstanceTotal})
         <ul class="navbar-top-links pull-right">
             <li>
-                <g:form controller="user" action="index" method="get">
+                <g:form controller="user" action="index" method="get" style="margin-top: -4px;">
                     <div class="input-group-sm">
                         <input type="text" class="form-control search-query input-sm" placeholder="Search"
                                value="${params.q}" name="q" id="q">
@@ -28,7 +28,6 @@
             </li>
         </ul>
     </div>
-
 
     <table class="table table-striped table-hover table-condensed table-bordered">
         <thead>
@@ -61,8 +60,6 @@
     <div class="panel-footer">
         &nbsp;<g:paginate total="${userInstanceTotal ?: 0}" params="[q: params.q]"/>
     </div>
-
 </div>
-
 </body>
 </html>
