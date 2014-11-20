@@ -4233,7 +4233,7 @@
 			 *    iTest = oSort['string-asc']('data11', 'data12');
 			 *      if (iTest !== 0)
 			 *        return iTest;
-			 *    iTest = oSort['numeric-desc']('data21', 'data22');
+			 *    iTest = oSort['numeric-description']('data21', 'data22');
 			 *    if (iTest !== 0)
 			 *      return iTest;
 			 *    return oSort['numeric-asc']( aiOrig[a], aiOrig[b] );
@@ -8198,13 +8198,13 @@
 	 *   a column being sorted upon (i.e. multi-sorting with two columns would have
 	 *   2 inner arrays). The inner arrays may have 2 or 3 elements. The first is
 	 *   the column index that the sorting condition applies to, the second is the
-	 *   direction of the sort (`desc` or `asc`) and, optionally, the third is the
+	 *   direction of the sort (`description` or `asc`) and, optionally, the third is the
 	 *   index of the sorting order from the `column.sorting` initialisation array.
 	 *//**
 	 * Set the ordering for the table.
 	 *
 	 * @param {integer} order Column index to sort upon.
-	 * @param {string} direction Direction of the sort to be applied (`asc` or `desc`)
+	 * @param {string} direction Direction of the sort to be applied (`asc` or `description`)
 	 * @returns {DataTables.Api} this
 	 *//**
 	 * Set the ordering for the table.
@@ -9076,7 +9076,7 @@
 		 * initialisation. You can define which column(s) the sort is performed
 		 * upon, and the sorting direction, with this variable. The `sorting` array
 		 * should contain an array for each column to be sorted initially containing
-		 * the column's index and a direction string ('asc' or 'desc').
+		 * the column's index and a direction string ('asc' or 'description').
 		 *  @type array
 		 *  @default [[0,'asc']]
 		 *
@@ -9087,7 +9087,7 @@
 		 *    // Sort by 3rd column first, and then 4th column
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "order": [[2,'asc'], [3,'desc']]
+		 *        "order": [[2,'asc'], [3,'description']]
 		 *      } );
 		 *    } );
 		 *
@@ -11179,7 +11179,7 @@
 		 * behaviour of the sort handler (i.e. only allow ascending ordering etc)
 		 * using this parameter.
 		 *  @type array
-		 *  @default [ 'asc', 'desc' ]
+		 *  @default [ 'asc', 'description' ]
 		 *
 		 *  @name DataTable.defaults.column.orderSequence
 		 *  @dtopt Columns
@@ -11190,8 +11190,8 @@
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
-		 *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
-		 *          { "orderSequence": [ "desc" ], "targets": [ 3 ] }
+		 *          { "orderSequence": [ "description", "asc", "asc" ], "targets": [ 2 ] },
+		 *          { "orderSequence": [ "description" ], "targets": [ 3 ] }
 		 *        ]
 		 *      } );
 		 *    } );
@@ -11203,8 +11203,8 @@
 		 *        "columns": [
 		 *          null,
 		 *          { "orderSequence": [ "asc" ] },
-		 *          { "orderSequence": [ "desc", "asc", "asc" ] },
-		 *          { "orderSequence": [ "desc" ] },
+		 *          { "orderSequence": [ "description", "asc", "asc" ] },
+		 *          { "orderSequence": [ "description" ] },
 		 *          null
 		 *        ]
 		 *      } );
@@ -13225,10 +13225,10 @@
 			 *
 			 * * `{type}-pre` - Pre-formatting function
 			 * * `{type}-asc` - Ascending order function
-			 * * `{type}-desc` - Descending order function
+			 * * `{type}-description` - Descending order function
 			 *
 			 * All three can be used together, only `{type}-pre` or only
-			 * `{type}-asc` and `{type}-desc` together. It is generally recommended
+			 * `{type}-asc` and `{type}-description` together. It is generally recommended
 			 * that only `{type}-pre` is used, as this provides the optimal
 			 * implementation in terms of speed, although the others are provided
 			 * for compatibility with existing Javascript sort functions.
@@ -13241,7 +13241,7 @@
 			 *
 			 * * `{*}` Data to be sorted upon
 			 *
-			 * `{type}-asc` and `{type}-desc`: Functions are typical Javascript sort
+			 * `{type}-asc` and `{type}-description`: Functions are typical Javascript sort
 			 * functions, taking two parameters:
 			 *
 		     *  1. `{*}` Data to compare to the second parameter
@@ -13272,7 +13272,7 @@
 			 *      "string-case-asc": function(x,y) {
 			 *        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 			 *      },
-			 *      "string-case-desc": function(x,y) {
+			 *      "string-case-description": function(x,y) {
 			 *        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
 			 *      }
 			 *    } );
@@ -13676,7 +13676,7 @@
 					a.toString();
 		},
 	
-		// string-asc and -desc are retained only for compatibility with the old
+		// string-asc and -description are retained only for compatibility with the old
 		// sort methods
 		"string-asc": function ( x, y )
 		{

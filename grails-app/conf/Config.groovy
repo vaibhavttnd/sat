@@ -161,6 +161,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/springSecurityOAuth/**': ['permitAll'],
         '/twitter4j/**'          : ['permitAll'],
         '/console/**'            : ['ROLE_ADMIN'],
+        '/category/**'           : ['ROLE_ADMIN'],
         '/plugins/console*/**'   : ['ROLE_ADMIN']
 ]
 
