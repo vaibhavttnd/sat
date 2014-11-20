@@ -31,10 +31,8 @@ class UserService {
         User newUser = new User(username: googleResponse.email, password: password, enabled: true, email: googleResponse.email,
                 picture: googleResponse.picture, name: googleResponse.name)
 
-        if (newUser.save(flush: true)) {
-            Role userRole = Role.findByAuthority("ROLE_USER")
-            UserRole.create(newUser, userRole, true)
-        }
+        if (newUser.save(flush: true))
+            addRoleForUser(newUser, Role.findByAuthority("ROLE_USER"))
 
         return newUser
     }
@@ -119,5 +117,18 @@ class UserService {
         twitterCredentials.delete(flush: true)
     }
 
+    def updateRoleForExistingUser(User user, Role role) {
+        if (user.authorities.first().id != role.id) {
+            removeExistingRole(user)
+            addRoleForUser(user, role)
+        }
+    }
 
+    def removeExistingRole(User user) {
+        UserRole.executeUpdate("delete UserRole userRole where userRole.user.id=:userId", [userId: user.id])
+    }
+
+    def addRoleForUser(User user, Role role) {
+        new UserRole(user: user, role: role).save(flush: true)
+    }
 }
