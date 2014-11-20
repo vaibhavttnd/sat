@@ -18,6 +18,9 @@
     <asset:stylesheet src="sb-admin-2.js"/>
     <asset:javascript src="bootstrap.js"/>
     <asset:javascript src="application.js"/>
+    <asset:stylesheet src="bootstrap.css"/>
+    <asset:stylesheet src="bootstrap-responsive.css"/>
+    <asset:stylesheet src="font-awesome.min.css"/>
     <g:layoutHead/>
 </head>
 
