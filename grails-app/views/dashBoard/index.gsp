@@ -3,6 +3,9 @@
 <head>
     <meta name="layout" content="main"/>
     <title>TweetAmp</title>
+    <script type="text/javascript">
+        var retweetUrl = "${createLink(controller: 'dashBoard' ,action: 'reTweet')}";
+    </script>
 </head>
 
 <body>
@@ -35,7 +38,8 @@
 
         <div class="panel-body">
             <g:if test="${accessToken?.getScreenName()}">
-                <asset:image src="twitterIcon.jpeg" style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
+                <asset:image src="twitterIcon.jpeg"
+                             style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
                 <ul class="nav pull-right">
                     <g:link controller="dashBoard" action="revokeApp" class="btn btn-danger"
                             onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>

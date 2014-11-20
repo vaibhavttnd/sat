@@ -2,6 +2,7 @@ package com.tweetAmp
 
 import com.tweetAmp.dto.TwitterCredentialDTO
 import twitter4j.Status
+import twitter4j.StatusJSONImpl
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.auth.AccessToken
@@ -21,14 +22,19 @@ class DashBoardController {
         [statusUpdates: statuses, accessToken: accessToken]
     }
 
-    def reTweet(long id) {
-        Twitter twitter = twitterService.twitter
-        List<TwitterCredentialDTO> twitterCredentials = twitterService.getTwitterCredentials()
-        twitterCredentials.each { TwitterCredentialDTO dto ->
-            twitterService.retweet(dto, twitter, id)
-        }
-        flash.success = "Status retweeted successfully"
-        redirect action: "index"
+    //will be used later - to be shifted to a service
+//    def reTweet(long id) {
+//        Twitter twitter = twitterService.twitter
+//        List<TwitterCredentialDTO> twitterCredentials = twitterService.getTwitterCredentials()
+//        twitterCredentials.each { TwitterCredentialDTO dto ->
+//            twitterService.retweet(dto, twitter, id)
+//        }
+//        flash.success = "Status retweeted successfully"
+//        redirect action: "index"
+//    }
+
+    def reTweet(){
+        render template: 'retweetform', model: params
     }
 
     def signInTwitter() {
