@@ -17,6 +17,10 @@ class User {
 
     static transients = ['springSecurityService']
 
+    static hasMany = [googleUsers: GoogleUser, categories: Category]
+
+    static belongsTo = [Category]
+
     static constraints = {
         username blank: false
         email blank: false, unique: true
@@ -26,9 +30,10 @@ class User {
 
     static mapping = {
         password column: '`password`'
+        categories cascade: 'all-delete-orphan'
     }
 
-    static hasMany = [googleUsers: GoogleUser]
+
 
     Set<Role> getAuthorities() {
         UserRole.findAllByUser(this).collect { it.role }
