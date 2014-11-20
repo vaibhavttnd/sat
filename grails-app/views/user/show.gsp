@@ -16,16 +16,16 @@
         Show User
         <ul class="navbar-top-links pull-right">
             <li>
-                <g:link action="create"><i class="icon-plus-sign"></i>&nbsp;<g:message code="default.new.label"
+                <g:link action="create" class="text-white"><i class="icon-plus-sign"></i>&nbsp;<g:message code="default.new.label"
                                                                                        args="[entityName]"/></g:link>
             </li>
             <li>
-                <g:link action="list"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label"
+                <g:link action="list" class="text-white"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label"
                                                                                 args="[entityName]"/></g:link>
             </li>
         </ul>
     </div>
-    <table class="table table-striped table-hover table-bordered">
+    <table class="table table-striped table-hover table-bordered margin-t10">
 
         <tr>
             <g:if test="${userInstance?.name || false}">
