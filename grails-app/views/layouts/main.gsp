@@ -39,7 +39,7 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN, 'ROLE_EDITOR'">
                             <li>
                                 <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
                             </li>
