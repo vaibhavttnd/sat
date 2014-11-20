@@ -10,17 +10,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><g:layoutTitle default="Tweet Amp"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://abs.twimg.com/a/1412623444/images/oauth_application.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://abs.twimg.com/a/1412623444/images/oauth_application.png"
+          type="image/x-icon">
     <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
     <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
     <g:javascript library="jquery" plugin="jquery"/>
-    <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="sb-admin-2.js"/>
     <asset:javascript src="bootstrap.js"/>
     <asset:javascript src="application.js"/>
     <asset:stylesheet src="bootstrap.css"/>
     <asset:stylesheet src="bootstrap-responsive.css"/>
     <asset:stylesheet src="font-awesome.min.css"/>
+    <asset:stylesheet src="application.css"/>
     <g:layoutHead/>
 </head>
 
@@ -31,7 +32,8 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/">
-                <img src="http://abs.twimg.com/a/1412623444/images/oauth_application.png" style="width: 30px;height: 30px"/>
+                <img src="http://abs.twimg.com/a/1412623444/images/oauth_application.png"
+                     style="width: 30px;height: 30px"/>
                 Tweet Amp
             </a>
         </div>
@@ -42,9 +44,14 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
-                        </li>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                            <li>
+                                <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                            </li>
+                            <li>
+                                <g:link controller="category"><i class="fa fa-fw fa-group"></i> Categories</g:link>
+                            </li>
+                        </sec:ifAnyGranted>
 
                         <li>
                             <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
@@ -80,13 +87,15 @@
 
     <div class="footer" style="position: fixed; bottom: 0px; width: 100%;">
         <div class="container">
-            <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">
+            <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com"
+                                                                                target="_blank">
                 <asset:image src="intelligrape.png"/>
             </a></span></span>
 
             </p>
 
-            <p>© <a href="https://www.intelligrape.com" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>
+            <p>© <a href="https://www.intelligrape.com"
+                    target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>
         </div>
     </div>
 </div>

@@ -39,9 +39,14 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
-                        </li>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                            <li>
+                                <g:link controller="user"><i class="fa fa-fw fa-user"></i> Users</g:link>
+                            </li>
+                            <li>
+                                <g:link controller="category"><i class="fa fa-fw fa-group"></i> Categories</g:link>
+                            </li>
+                        </sec:ifAnyGranted>
 
                         <li>
                             <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
