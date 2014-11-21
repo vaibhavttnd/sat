@@ -24,9 +24,21 @@ class DashBoardController {
 
     //will be used later - to be shifted to a service
     def reTweet(long id) {
-        println "*******************************************in controller*********************"
-//        Twitter twitter = twitterService.twitter
-//        List<TwitterCredentialDTO> twitterCredentials = twitterService.getTwitterCredentials()
+        List<Long> categoryIDs = params.categories ? params.list('categories')*.toLong() : []
+        Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
+        Long retweetStatusID = params.long('statusId')
+        println "@@@@@@@@@@@@@@@@@@@@@@@        " + users.getClass()
+        Twitter twitter = twitterService.twitter
+        List<TwitterCredential> twitterCredentials = []
+        users?.each { User user ->
+//            twitterCredentials.add(user.twitterCredential)
+
+            println "******************* " + params.statusId
+            println "******************* " + retweetStatusID
+            twitterService.retweet_new(user, twitter, retweetStatusID)
+            println "#####################################" + user.id
+        }
+//        List<TwitterCredentialDTO> twitterCredentialDTOs = twitterService.getTwitterCredentials()
 //        twitterCredentials.each { TwitterCredentialDTO dto ->
 //            twitterService.retweet(dto, twitter, id)
 //        }
@@ -34,8 +46,7 @@ class DashBoardController {
         redirect action: "index"
     }
 
-    def reTweetForm(){
-        println "*******************************************in controller*********************"
+    def reTweetForm() {
         render template: 'retweetform', model: params
     }
 

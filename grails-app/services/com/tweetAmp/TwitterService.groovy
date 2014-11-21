@@ -51,4 +51,23 @@ class TwitterService {
         return tweetsRetweeted
     }
 
+    TweetsRetweeted retweet_new(User user, Twitter twitter, Long id) {
+        AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
+        twitter.setOAuthAccessToken(accessToken)
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(user.id), id)
+        try {
+            if (!tweetsRetweeted) {
+                println "id        " + id
+                twitter.retweetStatus(id)
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterCredential.load(user.id)).save(flush: true);
+                println "alls fine"
+            }
+        }
+        catch (Exception e) {
+            println "Error in retweeting status ${e.message}"
+        }
+        return tweetsRetweeted
+    }
+
+
 }
