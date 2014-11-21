@@ -26,6 +26,8 @@
 
 <script type="text/javascript">
     function loadRetweetModal(url, anchorTag) {
+        console.log("******************************************************");
+        console.log(url);
         $.ajax({
             url: url,
             type: 'post',

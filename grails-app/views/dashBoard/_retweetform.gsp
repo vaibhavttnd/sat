@@ -29,11 +29,10 @@
             </div>
 
             <div class="modal-footer ">
-                <a href="javascript:void (0)"
-                   class="btn btn-primary text-bold">Retweet</a>
-                <a href="javascript:void (0)" onclick="removeRetweetModal();"
-                   class="btn btn-primary text-bold">
-                    Close</a>
+                <g:link controller="dashBoard" action="reTweet" class="btn btn-primary text-bold">Retweet</g:link>
+                <a href="javascript:void (0)" onclick="removeRetweetModal();" class="btn btn-primary text-bold">
+                    Close
+                </a>
             </div>
 
             %{--<p class="xxpadding f13 text-darkgrey successMsg hide">Updated successfully!</p>--}%

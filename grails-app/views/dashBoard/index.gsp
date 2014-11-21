@@ -4,7 +4,7 @@
     <meta name="layout" content="main"/>
     <title>TweetAmp</title>
     <script type="text/javascript">
-        var retweetUrl = "${createLink(controller: 'dashBoard' ,action: 'reTweet')}";
+        var retweetUrl = "${createLink(controller: 'dashBoard' ,action: 'reTweetForm')}";
     </script>
     <asset:javascript src="/plugins/chosen/chosen.jquery.js"/>
     <asset:stylesheet src="/plugins/chosen/chosen.css"/>
