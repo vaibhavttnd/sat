@@ -11,8 +11,4 @@ class Category {
         name nullable: false, blank: false
         description nullable: true
     }
-
-    static mapping = {
-        users cascade: 'all-delete-orphan'
-    }
 }

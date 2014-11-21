@@ -3,6 +3,7 @@ package com.tweetAmp
 import org.springframework.dao.DataIntegrityViolationException
 
 class CategoryController {
+    CategoryService categoryService
 
     static allowedMethods = [save: "POST", delete: "POST"]
 
@@ -44,6 +45,9 @@ class CategoryController {
         }
 
         categoryInstance.properties = params
+
+        List<Long> userIds = params.userList ? params.list('userList')*.toLong() : []
+        categoryService.updateUsersForCategories(categoryInstance, User.findAllByIdInList(userIds))
 
         if (!categoryInstance.save(flush: true)) {
             render(view: "create", model: [categoryInstance: categoryInstance])
