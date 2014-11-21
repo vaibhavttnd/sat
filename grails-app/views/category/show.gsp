@@ -27,7 +27,7 @@
     <table class="table table-striped table-hover table-bordered margin-t10">
 
         <tr>
-            <g:if test="${categoryInstance?.name || false}">
+            <g:if test="${categoryInstance?.name}">
                 <td><strong><g:message code="category.name.label" default="Name"/></strong></td>
 
                 <td><g:fieldValue bean="${categoryInstance}" field="name"/></td>
@@ -36,7 +36,7 @@
         </tr>
 
         <tr>
-            <g:if test="${categoryInstance?.description || false}">
+            <g:if test="${categoryInstance?.description}">
                 <td><strong><g:message code="category.description.label" default="Description"/></strong></td>
 
                 <td><g:fieldValue bean="${categoryInstance}" field="description"/></td>
@@ -45,7 +45,7 @@
         </tr>
 
         <tr>
-            <g:if test="${categoryInstance?.users || false}">
+            <g:if test="${categoryInstance?.users}">
                 <td><strong><g:message code="category.users.label" default="Users"/></strong></td>
 
                 <td>

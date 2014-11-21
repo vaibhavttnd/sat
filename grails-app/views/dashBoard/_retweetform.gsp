@@ -1,3 +1,4 @@
+<%@ page import="com.tweetAmp.Category" %>
 <div id="retweet-modal" class="modal fade in show" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -12,27 +13,19 @@
                     ${statusText}
                 </p>
 
-                <p>
-                    <select id="categorySelect" data-placeholder="Choose a Country..." class="chosen-select" multiple style="width:350px;height: 50px" tabindex="4">
-                        <option value="United States">United States</option>
-                        <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
-                        <option value="South Sudan">South Sudan</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Sri Lanka">Sri Lanka</option>
-                        <option value="Sudan">Sudan</option>
-                        <option value="Suriname">Suriname</option>
-                        <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-                        <option value="Swaziland">Swaziland</option>
-                        <option value="Sweden">Sweden</option>
-                        <option value="Switzerland">Switzerland</option>
-                        <option value="Syrian Arab Republic">Syrian Arab Republic</option>
-                        <option value="Taiwan, Province of China">Taiwan, Province of China</option>
-                        <option value="Tajikistan">Tajikistan</option>
-                        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
-                        <option value="Thailand">Thailand</option>
-                        <option value="Timor-leste">Timor-leste</option>
+                <div class="form-group">
+                    <label class="control-label hidden-phone" for="categories">
+                        <g:message code="category.users.label" default="Select Categories"/>
+
+                    </label>
+                    <select id="categories" name="categories" data-placeholder="Select categories..."
+                            class="chosen-select form-control" multiple
+                            style="width:350px">
+                        <g:each in="${Category.list()}" var="categories">
+                            <option value="${categories.id}">${categories.name}</option>
+                        </g:each>
                     </select>
-                </p>
+                </div>
             </div>
 
             <div class="modal-footer ">
@@ -54,7 +47,6 @@
     function removeRetweetModal() {
         $('#retweet-modal').remove();
         $('#retweet-modal-backdrop-modal').remove();
-        console.log("${categories}");
     }
-    $("#categorySelect").chosen();
+    $("#categories").chosen();
 </script>

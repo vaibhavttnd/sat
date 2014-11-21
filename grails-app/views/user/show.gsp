@@ -21,7 +21,7 @@
     <table class="table table-striped table-hover table-bordered margin-t10">
 
         <tr>
-            <g:if test="${userInstance?.name || false}">
+            <g:if test="${userInstance?.name}">
                 <td><strong><g:message code="user.name.label" default="Name"/></strong></td>
 
                 <td><g:fieldValue bean="${userInstance}" field="name"/></td>
@@ -30,7 +30,7 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.username || false}">
+            <g:if test="${userInstance?.username}">
                 <td><strong><g:message code="user.username.label" default="Username"/></strong></td>
 
                 <td><g:fieldValue bean="${userInstance}" field="username"/></td>
@@ -39,7 +39,7 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.email || false}">
+            <g:if test="${userInstance?.email}">
                 <td><strong><g:message code="user.email.label" default="Email"/></strong></td>
 
                 <td><g:fieldValue bean="${userInstance}" field="email"/></td>
@@ -48,7 +48,7 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.twitterCredential || false}">
+            <g:if test="${userInstance?.twitterCredential}">
                 <td><strong><g:message code="user.twitterCredential.label" default="Twitter Credential"/></strong></td>
 
                 <td><g:link controller="twitterCredential" action="show"
@@ -59,7 +59,7 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.googleUsers || false}">
+            <g:if test="${userInstance?.googleUsers}">
                 <td><strong><g:message code="user.googleUsers.label" default="Google Users"/></strong></td>
 
                 <td>
@@ -76,7 +76,7 @@
 
 
         <tr>
-            <g:if test="${userInstance?.picture || false}">
+            <g:if test="${userInstance?.picture}">
                 <td><strong><g:message code="user.picture.label" default="Picture"/></strong></td>
 
                 <td><a target="_blank" href="${userInstance?.picture}">View Picture</a></td>
@@ -85,7 +85,7 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.categories || false}">
+            <g:if test="${userInstance?.categories}">
                 <td><strong><g:message code="user.categories.label" default="Categories"/></strong></td>
 
                 <td><ul class="unstyled"><g:each in="${userInstance.categories}" var="c">
