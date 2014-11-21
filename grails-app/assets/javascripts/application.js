@@ -18,3 +18,8 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+function bindChosenSelectBox(){
+//    $(".chosen-select").chosen();
+    $(".chosen-select").chosen({disable_search_threshold: 5, allow_single_deselect: true});
+}
