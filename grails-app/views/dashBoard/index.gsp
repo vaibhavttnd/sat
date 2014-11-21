@@ -6,6 +6,8 @@
     <script type="text/javascript">
         var retweetUrl = "${createLink(controller: 'dashBoard' ,action: 'reTweet')}";
     </script>
+    <asset:javascript src="/plugins/chosen/chosen.jquery.js"/>
+    <asset:stylesheet src="/plugins/chosen/chosen.css"/>
 </head>
 
 <body>

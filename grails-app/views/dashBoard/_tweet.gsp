@@ -31,7 +31,6 @@
             type: 'post',
             data: { statusId: $(anchorTag).attr('data-statusId'), statusText: $(anchorTag).attr('data-statusText')},
             success: function (data) {
-                console.log(data);
                 $('body').append(data);
             }
         });

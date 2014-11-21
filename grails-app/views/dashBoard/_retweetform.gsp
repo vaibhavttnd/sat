@@ -1,8 +1,3 @@
-<asset:javascript src="/plugins/chosen/chosen.proto.js"/>
-<asset:javascript src="/plugins/chosen/chosen.jquery.js"/>
-<asset:javascript src="/plugins/chosen/prism.js"/>
-<asset:stylesheet src="/plugins/chosen/prism.css"/>
-<asset:stylesheet src="/plugins/chosen/chosen.css"/>
 <div id="retweet-modal" class="modal fade in show" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -18,7 +13,7 @@
                 </p>
 
                 <p>
-                    <select data-placeholder="Choose a Country..." class="chosen-select" style="width:350px;">
+                    <select id="categorySelect" data-placeholder="Choose a Country..." class="chosen-select" multiple style="width:350px;height: 50px" tabindex="4">
                         <option value="United States">United States</option>
                         <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
                         <option value="South Sudan">South Sudan</option>
@@ -60,7 +55,5 @@
         $('#retweet-modal').remove();
         $('#retweet-modal-backdrop-modal').remove();
     }
-    $(document).ready(function () {
-        bindChosenSelectBox();
-    });
+    $("#categorySelect").chosen();
 </script>
