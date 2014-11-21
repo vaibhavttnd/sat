@@ -5,6 +5,8 @@
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'category.label', default: 'Category')}"/>
     <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <asset:javascript src="/plugins/chosen/chosen.jquery.js"/>
+    <asset:stylesheet src="/plugins/chosen/chosen.css"/>
 </head>
 
 <body>

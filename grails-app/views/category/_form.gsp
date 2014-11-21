@@ -1,4 +1,4 @@
-<%@ page import="com.tweetAmp.Category" %>
+<%@ page import="com.tweetAmp.User; com.tweetAmp.Category" %>
 <div class="form-group">
     <label class="control-label hidden-phone" for="name">
         <g:message code="category.name.label" default="Name"/>
@@ -24,9 +24,16 @@
         <g:message code="category.users.label" default="Users"/>
 
     </label>
-
-    <g:select name="users" from="${com.tweetAmp.User.list()}" multiple="multiple" optionKey="id" size="5"
-              value="${categoryInstance?.users*.id}" class="many-to-many form-control" />
-
+    <select id="users" name="users" data-placeholder="Select Users..." class="chosen-select form-control" multiple
+            style="width:350px" tabindex="4">
+        <g:each in="${User.list()}" var="user">
+            <option value="${user.id}" ${categoryInstance?.users ? (categoryInstance?.users*.id.contains(user.id) ? 'selected' : '') : ''}>${user.name}</option>
+        </g:each>
+    </select>
 </div>
+
+
+<script type="text/javascript">
+    $("#users").chosen();
+</script>
 
