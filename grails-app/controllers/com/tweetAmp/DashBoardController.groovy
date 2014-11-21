@@ -1,8 +1,6 @@
 package com.tweetAmp
 
-import com.tweetAmp.dto.TwitterCredentialDTO
 import twitter4j.Status
-import twitter4j.StatusJSONImpl
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.auth.AccessToken
@@ -22,26 +20,13 @@ class DashBoardController {
         [statusUpdates: statuses, accessToken: accessToken]
     }
 
-    //will be used later - to be shifted to a service
     def reTweet(long id) {
         List<Long> categoryIDs = params.categories ? params.list('categories')*.toLong() : []
         Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
-        Long retweetStatusID = params.long('statusId')
-        println "@@@@@@@@@@@@@@@@@@@@@@@        " + users.getClass()
         Twitter twitter = twitterService.twitter
-        List<TwitterCredential> twitterCredentials = []
         users?.each { User user ->
-//            twitterCredentials.add(user.twitterCredential)
-
-            println "******************* " + params.statusId
-            println "******************* " + retweetStatusID
-            twitterService.retweet_new(user, twitter, retweetStatusID)
-            println "#####################################" + user.id
+            twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
         }
-//        List<TwitterCredentialDTO> twitterCredentialDTOs = twitterService.getTwitterCredentials()
-//        twitterCredentials.each { TwitterCredentialDTO dto ->
-//            twitterService.retweet(dto, twitter, id)
-//        }
         flash.success = "Status retweeted successfully"
         redirect action: "index"
     }

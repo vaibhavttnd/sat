@@ -13,21 +13,19 @@
                 @${status.getUser().getScreenName()} - <g:formatDate format="MMM dd hh:mm" date="${status.getCreatedAt()}"/>
             </g:else>
         </div>
-        <g:if test="${!status.isRetweeted() && validUser}">
+        %{--<g:if test="${!status.isRetweeted() && validUser}">--}%
             <div class="col-md-2">
                 <a href="javascript:void(0);" onclick="loadRetweetModal(retweetUrl, this)"
                    data-statusId="${status.getId()}" data-statusText="${status.getText()}">
                     <asset:image src="reTweet.jpeg" width="20" height="15"/>
                 </a>
             </div>
-        </g:if>
+        %{--</g:if>--}%
     </div>
 </div>
 
 <script type="text/javascript">
     function loadRetweetModal(url, anchorTag) {
-        console.log("******************************************************");
-        console.log(url);
         $.ajax({
             url: url,
             type: 'post',

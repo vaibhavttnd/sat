@@ -51,16 +51,15 @@ class TwitterService {
         return tweetsRetweeted
     }
 
-    TweetsRetweeted retweet_new(User user, Twitter twitter, Long id) {
+    TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long retweetStatusId) {
         AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
-        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(user.id), id)
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(user.id), retweetStatusId)
         try {
             if (!tweetsRetweeted) {
-                println "id        " + id
-                twitter.retweetStatus(id)
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterCredential.load(user.id)).save(flush: true);
-                println "alls fine"
+                println "tweet id        " + retweetStatusId
+                twitter.retweetStatus(retweetStatusId)
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: retweetStatusId, twitterCredential: TwitterCredential.load(user.id)).save(flush: true);
             }
         }
         catch (Exception e) {
