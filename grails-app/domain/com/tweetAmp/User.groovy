@@ -30,10 +30,7 @@ class User {
 
     static mapping = {
         password column: '`password`'
-        categories cascade: 'all-delete-orphan'
     }
-
-
 
     Set<Role> getAuthorities() {
         UserRole.findAllByUser(this).collect { it.role }

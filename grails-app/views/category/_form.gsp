@@ -24,7 +24,7 @@
         <g:message code="category.users.label" default="Users"/>
 
     </label>
-    <select id="users" name="users" data-placeholder="Select Users..." class="chosen-select form-control" multiple
+    <select id="userList" name="userList" data-placeholder="Select Users..." class="chosen-select form-control" multiple
             style="width:350px" tabindex="4">
         <g:each in="${User.list()}" var="user">
             <option value="${user.id}" ${categoryInstance?.users ? (categoryInstance?.users*.id.contains(user.id) ? 'selected' : '') : ''}>${user.name}</option>
@@ -34,6 +34,6 @@
 
 
 <script type="text/javascript">
-    $("#users").chosen();
+    $("#userList").chosen();
 </script>
 
