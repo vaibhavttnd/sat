@@ -20,7 +20,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label hidden-phone" for="users">
+    <label class="control-label hidden-phone" for="userList">
         <g:message code="category.users.label" default="Users"/>
 
     </label>

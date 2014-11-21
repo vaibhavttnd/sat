@@ -22,12 +22,16 @@ class DashBoardController {
 
     def reTweet(long id) {
         List<Long> categoryIDs = params.categories ? params.list('categories')*.toLong() : []
-        Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
-        Twitter twitter = twitterService.twitter
-        users?.each { User user ->
-            twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
+        if (!categoryIDs) {
+            flash.error = "No User Selected"
+        } else {
+            Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
+            Twitter twitter = twitterService.twitter
+            users?.each { User user ->
+                twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
+            }
+            flash.success = "Status retweeted successfully"
         }
-        flash.success = "Status retweeted successfully"
         redirect action: "index"
     }
 
