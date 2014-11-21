@@ -59,6 +59,7 @@
     function removeRetweetModal() {
         $('#retweet-modal').remove();
         $('#retweet-modal-backdrop-modal').remove();
+        console.log("${categories}");
     }
     $(document).ready(function () {
         bindChosenSelectBox();
