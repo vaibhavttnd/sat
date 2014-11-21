@@ -54,6 +54,7 @@
     function removeRetweetModal() {
         $('#retweet-modal').remove();
         $('#retweet-modal-backdrop-modal').remove();
+        console.log("${categories}");
     }
     $("#categorySelect").chosen();
 </script>
