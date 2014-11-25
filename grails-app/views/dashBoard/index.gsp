@@ -22,7 +22,7 @@
             <asset:image src="twitterIcon.jpeg"
                          style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
             <ul class="nav">
-                <g:link controller="dashBoard" action="revokeApp" class="btn btn-danger"
+                <g:link controller="dashBoard" action="revokeApp" class="btn btn-transparent"
                         onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
             </ul>
         </g:if>
