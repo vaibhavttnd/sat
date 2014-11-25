@@ -111,8 +111,9 @@ ul.alert-dropdown {
     -webkit-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
-    line-height: 25px;
-    width: 125px;
+    line-height: 23px;
+    width: 120px;
+    margin: 2px;
 }
 
 .float-right {
@@ -122,24 +123,29 @@ ul.alert-dropdown {
 .font-white {
     color: #ffffff;
 }
-body{
+
+body {
     background: url("../images/wall-background.png") repeat fixed;
 }
 
-.navbar-inverse .navbar-brand{
+.navbar-inverse .navbar-brand {
     color: #39D0E4;
 }
 
-.navbar-inverse{
+.navbar-inverse {
     background-color: #fff;
 }
 
-.footer{
+.footer {
     background-color: #fff;
     padding-top: 15px;
     padding-bottom: 6px;
 }
 
-.margin-b100{
+.margin-b100 {
     margin-bottom: 100px
+}
+
+.margin-b20 {
+    margin-bottom: 20px
 }

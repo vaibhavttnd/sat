@@ -18,9 +18,12 @@
     <div class="float-right font-white">
         <h2>Accounts</h2>
         <g:if test="${accessToken?.getScreenName()}">
-            <p>Thanks for registering with us.</p>
-            <asset:image src="twitterIcon.jpeg"
-                         style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
+            <p class="margin-b20">Thanks for registering with us.</p>
+
+            <p class="margin-b20">
+                <asset:image src="twitter.png"
+                             style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
+            </p>
             <ul class="nav">
                 <g:link controller="dashBoard" action="revokeApp" class="btn btn-transparent"
                         onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
