@@ -116,14 +116,6 @@ ul.alert-dropdown {
     margin: 2px;
 }
 
-.float-right {
-    float: right;
-}
-
-.font-white {
-    color: #ffffff;
-}
-
 body {
     background: url("../images/wall-background.png") repeat fixed;
 }
@@ -148,4 +140,12 @@ body {
 
 .margin-b20 {
     margin-bottom: 20px
+}
+
+.right-detail{
+    float: right;
+    color: #ffffff;
+    text-align: right;
+    margin-top: 100px;
+    margin-right: 24px;
 }
