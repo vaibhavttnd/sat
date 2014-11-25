@@ -97,6 +97,48 @@ ul.alert-dropdown {
     margin-bottom: 10px;
 }
 
-.float-left{
+.float-left {
     float: left;
+}
+
+.btn-transparent {
+    border: 1px solid #fff;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    line-height: 33px;
+    width: 155px;
+}
+
+.float-right {
+    float: right;
+}
+
+.font-white {
+    color: #ffffff;
+}
+body{
+    background: url("../images/wall-background.png") repeat fixed;
+}
+
+.navbar-inverse .navbar-brand{
+    color: #39D0E4;
+}
+
+.navbar-inverse{
+    background-color: #fff;
+}
+
+.footer{
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 6px;
+}
+
+.margin-b100{
+    margin-bottom: 100px
 }
