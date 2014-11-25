@@ -2748,8 +2748,9 @@ select[multiple].input-lg {
 }
 .btn:hover,
 .btn:focus {
-  color: #CD3E2D;
+  color: #FF0000;
   text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.11);
 }
 .btn:active,
 .btn.active {
@@ -4642,8 +4643,8 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert-success {
-  color: #3c763d;
-  background-color: rgba(0, 0, 0, 0.13);
+  color: #999;
+  background-color:rgba(255, 255, 255, 0.21);
   /*background-color: #dff0d8;*/
   /*border-color: #d6e9c6;*/
 }

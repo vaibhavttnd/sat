@@ -29,7 +29,7 @@
         </ul>
     </g:if>
     <g:else>
-        <p>Some text.</p>
+        <p>Please sign into your twitter Account.</p>
         <g:link controller="dashBoard" action="signInTwitter">
             <img title="Sign in with Twitter" alt="Sign in with Twitter"
                  src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png">
