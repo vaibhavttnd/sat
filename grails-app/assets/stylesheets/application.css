@@ -153,3 +153,7 @@ body {
     margin-top: 100px;
     margin-right: 24px;
 }
+
+a.navbar-brand:hover{
+    color: #2ABAFA !important;
+}
