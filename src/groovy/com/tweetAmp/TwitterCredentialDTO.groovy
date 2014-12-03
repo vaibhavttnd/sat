@@ -1,9 +1,9 @@
-package com.tweetAmp.dto
+package com.tweetAmp
 
 
 class TwitterCredentialDTO {
     String screenName
-    Long id     //This is the user.id
+    Long id     //This is the TwitterCredential.id
     String accessToken
     String accessTokenSecret
 }

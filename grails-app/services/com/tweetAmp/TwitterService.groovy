@@ -1,6 +1,5 @@
 package com.tweetAmp
 
-import com.tweetAmp.dto.TwitterCredentialDTO
 import grails.transaction.Transactional
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
@@ -51,22 +50,33 @@ class TwitterService {
         return tweetsRetweeted
     }
 
-    TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long retweetStatusId) {
+    TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
         AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
-        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(user.id), retweetStatusId)
-        try {
-            if (!tweetsRetweeted) {
-                println "tweet id        " + retweetStatusId
-                twitter.retweetStatus(retweetStatusId)
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: retweetStatusId, twitterCredential: TwitterCredential.load(user.id)).save(flush: true);
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+        if (tweetsRetweeted) {
+            try {
+                if (tweetsRetweeted.status == RetweetStatus.PENDING) {
+                    println "tweet id        " + tweetId
+                    twitter.retweetStatus(tweetId)
+                    tweetsRetweeted.status = RetweetStatus.DONE
+                    tweetsRetweeted.save(flush: true);
+                }
             }
-        }
-        catch (Exception e) {
-            println "Error in retweeting status ${e.message}"
+            catch (Exception e) {
+                println "Error in retweeting status ${e.message}"
+            }
         }
         return tweetsRetweeted
     }
 
-
+    Boolean createNewObjects(Set<User> users, Long tweetId) {
+        users.each { User user ->
+            TwitterCredential credential = user.twitterCredential
+            if (credential) {
+                TweetsRetweeted tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, twitterCredential: credential, status: RetweetStatus.PENDING).save(flush: true);
+                credential.addToRetweets(tweetsRetweeted).save(flush: true)
+            }
+        }
+    }
 }

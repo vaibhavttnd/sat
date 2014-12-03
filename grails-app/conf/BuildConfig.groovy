@@ -76,6 +76,8 @@ grails.project.dependency.resolution = {
         compile ":twitter4j:4.0.4.0"
         compile ':spring-security-oauth:2.1.0-RC4'
         compile ':spring-security-oauth-google:0.2'
+        compile ":executor:0.3"
+        compile ":quartz:1.0.2"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
