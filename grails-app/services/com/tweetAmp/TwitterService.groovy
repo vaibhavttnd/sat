@@ -54,10 +54,8 @@ class TwitterService {
     TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
         println "retweeting(*************************************************" + user?.email
         AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
-        println "access token *************************************************" + accessToken
         twitter.setOAuthAccessToken(accessToken)
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
-        println "fetched the user *************************************************"
         if (tweetsRetweeted) {
             println "found******************************"
             try {
