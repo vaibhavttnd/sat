@@ -72,14 +72,23 @@ class TwitterService {
         return tweetsRetweeted
     }
 
-    Boolean createNewObjects(Set<User> users, Long tweetId) {
-        users.each { User user ->
-            TwitterCredential credential = user.twitterCredential
-            TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
-            if (credential && !tweetsRetweeted) {
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, twitterCredential: credential, status: RetweetStatus.PENDING).save(flush: true);
-                credential.addToRetweets(tweetsRetweeted).save(flush: true)
+    void createNewObjects(Set<Long> userIds, Long tweetId) {
+        try {
+            Set<User> users = User.getAll(userIds.toList())
+            users.each { User user ->
+                TwitterCredential credential = user.twitterCredential
+                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+                if (credential && !tweetsRetweeted) {
+                    tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, status: RetweetStatus.PENDING)
+                    tweetsRetweeted.reTweetId = tweetId
+                    tweetsRetweeted.twitterCredential = credential
+                    credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
+                }
             }
+        }
+        catch (Exception e) {
+            println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" + e
+            e.printStackTrace(System.out)
         }
     }
 }

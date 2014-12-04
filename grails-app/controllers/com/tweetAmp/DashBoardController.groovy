@@ -11,6 +11,7 @@ class DashBoardController {
     def springSecurityService
     def grailsApplication
     def userService
+    def asyncTwitterService
     def twitterService
 
     def index() {
@@ -26,15 +27,14 @@ class DashBoardController {
             flash.error = "No User Selected"
         } else {
             Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
-            runAsync{
-                println "*************************start********************************"
-                println "**************************end*********************************"
-            }
-            twitterService.createNewObjects(users, params.long('statusId'))
-            Twitter twitter = twitterService.twitter
-            users?.each { User user ->
-                twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
-            }
+
+            asyncTwitterService.createNewObjects(users*.id.toSet(), params.long('statusId'))
+//                Holders.grailsApplication.mainContext.getBean('twitterService').createNewObjects(users, params.long('statusId'))
+//            twitterService.createNewObjects(users, params.long('statusId'))
+//            Twitter twitter = twitterService.twitter
+//            users?.each { User user ->
+//                twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
+//            }
             flash.success = "Status retweeted successfully"
         }
         redirect action: "index"
