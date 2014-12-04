@@ -64,6 +64,8 @@ class TwitterService {
                 }
             }
             catch (Exception e) {
+                tweetsRetweeted.status = RetweetStatus.REJECTED
+                tweetsRetweeted.save(flush: true);
                 println "Error in retweeting status ${e.message}"
             }
         }
