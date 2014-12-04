@@ -1,6 +1,7 @@
 package com.tweetAmp
 
 import grails.transaction.Transactional
+import twitter4j.Status
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
@@ -51,10 +52,14 @@ class TwitterService {
     }
 
     TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
+        println "retweeting(*************************************************" + user?.email
         AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
+        println "access token *************************************************" + accessToken
         twitter.setOAuthAccessToken(accessToken)
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+        println "fetched the user *************************************************"
         if (tweetsRetweeted) {
+            println "found******************************"
             try {
                 if (tweetsRetweeted.status == RetweetStatus.PENDING) {
                     println "tweet id        " + tweetId
@@ -68,6 +73,8 @@ class TwitterService {
                 tweetsRetweeted.save(flush: true);
                 println "Error in retweeting status ${e.message}"
             }
+        } else {
+            println "not found******************************************"
         }
         return tweetsRetweeted
     }
@@ -85,6 +92,7 @@ class TwitterService {
                     credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
                 }
             }
+            println "*********************************Objects created*********************************************"
         }
         catch (Exception e) {
             println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" + e

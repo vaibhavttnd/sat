@@ -27,13 +27,12 @@ class DashBoardController {
             flash.error = "No User Selected"
         } else {
             Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
-
+            Twitter twitter = twitterService.twitter
             asyncTwitterService.createNewObjects(users*.id.toSet(), params.long('statusId'))
 //                Holders.grailsApplication.mainContext.getBean('twitterService').createNewObjects(users, params.long('statusId'))
 //            twitterService.createNewObjects(users, params.long('statusId'))
-//            Twitter twitter = twitterService.twitter
 //            users?.each { User user ->
-//                twitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
+//                asyncTwitterService.retweetWithSpecificUser(user, twitter, params.long('statusId'))
 //            }
             flash.success = "Status retweeted successfully"
         }
