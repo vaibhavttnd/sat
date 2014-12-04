@@ -26,6 +26,10 @@ class DashBoardController {
             flash.error = "No User Selected"
         } else {
             Set<User> users = (Category.findAllByIdInList(categoryIDs)*.users.unique()).first()
+            runAsync{
+                println "*************************start********************************"
+                println "**************************end*********************************"
+            }
             twitterService.createNewObjects(users, params.long('statusId'))
             Twitter twitter = twitterService.twitter
             users?.each { User user ->

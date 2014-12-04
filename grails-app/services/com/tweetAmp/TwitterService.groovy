@@ -75,8 +75,9 @@ class TwitterService {
     Boolean createNewObjects(Set<User> users, Long tweetId) {
         users.each { User user ->
             TwitterCredential credential = user.twitterCredential
-            if (credential) {
-                TweetsRetweeted tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, twitterCredential: credential, status: RetweetStatus.PENDING).save(flush: true);
+            TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+            if (credential && !tweetsRetweeted) {
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, twitterCredential: credential, status: RetweetStatus.PENDING).save(flush: true);
                 credential.addToRetweets(tweetsRetweeted).save(flush: true)
             }
         }
