@@ -107,6 +107,10 @@ log4j.main = {
 
     //  debug 'org.springframework.security'
 
+    info additivity: false, dailyAppender: ['com.tweetAmp',
+            'grails.app.jobs',
+            'grails.app.filters']
+
     error 'org.codehaus.groovy.grails.web.servlet',        // controllers
             'org.codehaus.groovy.grails.web.pages',          // GSP
             'org.codehaus.groovy.grails.web.sitemesh',       // layouts

@@ -11,16 +11,15 @@ class RetweetJob {
     }
 
     def execute() {
-        println "****************************JOB***********************************"
-        println("RetweetJob----------------------------------- ${new Date()}")
+        log.info("RetweetJob----------------------------------- ${new Date()}")
         Twitter twitter = twitterService.twitter
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByStatus(RetweetStatus.PENDING)
         if (tweetsRetweeted) {
-            println "**********************RETWEETING*************************** tweet id " + tweetsRetweeted?.id
+            log.info("**********************RETWEETING*************************** tweet id " + tweetsRetweeted?.id)
             TwitterCredential twitterCredential = tweetsRetweeted?.twitterCredential
             User user = User.findByTwitterCredential(twitterCredential)
             twitterService.retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
         }
-        println "*************************done**********************************"
+        log.info("*************************done**********************************")
     }
 }
