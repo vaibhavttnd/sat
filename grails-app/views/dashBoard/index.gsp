@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="grails.plugin.springsecurity.SpringSecurityUtils" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main"/>
@@ -14,7 +14,7 @@
 <sec:ifAllGranted roles="ROLE_ADMIN">
     <g:render template="adminDashboard"/>
 </sec:ifAllGranted>
-<div class="right-detail">
+<div class="${SpringSecurityUtils.ifNotGranted('ROLE_ADMIN') ? 'standard-user-welcome' : 'right-detail'}">
     <h2>Accounts</h2>
     <g:if test="${accessToken?.getScreenName()}">
         <p class="margin-b20">Thanks for registering with us.</p>

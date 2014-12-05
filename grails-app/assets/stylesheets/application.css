@@ -146,7 +146,7 @@ body {
     margin-top: 45px;
 }
 
-.right-detail{
+.right-detail {
     float: right;
     color: #ffffff;
     text-align: right;
@@ -154,6 +154,29 @@ body {
     margin-right: 24px;
 }
 
-a.navbar-brand:hover{
+a.navbar-brand:hover {
     color: #2ABAFA !important;
+}
+
+div.standard-user-welcome {
+    text-align: center;
+}
+
+div.standard-user-welcome p {
+    font-size: 30px;
+    line-height: 55px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+div.standard-user-welcome h2 {
+    font-size: 42px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+div.standard-user-welcome a {
+    display: inline-block
 }
