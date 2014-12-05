@@ -80,7 +80,7 @@
 
     </div>
 
-    <div class="footer" style="position: fixed; bottom: 0px; width: 100%;">
+    <div class="footer">
         <div class="container">
             <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">
                 <asset:image src="intelligrape.png"/>

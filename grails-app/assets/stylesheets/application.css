@@ -130,8 +130,10 @@ body {
 
 .footer {
     background-color: #fff;
-    padding-top: 15px;
-    padding-bottom: 6px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding:8px 8px 6px;
 }
 
 .margin-b100 {
