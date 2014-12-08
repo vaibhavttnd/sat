@@ -20,6 +20,5 @@ class RetweetJob {
             User user = User.findByTwitterCredential(twitterCredential)
             twitterService.retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
         }
-        log.info("*************************done**********************************")
     }
 }

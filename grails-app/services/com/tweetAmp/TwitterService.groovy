@@ -3,6 +3,7 @@ package com.tweetAmp
 import grails.transaction.Transactional
 import twitter4j.Status
 import twitter4j.Twitter
+import twitter4j.TwitterException
 import twitter4j.TwitterFactory
 import twitter4j.auth.AccessToken
 
@@ -52,7 +53,7 @@ class TwitterService {
     }
 
     TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
-        println "retweeting(*************************************************" + user?.email
+        println "retweeting*************************************************" + user?.email
         AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
@@ -66,10 +67,11 @@ class TwitterService {
                     tweetsRetweeted.save(flush: true);
                 }
             }
-            catch (Exception e) {
+            catch (TwitterException e) {
                 tweetsRetweeted.status = RetweetStatus.REJECTED
                 tweetsRetweeted.save(flush: true);
-                println "Error in retweeting status ${e.message}"
+                log.info("Error in retweeting status: \n${e.message}\n" + e.errorMessage)
+                log.info("Status Code*************************************************\n" + e.getStatusCode())
             }
         } else {
             println "not found******************************************"
