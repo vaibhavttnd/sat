@@ -80,17 +80,17 @@
 
     </div>
 
-    <div class="footer">
-        <div class="container">
-            <p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">
-                <asset:image src="intelligrape.png"/>
-            </a></span></span>
+    %{--<div class="footer">--}%
+        %{--<div class="container">--}%
+            %{--<p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">--}%
+                %{--<asset:image src="intelligrape.png"/>--}%
+            %{--</a></span></span>--}%
 
-            </p>
+            %{--</p>--}%
 
-            <p>© <a href="https://www.intelligrape.com" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>
-        </div>
-    </div>
+            %{--<p>© <a href="https://www.intelligrape.com" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>--}%
+        %{--</div>--}%
+    %{--</div>--}%
 </div>
 </body>
 </html>
