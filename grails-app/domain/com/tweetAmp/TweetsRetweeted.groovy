@@ -9,5 +9,5 @@ class TweetsRetweeted {
     long reTweetId
     RetweetStatus status = RetweetStatus.PENDING
 
-    static belongsTo = [twitterCredential: TwitterCredential]
+    static belongsTo = [twitterUser: TwitterUser]
 }

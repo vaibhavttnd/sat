@@ -124,24 +124,26 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
-grails.google.api.url = "https://www.googleapis.com/oauth2/v1/userinfo"
+//grails.google.api.url = "https://www.googleapis.com/oauth2/v1/userinfo"
 def baseURL = grails.serverURL ?: ""
 grails.twitterCallbackUrl = grails.serverURL ?: ""
 
 oauth {
     providers {
-        google {
-            api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-            key = '283780058333-u1n59cltp31lf204tog9kgsl0j01880d.apps.googleusercontent.com'
-            secret = 'Q8_QR7kgRR-Dq-qRb_4utM2b'
+        twitter {
+            api = org.scribe.builder.api.TwitterApi
+            key = '5JyqR5PajwOc0EK9tHlKMRx2g'
+            secret = 'cAshX3H3CtGplMoqjbb8h576DvAXhyXomr57KwltI8RV7cv5g3'
+//        successUri = '/oauth/twitter/suc1cess'
             successUri = '/springSecurityOAuth/onSuccess'
-            //failureUri = '/oauth/google/error'
-            failureUri = '/'
-            callback = "${baseURL}/oauth/google/callback"
-            scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+            failureUri = '/oauth/twitter/error'
+            callback = "${baseURL}/oauth/twitter/callback"
         }
     }
+
 }
+
+oauthProvider.name="twitter"
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.tweetAmp.User'
@@ -171,7 +173,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
 // Added by the Spring Security OAuth plugin:
 grails.plugin.springsecurity.oauth.active = true
-grails.plugin.springsecurity.oauth.domainClass = "com.tweetAmp.GoogleUser"
+grails.plugin.springsecurity.oauth.domainClass = "com.tweetAmp.TwitterUser"
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = "/springSecurityOAuth/askToLinkOrCreateAccount"
 grails.plugin.springsecurity.logout.postOnly = false
 

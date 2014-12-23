@@ -17,21 +17,31 @@ import twitter4j.conf.ConfigurationBuilder
 @Transactional
 class UserService {
 
-    public static final String GOOGLE_USER_PROFILE_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
+    public static final String TWITTER_USER_PROFILE_URL = "https://api.twitter.com/oauth/authenticate"
     public static final String INTELLI_GRAPE = "IntelliGrape"
     def oauthService
     def springSecurityService
     def grailsApplication
 
-    def registerNewUser(OAuthToken oAuthToken, Token googleAccessToken) {
-
+    def registerNewUser(OAuthToken oAuthToken, Token twitterAccessToken) {
+        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice "
+        println TWITTER_USER_PROFILE_URL
+        println twitterAccessToken.properties
         String password = RandomStringUtils.randomAlphabetic(10)
-        def googleResource = oauthService.getGoogleResource(googleAccessToken, GOOGLE_USER_PROFILE_URL)
-        def googleResponse = JSON.parse(googleResource?.getBody())
-        User newUser = new User(username: googleResponse.email, password: password, enabled: true, email: googleResponse.email,
-                picture: googleResponse.picture, name: googleResponse.name)
+        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice " + twitterAccessToken
+        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice "
+        Map<String, String> twitterDetails = tokenizeParameters(twitterAccessToken.rawResponse)
 
-        if (newUser.save(flush: true))
+        TwitterUser twitterUser = new TwitterUser(accessToken: twitterDetails.oauth_token,
+                accessTokenSecret: twitterDetails.oauth_token_secret,
+                provider: grailsApplication.config.oauthProvider.name,
+                screenName: twitterDetails.screen_name)
+
+        twitterUser.save(flush: true)
+
+        User newUser = new User(twitterUser: twitterUser, username: twitterDetails.screen_name, password: password, enabled: true,)
+
+        if (newUser.save(flush: true, failOnError: true))
             addRoleForUser(newUser, Role.findByAuthority("ROLE_USER"))
 
         return newUser
@@ -59,7 +69,7 @@ class UserService {
         return token;
     }
 
-    List<Status> getUserTweets(TwitterCredential twitterCredentials) {
+    List<Status> getUserTweets(TwitterUser twitterCredentials) {
         def twitterConfig = grailsApplication.config.twitter4j
         String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
         String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
@@ -96,14 +106,14 @@ class UserService {
         return statuses;
     }
 
-    TwitterCredential saveTwitterCredentials(AccessToken accessToken) {
+    TwitterUser saveTwitterCredentials(AccessToken accessToken) {
         User currentUser = springSecurityService.currentUser as User
-        TwitterCredential twitterCredential = new TwitterCredential(accessToken: accessToken.token,
+        TwitterUser twitterCredential = new TwitterUser(accessToken: accessToken.token,
                 accessTokenSecret: accessToken.tokenSecret, screenName: accessToken.getScreenName(),
                 twitterUserId: accessToken.getUserId(), user: currentUser)
         twitterCredential.save(flush: true)
         if (!twitterCredential.hasErrors()) {
-            currentUser.twitterCredential = twitterCredential
+            currentUser.twitterUser = twitterCredential
             currentUser.save(flush: true)
         }
         return twitterCredential
@@ -111,8 +121,8 @@ class UserService {
 
     void revokeApp() {
         User currentUser = springSecurityService.currentUser as User
-        TwitterCredential twitterCredentials = currentUser.twitterCredential
-        currentUser.twitterCredential = null
+        TwitterUser twitterCredentials = currentUser.twitterUser
+        currentUser.twitterUser = null
         currentUser.save()
         twitterCredentials.delete(flush: true)
     }
@@ -130,5 +140,18 @@ class UserService {
 
     def addRoleForUser(User user, Role role) {
         new UserRole(user: user, role: role).save(flush: true)
+    }
+
+    Map<String, String> tokenizeParameters(String parameterList) {
+        List<String> parameterAndValue = parameterList.tokenize('&')
+        println parameterAndValue
+        Map<String, String> map = [:]
+        parameterAndValue.each {
+            List<String> parameterAndItsValue = it.tokenize('=')
+            map.put(parameterAndItsValue.get(0), parameterAndItsValue.get(1))
+        }
+        println "**********************************************************************************"
+        println map
+        map
     }
 }

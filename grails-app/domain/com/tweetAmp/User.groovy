@@ -7,9 +7,9 @@ class User {
     String username
     String password
     String email
-    String picture
-    String name
-    TwitterCredential twitterCredential
+//    String picture
+//    String name
+    TwitterUser twitterUser
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -17,15 +17,15 @@ class User {
 
     static transients = ['springSecurityService']
 
-    static hasMany = [googleUsers: GoogleUser, categories: Category]
+    static hasMany = [categories: Category]
 
     static belongsTo = [Category]
 
     static constraints = {
-        username blank: false
-        email blank: false, unique: true
+        username blank: false, nullable: true
+        email blank: false, unique: true, nullable: true
         password blank: false
-        twitterCredential nullable: true
+        twitterUser nullable: false
     }
 
     static mapping = {

@@ -48,31 +48,31 @@
         </tr>
 
         <tr>
-            <g:if test="${userInstance?.twitterCredential}">
+            <g:if test="${userInstance?.twitterUser}">
                 <td><strong><g:message code="user.twitterCredential.label" default="Twitter Credential"/></strong></td>
 
                 <td><g:link controller="twitterCredential" action="show"
-                            id="${userInstance?.twitterCredential?.id}">${userInstance?.twitterCredential?.
+                            id="${userInstance?.twitterUser?.id}">${userInstance?.twitterUser?.
                             encodeAsHTML()}</g:link></td>
 
             </g:if>
         </tr>
 
-        <tr>
-            <g:if test="${userInstance?.googleUsers}">
-                <td><strong><g:message code="user.googleUsers.label" default="Google Users"/></strong></td>
+        %{--<tr>--}%
+            %{--<g:if test="${userInstance?.googleUsers}">--}%
+                %{--<td><strong><g:message code="user.googleUsers.label" default="Google Users"/></strong></td>--}%
 
-                <td>
-                    <ul class="unstyled">
-                        <g:each in="${userInstance.googleUsers}" var="g">
-                            <li><g:link controller="googleUser" action="show"
-                                        id="${g.id}">${g?.encodeAsHTML()}</g:link></li>
-                        </g:each>
-                    </ul>
-                </td>
+                %{--<td>--}%
+                    %{--<ul class="unstyled">--}%
+                        %{--<g:each in="${userInstance.googleUsers}" var="g">--}%
+                            %{--<li><g:link controller="googleUser" action="show"--}%
+                                        %{--id="${g.id}">${g?.encodeAsHTML()}</g:link></li>--}%
+                        %{--</g:each>--}%
+                    %{--</ul>--}%
+                %{--</td>--}%
 
-            </g:if>
-        </tr>
+            %{--</g:if>--}%
+        %{--</tr>--}%
 
 
         <tr>
@@ -135,14 +135,14 @@
             </g:if>
         </tr>
 
-        <tr>
-            <g:if test="${userInstance?.passwordExpired || true}">
-                <td><strong><g:message code="user.passwordExpired.label" default="Password Expired"/></strong></td>
+        %{--<tr>--}%
+            %{--<g:if test="${userInstance?.passwordExpired || true}">--}%
+                %{--<td><strong><g:message code="user.passwordExpired.label" default="Password Expired"/></strong></td>--}%
 
-                <td><g:formatBoolean boolean="${userInstance?.passwordExpired}"/></td>
+                %{--<td><g:formatBoolean boolean="${userInstance?.passwordExpired}"/></td>--}%
 
-            </g:if>
-        </tr>
+            %{--</g:if>--}%
+        %{--</tr>--}%
 
     </table>
     <g:form class="margin-20">

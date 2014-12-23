@@ -1,10 +1,12 @@
 package com.tweetAmp
 
-class TwitterCredential {
+class TwitterUser implements Serializable{
 
     String accessToken
     String accessTokenSecret
     String screenName
+    String provider
+
     long twitterUserId
 
     static belongsTo = [user: User]

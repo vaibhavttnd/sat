@@ -13,10 +13,10 @@
             <div class="social-box">
                 <div class="row mg-btm">
                     <div class="col-md-12 margin-t45">
-                        <oauth:connect provider="google" id="google-connect-link" class="btn btn-danger btn-block">
-                            <i class="fa fa-fw fa-google-plus"></i>Login with Google
-                        </oauth:connect>
-
+                        <oauth:connect provider="twitter" id="twitter-connect-link">Twitter</oauth:connect>
+                        %{--Logged with twitter?--}%
+                        %{--<s2o:ifLoggedInWith provider="twitter">yes</s2o:ifLoggedInWith>--}%
+                        %{--<s2o:ifNotLoggedInWith provider="twitter">no</s2o:ifNotLoggedInWith>--}%
                     </div>
                 </div>
 

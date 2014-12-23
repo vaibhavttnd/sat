@@ -37,7 +37,7 @@ class SpringSecurityOAuthController {
     def onSuccess(String provider) {
         // Validate the 'provider' URL. Any errors here are either misconfiguration
         // or web crawlers (or malicious users).
-        provider = 'google'
+        provider = 'twitter'
 
         if (!provider) {
             log.warn "The Spring Security OAuth callback URL must include the 'provider' URL parameter"
@@ -92,7 +92,7 @@ class SpringSecurityOAuthController {
                 log.warn "askToLinkOrCreateAccount: OAuthToken not found in session"
                 throw new OAuthLoginException('Authentication error')
             }
-            currentUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: currentUser)
+//            currentUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: currentUser)
             if (currentUser.validate() && currentUser.save()) {
                 oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, currentUser)
                 authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())
@@ -101,9 +101,12 @@ class SpringSecurityOAuthController {
 
         } else {
             //Create new account
-            Token googleAccessToken = (Token) session[oauthService.findSessionKeyForAccessToken('google')]
-            User  newUser = userService.registerNewUser(oAuthToken,googleAccessToken)
-            newUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: newUser)
+            Token twitterAccessToken = (Token) session[oauthService.findSessionKeyForAccessToken('twitter')]
+            println "######################### twitterAccessToken ############################"
+            println twitterAccessToken.properties
+            println oAuthToken.properties
+            User newUser = userService.registerNewUser(oAuthToken, twitterAccessToken)
+//            newUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: newUser)
             if (newUser.validate() && newUser.save()) {
                 oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, newUser)
                 authenticateAndRedirect(oAuthToken, defaultTargetUrl)
