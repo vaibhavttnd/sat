@@ -7,9 +7,9 @@ class User {
     String username
     String password
     String email
-//    String picture
-//    String name
+
     TwitterUser twitterUser
+
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked

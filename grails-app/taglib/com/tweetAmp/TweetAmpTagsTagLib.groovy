@@ -18,7 +18,7 @@ class TweetAmpTagsTagLib {
     def userName = { attrs ->
         if (springSecurityService.isLoggedIn()) {
             User user = springSecurityService.currentUser as User
-            out << user.name
+            out << user.username
         }
     }
 

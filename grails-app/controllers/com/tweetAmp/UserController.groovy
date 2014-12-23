@@ -12,9 +12,9 @@ class UserController {
             if (q) {
                 or {
                     ilike('email', "%${q}%")
-                    ilike('name', "%${q}%")
+                    ilike('username', "%${q}%")
                 }
-                order(params.sort ?: 'name', params.order ?: 'asc')
+                order(params.sort ?: 'username', params.order ?: 'asc')
             }
         }
         render(view: 'list', model: [userInstanceList: users, userInstanceTotal: users.totalCount])

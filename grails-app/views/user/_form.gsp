@@ -1,13 +1,4 @@
 <%@ page import="com.tweetAmp.Role; com.tweetAmp.User" %>
-<div class="form-group">
-    <label class="control-label hidden-phone" for="name">
-        <g:message code="user.name.label" default="Name"/>
-        <span class="required-indicator">*</span>
-    </label>
-
-    <g:textField class="form-control required" name="name" readonly="" required="" value="${userInstance?.name}"/>
-
-</div>
 
 <div class="form-group">
     <label class="control-label hidden-phone" for="username">
