@@ -1,8 +1,10 @@
 package com.tweetAmp
 
+import grails.plugin.springsecurity.SpringSecurityService
 import org.springframework.dao.DataIntegrityViolationException
 
 class UserController {
+    SpringSecurityService springSecurityService
     UserService userService
 
     static allowedMethods = [save: "POST", delete: "POST"]
@@ -99,5 +101,31 @@ class UserController {
             flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def profile(){
+        User user = springSecurityService.currentUser as User
+
+        [userInstance : user]
+    }
+
+    def editProfile(){
+        User user = springSecurityService.currentUser as User
+
+        [userInstance : user]
+    }
+
+    def updateProfile(){
+        User userInstance = springSecurityService.currentUser as User
+        userInstance.email = params.email
+
+        if (!userInstance.save(flush: true)) {
+            render(view: "editProfile", model: [userInstance: userInstance])
+            return
+        }
+
+
+        flash.success = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+        redirect(action: "profile")
     }
 }

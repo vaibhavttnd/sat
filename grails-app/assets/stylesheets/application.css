@@ -93,8 +93,16 @@ ul.alert-dropdown {
     margin-top: 10px;
 }
 
+.margin-t20 {
+    margin-top: 20px;
+}
+
 .margin-b10 {
     margin-bottom: 10px;
+}
+
+.width-350{
+    width: 350px !important;
 }
 
 .float-left {

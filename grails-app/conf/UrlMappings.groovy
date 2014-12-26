@@ -14,6 +14,10 @@ class UrlMappings {
 
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
+
+        "/profile"(controller: "user", action: 'profile')
+        "/editProfile"(controller: "user", action: 'editProfile')
+
         /*"/failed"(view:"/failed")
         "/register"(view:"/register")
         "500"(view:'/error')*/
