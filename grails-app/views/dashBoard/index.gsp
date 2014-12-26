@@ -30,10 +30,15 @@
     </g:if>
     <g:else>
         <p>Please sign into your twitter Account.</p>
-        <g:link controller="dashBoard" action="signInTwitter">
-            <img title="Sign in with Twitter" alt="Sign in with Twitter"
-                 src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png">
-        </g:link>
+        <div id="sign-in-with-twitter">
+            <oauth:connect provider="twitter" id="twitter-connect-link" class="btn btn-primary btn-block">
+                <i class="fa fa-fw fa-twitter"></i> &nbsp;Sign in with Twitter
+            </oauth:connect>
+        </div>
+        %{--<g:link controller="dashBoard" action="signInTwitter">--}%
+            %{--<img title="Sign in with Twitter" alt="Sign in with Twitter"--}%
+                 %{--src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png">--}%
+        %{--</g:link>--}%
     </g:else>
 </div>
 </body>
