@@ -65,7 +65,7 @@ class DashBoardController {
         RequestToken requestToken = session.requestToken
         try {
             AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, oauth_verifier);
-            TwitterUser twitterUser = userService.saveTwitterCredentials(accessToken)
+            TwitterUser twitterUser = userService.saveTwitterUser(accessToken)
             if (twitterUser?.hasErrors()) {
                 flash.error = "Unable to connect to twitter"
             } else {

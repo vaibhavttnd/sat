@@ -16,7 +16,7 @@
 </sec:ifAllGranted>
 <div class="${SpringSecurityUtils.ifNotGranted('ROLE_ADMIN') ? 'standard-user-welcome' : 'right-detail'}">
     <h2>Accounts</h2>
-    <g:if test="${accessToken?.getScreenName()}">
+    <g:if test="${accessToken?.getAccessToken()}">
         <p class="margin-b20">Thanks for registering with us.</p>
 
         <p class="margin-b20">

@@ -30,6 +30,7 @@ class User {
 
     static mapping = {
         password column: '`password`'
+        twitterUser cascade: 'all-delete-orphan'
     }
 
     Set<Role> getAuthorities() {

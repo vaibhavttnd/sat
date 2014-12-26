@@ -86,32 +86,32 @@ class SpringSecurityOAuthController {
         OAuthToken oAuthToken = session[SPRING_SECURITY_OAUTH_TOKEN]
         assert oAuthToken, "There is no auth token in the session!"
 
-        if (springSecurityService.loggedIn) {
-            User currentUser = springSecurityService.getCurrentUser() as User
-            if (!oAuthToken) {
-                log.warn "askToLinkOrCreateAccount: OAuthToken not found in session"
-                throw new OAuthLoginException('Authentication error')
-            }
-//            currentUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: currentUser)
-            if (currentUser.validate() && currentUser.save()) {
-                oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, currentUser)
-                authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())
-                return
-            }
+        if (!oAuthToken) {
+            log.warn "askToLinkOrCreateAccount: OAuthToken not found in session"
+            throw new OAuthLoginException('Authentication error')
+        }
 
+        User userInstance = null
+        Token twitterAccessToken = (Token) session[oauthService.findSessionKeyForAccessToken('twitter')]
+        Map<String, String> twitterDetails = userService.tokenizeParameters(twitterAccessToken.rawResponse)
+        if (springSecurityService.loggedIn) {
+            userInstance = springSecurityService.getCurrentUser() as User
         } else {
-            //Create new account
-            Token twitterAccessToken = (Token) session[oauthService.findSessionKeyForAccessToken('twitter')]
-            println "######################### twitterAccessToken ############################"
-            println twitterAccessToken.properties
-            println oAuthToken.properties
-            User newUser = userService.registerNewUser(oAuthToken, twitterAccessToken)
-//            newUser.addToGoogleUsers(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: newUser)
-            if (newUser.validate() && newUser.save()) {
-                oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, newUser)
-                authenticateAndRedirect(oAuthToken, defaultTargetUrl)
-                return
+            userInstance = User.findByUsername(twitterDetails.screen_name)
+            if (!userInstance) {
+                userInstance = userService.registerNewUser(oAuthToken, twitterAccessToken)
             }
+        }
+
+        if (!userInstance.twitterUser.accessToken || !userInstance.twitterUser.accessTokenSecret) {
+            userService.saveTwitterUser(userInstance.twitterUser, twitterDetails)
+            userInstance.username=twitterDetails.screen_name
+        }
+
+        if (userInstance.validate() && userInstance.save()) {
+            oAuthToken = springSecurityOAuthService.updateOAuthToken(oAuthToken, userInstance)
+            authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())
+            return
         }
 
       // return new ModelAndView("/springSecurityOAuth/askToLinkOrCreateAccount")
