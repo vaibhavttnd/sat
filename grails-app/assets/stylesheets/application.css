@@ -93,8 +93,16 @@ ul.alert-dropdown {
     margin-top: 10px;
 }
 
+.margin-t20 {
+    margin-top: 20px;
+}
+
 .margin-b10 {
     margin-bottom: 10px;
+}
+
+.width-350{
+    width: 350px !important;
 }
 
 .float-left {
@@ -182,4 +190,10 @@ div.standard-user-welcome h2 {
 
 div.standard-user-welcome a {
     display: inline-block
+}
+
+#sign-in-with-twitter {
+    margin-left: 38%;
+    margin-right: 37%;
+    margin-top: 1%;
 }

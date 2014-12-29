@@ -14,6 +14,7 @@ class TwitterUser implements Serializable{
 
     static constraints = {
         retweets nullable: true
+        accessToken nullable: true
+        accessTokenSecret nullable: true
     }
-
 }

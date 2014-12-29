@@ -42,7 +42,7 @@ class TwitterService {
         try {
             if (!tweetsRetweeted) {
                 twitter.retweetStatus(id)
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterUser.load(dto.id)).save(flush: true);
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterUser: TwitterUser.load(dto.id)).save(flush: true);
             }
         }
         catch (Exception e) {
@@ -87,7 +87,7 @@ class TwitterService {
                 if (credential && !tweetsRetweeted) {
                     tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, status: RetweetStatus.PENDING)
                     tweetsRetweeted.reTweetId = tweetId
-                    tweetsRetweeted.twitterCredential = credential
+                    tweetsRetweeted.twitterUser = credential
                     credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
                 }
             }

@@ -1,6 +1,5 @@
 package com.tweetAmp
 
-import grails.converters.JSON
 import grails.plugin.springsecurity.oauth.OAuthToken
 import grails.transaction.Transactional
 import org.apache.commons.lang.RandomStringUtils
@@ -24,22 +23,10 @@ class UserService {
     def grailsApplication
 
     def registerNewUser(OAuthToken oAuthToken, Token twitterAccessToken) {
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice "
-        println TWITTER_USER_PROFILE_URL
-        println twitterAccessToken.properties
         String password = RandomStringUtils.randomAlphabetic(10)
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice " + twitterAccessToken
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> userservice "
         Map<String, String> twitterDetails = tokenizeParameters(twitterAccessToken.rawResponse)
-
-        TwitterUser twitterUser = new TwitterUser(accessToken: twitterDetails.oauth_token,
-                accessTokenSecret: twitterDetails.oauth_token_secret,
-                provider: grailsApplication.config.oauthProvider.name,
-                screenName: twitterDetails.screen_name)
-
-        twitterUser.save(flush: true)
-
-        User newUser = new User(twitterUser: twitterUser, username: twitterDetails.screen_name, password: password, enabled: true,)
+        TwitterUser twitterUser = saveTwitterUser(new TwitterUser(), twitterDetails)
+        User newUser = new User(twitterUser: twitterUser, username: twitterDetails.screen_name, password: password, enabled: true)
 
         if (newUser.save(flush: true, failOnError: true))
             addRoleForUser(newUser, Role.findByAuthority("ROLE_USER"))
@@ -47,6 +34,15 @@ class UserService {
         return newUser
     }
 
+    def saveTwitterUser(TwitterUser twitterUser, def twitterDetails) {
+        twitterUser.accessToken = twitterDetails.oauth_token
+        twitterUser.accessTokenSecret = twitterDetails.oauth_token_secret
+        twitterUser.provider = grailsApplication.config.oauthProvider.name
+        twitterUser.screenName = twitterDetails.screen_name
+        twitterUser.save(flush: true)
+
+        return twitterUser
+    }
 
     def OAuth2Token getOAuth2Token() {
 
@@ -69,62 +65,64 @@ class UserService {
         return token;
     }
 
-    List<Status> getUserTweets(TwitterUser twitterCredentials) {
-        def twitterConfig = grailsApplication.config.twitter4j
-        String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
-        String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
-
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-
-
-        if (!twitterCredentials) {
-            OAuth2Token token = getOAuth2Token();
-            cb.setApplicationOnlyAuthEnabled(true);
-            cb.setOAuth2TokenType(token.getTokenType());
-            cb.setOAuth2AccessToken(token.getAccessToken());
-        }
-
-        cb.setOAuthConsumerKey(consumerKey);
-        cb.setOAuthConsumerSecret(consumerSecret);
-        Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-
-        if (twitterCredentials) {
-            AccessToken accessToken = new AccessToken(twitterCredentials?.accessToken, twitterCredentials?.accessTokenSecret)
-            twitter.setOAuthAccessToken(accessToken)
-        }
-
+    List<Status> getUserTweets(TwitterUser twitterUser) {
         List<Status> statuses = []
-        try {
-            statuses = twitter.getUserTimeline(INTELLI_GRAPE, new Paging(1, 50))
-        }
-        catch (TwitterException te) {
-            if (401 == te.getStatusCode()) {
-                println "Error with application authorization for TweetAmp ${te.message}"
+        if (twitterUser.accessToken) {
+            def twitterConfig = grailsApplication.config.twitter4j
+            String consumerKey = twitterConfig.'default'.OAuthConsumerKey ?: ''
+            String consumerSecret = twitterConfig.'default'.OAuthConsumerSecret ?: ''
+
+            ConfigurationBuilder cb = new ConfigurationBuilder();
+
+            if (!twitterUser) {
+                OAuth2Token token = getOAuth2Token();
+                cb.setApplicationOnlyAuthEnabled(true);
+                cb.setOAuth2TokenType(token.getTokenType());
+                cb.setOAuth2AccessToken(token.getAccessToken());
+            }
+
+            cb.setOAuthConsumerKey(consumerKey);
+            cb.setOAuthConsumerSecret(consumerSecret);
+            Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+
+
+            AccessToken accessToken = new AccessToken(twitterUser.accessToken, twitterUser.accessTokenSecret)
+            twitter.setOAuthAccessToken(accessToken)
+
+            try {
+                statuses = twitter.getUserTimeline(INTELLI_GRAPE, new Paging(1, 50))
+            }
+            catch (TwitterException te) {
+                if (401 == te.getStatusCode()) {
+                    println "Error with application authorization for TweetAmp ${te.message}"
+                }
             }
         }
 
         return statuses;
     }
 
-    TwitterUser saveTwitterCredentials(AccessToken accessToken) {
+    TwitterUser saveTwitterUser(AccessToken accessToken) {
         User currentUser = springSecurityService.currentUser as User
-        TwitterUser twitterCredential = new TwitterUser(accessToken: accessToken.token,
+        TwitterUser twitterUser = new TwitterUser(accessToken: accessToken.token,
                 accessTokenSecret: accessToken.tokenSecret, screenName: accessToken.getScreenName(),
                 twitterUserId: accessToken.getUserId(), user: currentUser)
-        twitterCredential.save(flush: true)
-        if (!twitterCredential.hasErrors()) {
-            currentUser.twitterUser = twitterCredential
+        twitterUser.save(flush: true)
+        if (!twitterUser.hasErrors()) {
+            currentUser.twitterUser = twitterUser
             currentUser.save(flush: true)
         }
-        return twitterCredential
+        return twitterUser
     }
 
     void revokeApp() {
         User currentUser = springSecurityService.currentUser as User
-        TwitterUser twitterCredentials = currentUser.twitterUser
-        currentUser.twitterUser = null
-        currentUser.save()
-        twitterCredentials.delete(flush: true)
+        TwitterUser twitterUser = currentUser.twitterUser
+        println('In service >>' + twitterUser.properties)
+        twitterUser.accessToken = null
+        twitterUser.accessTokenSecret = null
+        twitterUser.save(flush: true)
+        println("---removed----" + twitterUser.properties)
     }
 
     def updateRoleForExistingUser(User user, Role role) {
