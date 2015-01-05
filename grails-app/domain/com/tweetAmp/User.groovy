@@ -7,6 +7,7 @@ class User {
     String username
     String password
     String email
+    String organisation
 
     TwitterUser twitterUser
 
@@ -26,6 +27,7 @@ class User {
         email blank: false, unique: true, nullable: true
         password blank: false
         twitterUser nullable: false
+        organisation nullable: true
     }
 
     static mapping = {

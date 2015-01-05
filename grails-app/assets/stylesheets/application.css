@@ -109,7 +109,7 @@ ul.alert-dropdown {
     float: left;
 }
 
-.btn-transparent {
+.btn-transparent,.btn-transparent-blue {
     color: #ffffff;
     border: 1px solid #fff;
     text-align: center;
@@ -120,7 +120,7 @@ ul.alert-dropdown {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     line-height: 23px;
-    width: 120px;
+    width: inherit;
     margin: 2px;
 }
 
@@ -164,7 +164,7 @@ body {
     margin-right: 24px;
 }
 
-a.navbar-brand:hover {
+a.navbar-brand:hover, .btn-transparent-blue {
     color: #2ABAFA !important;
 }
 
