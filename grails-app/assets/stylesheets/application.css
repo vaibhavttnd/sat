@@ -97,11 +97,15 @@ ul.alert-dropdown {
     margin-top: 20px;
 }
 
+.margin-l10 {
+    margin-left: 10px;
+}
+
 .margin-b10 {
     margin-bottom: 10px;
 }
 
-.width-350{
+.width-350 {
     width: 350px !important;
 }
 
@@ -109,7 +113,7 @@ ul.alert-dropdown {
     float: left;
 }
 
-.btn-transparent,.btn-transparent-blue {
+.btn-transparent, .btn-transparent-blue {
     color: #ffffff;
     border: 1px solid #fff;
     text-align: center;
@@ -141,7 +145,7 @@ body {
     position: fixed;
     bottom: 0px;
     width: 100%;
-    padding:8px 8px 6px;
+    padding: 8px 8px 6px;
 }
 
 .margin-b100 {

@@ -11,7 +11,6 @@
 
     <tr>
         <td><strong><g:message code="user.email.label" default="Email"/></strong></td>
-
         <td>
             <g:if test="${userInstance?.email}">
                 <g:fieldValue bean="${userInstance}" field="email"/>
@@ -24,7 +23,6 @@
 
     <tr>
         <td><strong><g:message code="user.organisation.label" default="Organisation"/></strong></td>
-
         <td>
             <g:if test="${userInstance?.organisation}">
                 <g:fieldValue bean="${userInstance}" field="organisation"/>
