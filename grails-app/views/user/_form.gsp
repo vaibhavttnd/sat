@@ -21,6 +21,16 @@
 
 </div>
 
+<div class="form-group">
+    <label class="control-label hidden-phone" for="email">
+        <g:message code="user.organisation.label" default="Email"/>
+        <span class="required-indicator">*</span>
+    </label>
+
+    <g:textField class="form-control required width-350" required="" name="organisation" value="${userInstance?.organisation}"/>
+
+</div>
+
 <sec:ifAnyGranted roles="ROLE_EDITOR, ROLE_ADMIN">
     <div class="form-group">
         <label class="control-label hidden-phone" for="role">
