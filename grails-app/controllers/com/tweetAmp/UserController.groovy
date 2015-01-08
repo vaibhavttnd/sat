@@ -118,6 +118,7 @@ class UserController {
     def updateProfile(){
         User userInstance = springSecurityService.currentUser as User
         userInstance.email = params.email
+        userInstance.organisation=params.organisation
 
         if (!userInstance.save(flush: true)) {
             render(view: "editProfile", model: [userInstance: userInstance])
