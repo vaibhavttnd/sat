@@ -13,11 +13,9 @@
             <div class="social-box">
                 <div class="row mg-btm">
                     <div class="col-md-12 margin-t45">
-                    %{--<g:if test="${accessToken?.getAccessToken()}">--}%
                         <oauth:connect provider="twitter" id="twitter-connect-link" class="btn btn-transparent-blue btn-block">
                             <i class="fa fa-fw fa-twitter"></i> &nbsp;Login with Twitter
                         </oauth:connect>
-                    %{--</g:if>--}%
                     </div>
                 </div>
 
