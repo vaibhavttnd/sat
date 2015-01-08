@@ -39,20 +39,18 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <g:if test="${sec.ifAllGranted(roles:"ROLE_ADMIN, ROLE_EDITOR")}">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN ,ROLE_EDITOR">
                             <li>
                                 <g:link controller="user" action="list"><i class="fa fa-fw fa-user"></i> Users</g:link>
                             </li>
                             <li>
-                                <g:link controller="category" action="list"><i class="fa fa-fw fa-group"></i> Categories</g:link>
+                                <g:link controller="category" action="list"><i
+                                        class="fa fa-fw fa-group"></i> Categories</g:link>
                             </li>
-                        </g:if>
-                        <g:else>
-                            <li>
-                                <g:link controller="user" action="profile"><i class="fa fa-fw fa-user"></i> Profile</g:link>
-                            </li>
-                        </g:else>
-
+                        </sec:ifAnyGranted>
+                        <li>
+                            <g:link controller="user" action="profile"><i class="fa fa-fw fa-user"></i> Profile</g:link>
+                        </li>
                         <li>
                             <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
                         </li>
@@ -86,15 +84,15 @@
     </div>
 
     %{--<div class="footer">--}%
-        %{--<div class="container">--}%
-            %{--<p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">--}%
-                %{--<asset:image src="intelligrape.png"/>--}%
-            %{--</a></span></span>--}%
+    %{--<div class="container">--}%
+    %{--<p class="text-muted"><span class="pull-right"><span>@Powered by <a href="http://www.intelligrape.com" target="_blank">--}%
+    %{--<asset:image src="intelligrape.png"/>--}%
+    %{--</a></span></span>--}%
 
-            %{--</p>--}%
+    %{--</p>--}%
 
-            %{--<p>© <a href="https://www.intelligrape.com" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>--}%
-        %{--</div>--}%
+    %{--<p>© <a href="https://www.intelligrape.com" target="_blank">2014 Intelligrape Software Pvt. Ltd. . All Rights Reserved.</a></p>--}%
+    %{--</div>--}%
     %{--</div>--}%
 </div>
 </body>

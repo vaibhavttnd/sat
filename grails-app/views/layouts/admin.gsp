@@ -44,20 +44,18 @@
                         <i class="fa fa-user"></i>  <t:userName/>  <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <g:if test="${sec.ifAllGranted(roles:"ROLE_ADMIN, ROLE_EDITOR")}">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN ,ROLE_EDITOR">
                             <li>
                                 <g:link controller="user" action="list"><i class="fa fa-fw fa-user"></i> Users</g:link>
                             </li>
                             <li>
-                                <g:link controller="category" action="list"><i class="fa fa-fw fa-group"></i> Categories</g:link>
+                                <g:link controller="category" action="list"><i
+                                        class="fa fa-fw fa-group"></i> Categories</g:link>
                             </li>
-                        </g:if>
-                        <g:else>
-                            <li>
-                                <g:link controller="user" action="profile"><i class="fa fa-fw fa-user"></i> Profile</g:link>
-                            </li>
-                        </g:else>
-
+                        </sec:ifAnyGranted>
+                        <li>
+                            <g:link controller="user" action="profile"><i class="fa fa-fw fa-user"></i> Profile</g:link>
+                        </li>
                         <li>
                             <g:link controller="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</g:link>
                         </li>
