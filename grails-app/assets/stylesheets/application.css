@@ -93,15 +93,27 @@ ul.alert-dropdown {
     margin-top: 10px;
 }
 
+.margin-t20 {
+    margin-top: 20px;
+}
+
+.margin-l10 {
+    margin-left: 10px;
+}
+
 .margin-b10 {
     margin-bottom: 10px;
+}
+
+.width-350 {
+    width: 350px !important;
 }
 
 .float-left {
     float: left;
 }
 
-.btn-transparent {
+.btn-transparent, .btn-transparent-blue {
     color: #ffffff;
     border: 1px solid #fff;
     text-align: center;
@@ -112,7 +124,7 @@ ul.alert-dropdown {
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     line-height: 23px;
-    width: 120px;
+    width: inherit;
     margin: 2px;
 }
 
@@ -133,7 +145,7 @@ body {
     position: fixed;
     bottom: 0px;
     width: 100%;
-    padding:8px 8px 6px;
+    padding: 8px 8px 6px;
 }
 
 .margin-b100 {
@@ -156,12 +168,13 @@ body {
     margin-right: 24px;
 }
 
-a.navbar-brand:hover {
+a.navbar-brand:hover, .btn-transparent-blue {
     color: #2ABAFA !important;
 }
 
 div.standard-user-welcome {
     text-align: center;
+    margin-top: 6%;
 }
 
 div.standard-user-welcome p {
@@ -181,4 +194,10 @@ div.standard-user-welcome h2 {
 
 div.standard-user-welcome a {
     display: inline-block
+}
+
+#sign-in-with-twitter {
+    margin-left: 38%;
+    margin-right: 37%;
+    margin-top: 1%;
 }

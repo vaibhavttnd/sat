@@ -1,7 +1,6 @@
 package com.tweetAmp
 
 import grails.transaction.Transactional
-import twitter4j.Status
 import twitter4j.Twitter
 import twitter4j.TwitterException
 import twitter4j.TwitterFactory
@@ -23,7 +22,7 @@ class TwitterService {
     }
 
     List<TwitterCredentialDTO> getTwitterCredentials() {
-        TwitterCredential.createCriteria().list {
+        TwitterUser.createCriteria().list {
             projections {
                 groupProperty('screenName')
                 property('id')
@@ -39,11 +38,11 @@ class TwitterService {
     TweetsRetweeted retweet(TwitterCredentialDTO dto, Twitter twitter, Long id) {
         AccessToken accessToken = new AccessToken(dto.accessToken, dto.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
-        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(TwitterCredential.load(dto.id), id)
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(TwitterUser.load(dto.id), id)
         try {
             if (!tweetsRetweeted) {
                 twitter.retweetStatus(id)
-                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterCredential: TwitterCredential.load(dto.id)).save(flush: true);
+                tweetsRetweeted = new TweetsRetweeted(reTweetId: id, twitterUser: TwitterUser.load(dto.id)).save(flush: true);
             }
         }
         catch (Exception e) {
@@ -54,9 +53,9 @@ class TwitterService {
 
     TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
         println "retweeting*************************************************" + user?.email
-        AccessToken accessToken = new AccessToken(user.twitterCredential.accessToken, user.twitterCredential.accessTokenSecret)
+        AccessToken accessToken = new AccessToken(user.twitterUser.accessToken, user.twitterUser.accessTokenSecret)
         twitter.setOAuthAccessToken(accessToken)
-        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+        TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
         if (tweetsRetweeted) {
             println "found******************************"
             try {
@@ -83,12 +82,12 @@ class TwitterService {
         try {
             Set<User> users = User.getAll(userIds.toList())
             users.each { User user ->
-                TwitterCredential credential = user.twitterCredential
-                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterCredentialAndReTweetId(user.twitterCredential, tweetId)
+                TwitterUser credential = user.twitterUser
+                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
                 if (credential && !tweetsRetweeted) {
                     tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, status: RetweetStatus.PENDING)
                     tweetsRetweeted.reTweetId = tweetId
-                    tweetsRetweeted.twitterCredential = credential
+                    tweetsRetweeted.twitterUser = credential
                     credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
                 }
             }

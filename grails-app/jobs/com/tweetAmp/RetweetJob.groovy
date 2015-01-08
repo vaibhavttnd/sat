@@ -16,8 +16,8 @@ class RetweetJob {
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByStatus(RetweetStatus.PENDING)
         if (tweetsRetweeted) {
             log.info("**********************RETWEETING*************************** tweet id " + tweetsRetweeted?.id)
-            TwitterCredential twitterCredential = tweetsRetweeted?.twitterCredential
-            User user = User.findByTwitterCredential(twitterCredential)
+            TwitterUser twitterUser = tweetsRetweeted?.twitterUser
+            User user = User.findByTwitterUser(twitterUser)
             twitterService.retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
         }
     }

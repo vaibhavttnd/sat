@@ -29,12 +29,12 @@
     <table class="table table-striped table-hover table-condensed table-bordered">
         <thead>
         <tr>
-            <g:sortableColumn property="name" title="${message(code: 'user.name.label', default: 'Name')}"
+            <g:sortableColumn property="name" title="${message(code: 'user.username.label', default: 'Username')}"
                               params="[q: params.q]"/>
             <g:sortableColumn property="email" title="${message(code: 'user.email.label', default: 'Email')}"
                               params="[q: params.q]"/>
             <g:sortableColumn property="twitterCredential"
-                              title="${message(code: 'user.twitterCredential.label', default: 'Twitter')}"
+                              title="${message(code: 'user.twitterUser.label', default: 'Twitter')}"
                               params="[q: params.q]"/>
         </tr>
         </thead>
@@ -43,11 +43,11 @@
             <tr class="${(i % 2) == 0 ? 'alternate' : ''}">
 
                 <td><g:link controller="user" action="show"
-                            id="${user.id}">${fieldValue(bean: user, field: "name")}</g:link></td>
+                            id="${user.id}">${fieldValue(bean: user, field: "username")}</g:link></td>
 
                 <td>${fieldValue(bean: user, field: "email")}</td>
 
-                <td>${user.twitterCredential?.screenName}</td>
+                <td>${user.twitterUser?.screenName}</td>
 
             </tr>
         </g:each>
