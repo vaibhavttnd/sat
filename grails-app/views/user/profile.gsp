@@ -20,8 +20,10 @@
         <g:link class="btn btn-info pull-right margin-t20 margin-l10" action="editProfile">Edit Profile&nbsp;
             <i class="icon-edit icon-white"></i>
         </g:link>
-        <g:link controller="dashBoard" action="revokeApp" class="btn btn-info pull-right margin-t20 margin-l10"
-                onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
+        <g:if test="${userInstance.twitterUser.accessToken}">
+            <g:link controller="dashBoard" action="revokeApp" class="btn btn-info pull-right margin-t20 margin-l10"
+                    onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>
+        </g:if>
     </g:form>
 
 </div>
