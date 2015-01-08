@@ -80,6 +80,6 @@ class DashBoardController {
     def revokeApp() {
         userService.revokeApp()
         flash.success = "Twitter account removed successfully"
-        redirect action: "index"
+        redirect controller: 'logout'
     }
 }
