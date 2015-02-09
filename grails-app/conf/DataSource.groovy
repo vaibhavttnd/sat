@@ -35,6 +35,21 @@ environments {
         dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/tweetamp"
+            String mysqlUrl = System.getenv("DATABASE_URL")
+            if (mysqlUrl) {
+                println ">>>>>> DATABASE_URL: ${mysqlUrl}"
+                URI dbUri = new URI(mysqlUrl);
+                username = dbUri.userInfo.split(":")[0]
+                password = dbUri.userInfo.split(":")[1]
+                String databaseUrl = "jdbc:${dbUri.scheme}://${dbUri.host}${dbUri.path}"
+                if (dbUri.port > 0) {
+                    databaseUrl += ":${dbUri.port}"
+                }
+                String query = dbUri.query ?: "reconnect=true"
+                query += "&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+                databaseUrl += "?${query}"
+                url = databaseUrl
+            }
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
