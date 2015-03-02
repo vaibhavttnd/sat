@@ -45,7 +45,7 @@ class DashBoardController {
 
     def signInTwitter() {
         def callbackUrl = grailsApplication.config.grails.twitterCallbackUrl ?: ""
-        println ">>>>>>>>>>>>>>>>>>>>>>>grails app>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + grailsApplication.config.grails.twitterCallbackUrl
+        println ">>>>>>>>>>>>>>>>>>>>>>>grails app>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + grailsApplication.config.grails.twitterCallbackUrl
         Twitter twitter = twitterService.twitter
 
         RequestToken requestToken = null
