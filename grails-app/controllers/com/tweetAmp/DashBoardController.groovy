@@ -45,11 +45,13 @@ class DashBoardController {
 
     def signInTwitter() {
         def callbackUrl = grailsApplication.config.grails.twitterCallbackUrl ?: ""
+        println ">>>>>>>>>>>>>>>>>>>>>>>grails app>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + grailsApplication.config.grails.twitterCallbackUrl
         Twitter twitter = twitterService.twitter
 
         RequestToken requestToken = null
         try {
             requestToken = twitter.getOAuthRequestToken("${callbackUrl}/dashBoard/callback");
+            println "twitter callback url "+callbackUrl
         }
         catch (TwitterException e) {
             flash.error = "Error in signing into Twitter : ${e.message}"
