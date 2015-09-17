@@ -1,7 +1,7 @@
 <div class="col-md-8">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            IG Post
+            TTND Post
         </div>
 
         <table class="table table-striped table-hover table-condensed table-bordered">

@@ -17,7 +17,7 @@ import twitter4j.conf.ConfigurationBuilder
 class UserService {
 
     public static final String TWITTER_USER_PROFILE_URL = "https://api.twitter.com/oauth/authenticate"
-    public static final String INTELLI_GRAPE = "IntelliGrape"
+    public static final String INTELLI_GRAPE = "TOTHENEW"
     def oauthService
     def springSecurityService
     def grailsApplication
