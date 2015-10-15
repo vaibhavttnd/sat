@@ -51,7 +51,7 @@
                 <td>
                     <ul class="unstyled">
                         <g:each in="${categoryInstance.users}" var="u">
-                            <li><g:link controller="user" action="show" id="${u.id}">${u?.name}</g:link></li>
+                            <li><g:link controller="user" action="show" id="${u.id}">${u?.username}</g:link></li>
                         </g:each>
                     </ul>
                 </td>

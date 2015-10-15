@@ -27,7 +27,7 @@
     <select id="userList" name="userList" data-placeholder="Select Users..." class="chosen-select form-control" multiple
             style="width:350px" tabindex="4">
         <g:each in="${User.list()}" var="user">
-            <option value="${user.id}" ${categoryInstance?.users ? (categoryInstance?.users*.id.contains(user.id) ? 'selected' : '') : ''}>${user.name}</option>
+            <option value="${user.id}" ${categoryInstance?.users ? (categoryInstance?.users*.id.contains(user.id) ? 'selected' : '') : ''}>${user.username}</option>
         </g:each>
     </select>
 </div>
