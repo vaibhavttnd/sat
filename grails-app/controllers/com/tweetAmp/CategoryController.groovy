@@ -19,7 +19,7 @@ class CategoryController {
     def create(Long id) {
         def categoryInstance = id ? Category.get(id) : new Category(params)
         if (!categoryInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "list")
         } else {
             [categoryInstance: categoryInstance]
@@ -29,7 +29,7 @@ class CategoryController {
     def save(Long id, Long version) {
         def categoryInstance = id ? Category.get(id) : new Category(params)
         if (!categoryInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "list")
             return
         }
@@ -55,9 +55,9 @@ class CategoryController {
         }
 
         if (id) {
-            flash.success = message(code: 'default.updated.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.success = message(code: 'default.updated.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
         } else {
-            flash.success = message(code: 'default.created.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.success = message(code: 'default.created.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
         }
         redirect(action: "show", id: categoryInstance.id)
     }
@@ -65,7 +65,7 @@ class CategoryController {
     def show(Long id) {
         def categoryInstance = Category.get(id)
         if (!categoryInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "list")
             return
         }
@@ -76,18 +76,18 @@ class CategoryController {
     def delete(Long id) {
         def categoryInstance = Category.get(id)
         if (!categoryInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "list")
             return
         }
 
         try {
             categoryInstance.delete(flush: true)
-            flash.success = message(code: 'default.deleted.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.success = message(code: 'default.deleted.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'category.label', default: categoryInstance.name)])
+            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'category.label', default: 'Category'),  categoryInstance.name])
             redirect(action: "show", id: id)
         }
     }
