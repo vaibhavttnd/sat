@@ -11,4 +11,12 @@ class Category {
         name nullable: false, blank: false
         description nullable: true
     }
+
+    static namedQueries = {
+        findAllByUser{user ->
+            'users' {
+                eq("id", user.id)
+            }
+        }
+    }
 }
