@@ -31,7 +31,8 @@ class UserController {
     def edit(Long id) {
         User userInstance = id ? User.get(id) : null
         if (!userInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), null])
+            log.error("$userInstance.username not found :: id is $id")
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "list")
         } else {
             [userInstance: userInstance]
@@ -41,7 +42,8 @@ class UserController {
     def update(Long id, Long version) {
         User userInstance = id ? User.get(id) : null
         if (!userInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            log.error("$userInstance.username not found :: id is $id")
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "list")
             return
         }
@@ -69,7 +71,7 @@ class UserController {
         if (id) {
             flash.success = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
         } else {
-            flash.success = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+            flash.success = message(code: 'default.created.message', args: [message(code: 'user.label', default: userInstance.username), userInstance.id])
         }
         redirect(action: "show", id: userInstance.id)
     }
@@ -77,7 +79,8 @@ class UserController {
     def show(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            log.error("$userInstance.username not found :: id is $id")
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "list")
             return
         }
@@ -88,7 +91,8 @@ class UserController {
     def delete(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
-            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            log.error("$userInstance.username not found :: id is $id")
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "list")
             return
         }
@@ -101,11 +105,11 @@ class UserController {
             List<UserRole> userRoles =UserRole.findAllByUser(userInstance)
             if(userRoles*.delete(flush: true))
                 userInstance.delete(flush: true)
-            flash.success = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+            flash.success = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: userInstance.username)])
             redirect(action: "show", id: id)
         }
     }
@@ -133,7 +137,7 @@ class UserController {
         }
 
 
-        flash.success = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+        flash.success = message(code: 'default.updated.message', args: [message(code: 'user.label', default: userInstance.username), userInstance.id])
         redirect(action: "profile")
     }
 }
