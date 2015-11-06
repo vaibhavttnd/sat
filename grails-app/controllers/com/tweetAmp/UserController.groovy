@@ -6,6 +6,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class UserController {
     SpringSecurityService springSecurityService
     UserService userService
+    CategoryService categoryService
 
     static allowedMethods = [save: "POST", delete: "POST"]
 
@@ -93,7 +94,13 @@ class UserController {
         }
 
         try {
-            userInstance.delete(flush: true)
+            List userCategories=Category.findAllByUser(userInstance).list()
+            userCategories?.each {Category category->
+                userInstance.removeFromCategories(category)
+            }
+            List<UserRole> userRoles =UserRole.findAllByUser(userInstance)
+            if(userRoles*.delete(flush: true))
+                userInstance.delete(flush: true)
             flash.success = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "list")
         }
