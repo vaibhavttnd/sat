@@ -33,6 +33,17 @@
         </td>
     </tr>
 
+    <tr>
+        <td><strong><g:message code="user.categories.label" default="Categories"/></strong></td>
+        <td>
+                <ul class="unstyled">
+                    <g:each in="${userInstance?.categories}" var="u">
+                        <li><g:link controller="category" action="show" id="${u.id}">${u?.name}</g:link></li>
+                    </g:each>
+                </ul>
+        </td>
+    </tr>
+
 
     <sec:ifAllGranted roles="ROLE_ADMIN, ROLE_EDITOR">
         <tr>
