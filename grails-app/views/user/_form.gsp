@@ -1,4 +1,4 @@
-<%@ page import="com.tweetAmp.Role; com.tweetAmp.User" %>
+<%@ page import="com.tweetAmp.Role; com.tweetAmp.User; com.tweetAmp.Category" %>
 
 <div class="form-group">
     <label class="control-label hidden-phone" for="username">
@@ -46,39 +46,59 @@
     </div>
 
 
-    <div class="form-group">
-        <label class="control-label hidden-phone" for="accountExpired">
-            <g:message code="user.accountExpired.label" default="Account Expired"/>
+    %{--<div class="form-group">--}%
+        %{--<label class="control-label hidden-phone" for="accountExpired">--}%
+            %{--<g:message code="user.accountExpired.label" default="Account Expired"/>--}%
+        %{--</label>--}%
+
+        %{--<g:checkBox name="accountExpired" value="${userInstance?.accountExpired}"/>--}%
+
+    %{--</div>--}%
+
+    %{--<div class="form-group">--}%
+        %{--<label class="control-label hidden-phone" for="accountLocked">--}%
+            %{--<g:message code="user.accountLocked.label" default="Account Locked"/>--}%
+        %{--</label>--}%
+
+        %{--<g:checkBox name="accountLocked" value="${userInstance?.accountLocked}"/>--}%
+
+    %{--</div>--}%
+
+    %{--<div class="form-group">--}%
+        %{--<label class="control-label hidden-phone" for="enabled">--}%
+            %{--<g:message code="user.enabled.label" default="Enabled"/>--}%
+        %{--</label>--}%
+
+        %{--<g:checkBox name="enabled" value="${userInstance?.enabled}"/>--}%
+
+    %{--</div>--}%
+
+    %{--<div class="form-group">--}%
+        %{--<label class="control-label hidden-phone" for="passwordExpired">--}%
+            %{--<g:message code="user.passwordExpired.label" default="Password Expired"/>--}%
+        %{--</label>--}%
+
+        %{--<g:checkBox name="passwordExpired" value="${userInstance?.passwordExpired}"/>--}%
+
+    %{--</div>--}%
+
+    <div class="form-group user-categories">
+        <label class="control-label hidden-phone" for="categories">
+            <g:message code="category.users.label" default="Select Categories"/>
+
         </label>
-
-        <g:checkBox name="accountExpired" value="${userInstance?.accountExpired}"/>
-
+        <select id="categories" name="categories" data-placeholder="Select categories..."
+                class="chosen-select form-control" multiple
+                style="width:350px;display:block">
+            <g:each in="${Category.list()}" var="categories">
+                <option value="${categories.id}">${categories.name}</option>
+            </g:each>
+        </select>
     </div>
 
-    <div class="form-group">
-        <label class="control-label hidden-phone" for="accountLocked">
-            <g:message code="user.accountLocked.label" default="Account Locked"/>
-        </label>
-
-        <g:checkBox name="accountLocked" value="${userInstance?.accountLocked}"/>
-
-    </div>
-
-    <div class="form-group">
-        <label class="control-label hidden-phone" for="enabled">
-            <g:message code="user.enabled.label" default="Enabled"/>
-        </label>
-
-        <g:checkBox name="enabled" value="${userInstance?.enabled}"/>
-
-    </div>
-
-    <div class="form-group">
-        <label class="control-label hidden-phone" for="passwordExpired">
-            <g:message code="user.passwordExpired.label" default="Password Expired"/>
-        </label>
-
-        <g:checkBox name="passwordExpired" value="${userInstance?.passwordExpired}"/>
-
-    </div>
 </sec:ifAnyGranted>
+
+
+<script type="text/javascript">
+    $("#categories").chosen();
+</script>

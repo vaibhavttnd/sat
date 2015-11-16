@@ -201,3 +201,7 @@ div.standard-user-welcome a {
     margin-right: 37%;
     margin-top: 1%;
 }
+
+.user-categories .chosen-container-multi{
+    display: block;
+}
