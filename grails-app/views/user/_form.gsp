@@ -90,8 +90,8 @@
         <select id="categories" name="categories" data-placeholder="Select categories..."
                 class="chosen-select form-control" multiple
                 style="width:350px;display:block">
-            <g:each in="${Category.list()}" var="categories">
-                <option value="${categories.id}">${categories.name}</option>
+            <g:each in="${Category.list()}" var="category">
+                <option value="${category.id}" ${userInstance?.categories ? (userInstance?.categories*.id.contains(category.id) ? 'selected' : '') : ''}>${category.name}</option>
             </g:each>
         </select>
     </div>

@@ -40,7 +40,9 @@ class UserController {
     }
 
     def update(Long id, Long version) {
+        List categories=params.categories ? params.list('categories')*.toLong() : []
         User userInstance = id ? User.get(id) : null
+
         if (!userInstance) {
             flash.error = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'),  userInstance.username])
             redirect(action: "list")
@@ -61,6 +63,7 @@ class UserController {
         if(params.role){
             userService.updateRoleForExistingUser(userInstance, Role.findById(params.long('role')))
         }
+        categoryService.updateCategoriesForUser(userInstance,categories)
 
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])
@@ -125,6 +128,8 @@ class UserController {
     }
 
     def updateProfile(){
+        println "the params are "+params
+        println "the params are as list thing "+params.categories ? params.list('categories')*.toLong() : []
         User userInstance = springSecurityService.currentUser as User
         userInstance.email = params.email
         userInstance.organisation=params.organisation
