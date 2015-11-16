@@ -24,8 +24,13 @@ class CategoryService {
 
     def updateCategoriesForUser(User user,List categories){
         List<Category> categoryList= Category.findAllByIdInList(categories)
-        categoryList.each {Category category->
+        (categoryList-user.categories).each {Category category->
             user.addToCategories(category)
+            category.save(flush: true, failOnError: true)
+        }
+
+        (user.categories-categoryList).each {Category category->
+            user.removeFromCategories(category)
             category.save(flush: true, failOnError: true)
         }
     }

@@ -58,12 +58,12 @@ class UserController {
                 return
             }
         }
-
+        categoryService.updateCategoriesForUser(userInstance,categories)
         userInstance.properties = params
+
         if(params.role){
             userService.updateRoleForExistingUser(userInstance, Role.findById(params.long('role')))
         }
-        categoryService.updateCategoriesForUser(userInstance,categories)
 
         if (!userInstance.save(flush: true)) {
             render(view: "create", model: [userInstance: userInstance])
