@@ -205,3 +205,8 @@ div.standard-user-welcome a {
 .user-categories .chosen-container-multi{
     display: block;
 }
+
+.choose-category{
+    font-size: 15px;
+    color: white;
+}

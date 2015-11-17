@@ -34,6 +34,7 @@
             <div class="form-group margin-t10">
                 <g:submitButton name="submit" class="btn btn-info"
                                 value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+                <g:link controller="dashBoard" action="index" class="btn btn-danger">Back</g:link>
             </div>
         </g:form>
     </div>
