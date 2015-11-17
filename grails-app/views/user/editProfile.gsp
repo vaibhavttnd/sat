@@ -5,6 +5,8 @@
     <meta name="layout" content="admin">
     <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
     <title>Edit Profile</title>
+    <asset:javascript src="/plugins/chosen/chosen.jquery.js"/>
+    <asset:stylesheet src="/plugins/chosen/chosen.css"/>
 </head>
 
 <body>

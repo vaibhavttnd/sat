@@ -128,9 +128,9 @@ class UserController {
     }
 
     def updateProfile(){
-        println "the params are "+params
-        println "the params are as list thing "+params.categories ? params.list('categories')*.toLong() : []
+        List categories=params.categories ? params.list('categories')*.toLong() : []
         User userInstance = springSecurityService.currentUser as User
+        categoryService.updateCategoriesForUser(userInstance,categories)
         userInstance.email = params.email
         userInstance.organisation=params.organisation
 
