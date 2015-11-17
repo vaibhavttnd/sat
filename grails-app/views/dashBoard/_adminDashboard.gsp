@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-9">
     <div class="panel panel-primary">
         <div class="panel-heading">
             TTND Post

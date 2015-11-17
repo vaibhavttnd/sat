@@ -164,8 +164,9 @@ body {
     float: right;
     color: #ffffff;
     text-align: right;
-    margin-top: 100px;
+    margin-top: 18%;
     margin-right: 24px;
+    font-size: 15px;
 }
 
 a.navbar-brand:hover, .btn-transparent-blue {

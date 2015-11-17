@@ -16,12 +16,20 @@
 </sec:ifAllGranted>
 <div class="${SpringSecurityUtils.ifNotGranted('ROLE_ADMIN') ? 'standard-user-welcome' : 'right-detail'}">
     %{--<g:if test="${accessToken?.getAccessToken()}">--}%
-        <p class="margin-b20">Thanks @${accessToken?.getScreenName()} for registering with us.</p>
+
 
     <sec:ifAllGranted roles="ROLE_USER">
+        <p class="margin-b20">Thanks @${accessToken?.getScreenName()} for registering with us.</p>
         <h6 class="choose-category">You can select multiple categories for yourself <g:link controller="user" action="editProfile">here</g:link>. Categories are like Grails, Mobility, Marketing, etc</h6>
     </sec:ifAllGranted>
+    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_EDITOR">
+        <p class="margin-b20">Thanks for registering with us.</p>
 
+        <p class="margin-b20">
+            <asset:image src="twitter.png"
+                         style="width: 30px; height: 25px;"/> @${accessToken?.getScreenName()}
+        </p>
+    </sec:ifAnyGranted>
 %{--<ul class="nav">--}%
             %{--<g:link controller="dashBoard" action="revokeApp" class="btn btn-transparent"--}%
                     %{--onclick="return confirm('Are you sure you want to revoke your twitter access?')">Revoke Access</g:link>--}%
