@@ -20,8 +20,13 @@
 
     <sec:ifAllGranted roles="ROLE_USER">
         <p class="margin-b20">Thanks @${accessToken?.getScreenName()} for registering with us.</p>
-        <h6 class="choose-category">You can select multiple categories for yourself <g:link controller="user" action="editProfile">here</g:link>. Categories are like Grails, Mobility, Marketing, etc.
-        <g:if test="${session.getAttribute('firstTime')}"><br>By Default, you have been applied for all the existing categories. Don't forget to edit them before you logout.</g:if>
+        <h6 class="choose-category">
+            <g:if test="${session.getAttribute('firstTime')}">
+                By Default, you have been applied for all the existing categories. Don't forget to <g:link controller="user" action="editProfile">edit</g:link> them before you logout.
+            </g:if>
+            <g:else>
+                You can select multiple categories for yourself <g:link controller="user" action="editProfile">here</g:link>. Categories are like Grails, Mobility, Marketing, etc.
+            </g:else>
         </h6>
     </sec:ifAllGranted>
     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_EDITOR">
