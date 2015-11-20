@@ -28,9 +28,12 @@ class UserService {
         TwitterUser twitterUser = saveTwitterUser(new TwitterUser(), twitterDetails)
         User newUser = new User(twitterUser: twitterUser, username: twitterDetails.screen_name, password: password, enabled: true)
 
-        if (newUser.save(flush: true, failOnError: true))
+        if (newUser.save(flush: true, failOnError: true)){
             addRoleForUser(newUser, Role.findByAuthority("ROLE_USER"))
 
+            //Apply for all categories
+            applyForAllCategories(newUser)
+        }
         return newUser
     }
 
@@ -148,8 +151,14 @@ class UserService {
             List<String> parameterAndItsValue = it.tokenize('=')
             map.put(parameterAndItsValue.get(0), parameterAndItsValue.get(1))
         }
-        println "**********************************************************************************"
-        println map
         map
+    }
+
+    def applyForAllCategories(User user){
+        List<Category> categories=Category.list()
+        categories.each {Category category->
+            user.addToCategories(category)
+            category.save(flush: true, failOnError: true)
+        }
     }
 }
