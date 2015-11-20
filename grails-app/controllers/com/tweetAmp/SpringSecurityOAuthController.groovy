@@ -100,6 +100,7 @@ class SpringSecurityOAuthController {
             userInstance = User.findByUsername(twitterDetails.screen_name)
             if (!userInstance) {
                 userInstance = userService.registerNewUser(oAuthToken, twitterAccessToken)
+                session.setAttribute("firstTime",true)
             }
         }
 
