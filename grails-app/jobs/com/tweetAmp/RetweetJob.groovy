@@ -7,11 +7,11 @@ class RetweetJob {
 
     def twitterService
     static triggers = {
-        simple repeatInterval: 20 * 60 * 1000 //300000l // execute job once in 1 minute
+        simple repeatInterval: randomTimeGenerator() * 60 * 1000 //300000l // execute job once in 1 minute
     }
 
     def execute() {
-        log.info("RetweetJob----------------------------------- ${new Date()}")
+        log.info("RetweetJob Triggered -----------------------------------@ ${new Date()}")
         Twitter twitter = twitterService.twitter
         TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByStatus(RetweetStatus.PENDING)
         if (tweetsRetweeted) {
@@ -20,5 +20,9 @@ class RetweetJob {
             User user = User.findByTwitterUser(twitterUser)
             twitterService.retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
         }
+    }
+
+    static int randomTimeGenerator(){
+        new Random().nextInt(11) + 10
     }
 }
