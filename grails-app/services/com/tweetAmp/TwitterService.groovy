@@ -81,14 +81,22 @@ class TwitterService {
     void createNewObjects(Set<Long> userIds, Long tweetId) {
         try {
             Set<User> users = User.getAll(userIds.toList())
+            long now=(new Date()).getTime();
             users.each { User user ->
                 TwitterUser credential = user.twitterUser
                 TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
                 if (credential && !tweetsRetweeted) {
-                    tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, status: RetweetStatus.PENDING)
+                    now+=(randomTimeGenerator()*60000)
+                    println  "............................................................\ncreateing new one at "+now
+                    tweetsRetweeted = new TweetsRetweeted(status: RetweetStatus.PENDING)
+                    tweetsRetweeted.reTweetTime=now
                     tweetsRetweeted.reTweetId = tweetId
                     tweetsRetweeted.twitterUser = credential
-                    credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
+                    tweetsRetweeted.save(failOnError: true,flush: true)
+                    println "............................................................ "+tweetsRetweeted.reTweetTime
+                    credential.addToRetweets(tweetsRetweeted)
+                    println "............................................................ "+tweetsRetweeted.reTweetTime
+                            credential.save(failOnError: true, flush: true)
                 }
             }
             println "*********************************Objects created*********************************************"
@@ -98,4 +106,10 @@ class TwitterService {
             e.printStackTrace(System.out)
         }
     }
+
+    int randomTimeGenerator(){
+        new Random().nextInt(11) + 10
+    }
+
+
 }
