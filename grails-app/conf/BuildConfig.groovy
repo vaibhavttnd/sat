@@ -77,12 +77,12 @@ grails.project.dependency.resolution = {
         compile ':spring-security-oauth:2.1.0-RC4'
         compile ":spring-security-oauth-twitter:0.2"
         compile ":quartz:1.0.2"
+        compile ":console:1.5.6"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
         //runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
-        runtime ':console:1.5.1'
         provided ":codenarc:0.21"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
