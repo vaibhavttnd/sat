@@ -53,32 +53,32 @@ class TwitterService {
 
 	TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
 		println "retweeting*************************************************" + user?.email
-		AccessToken accessToken = new AccessToken(user.twitterUser.accessToken, user.twitterUser.accessTokenSecret)
-		twitter.setOAuthAccessToken(accessToken)
 		TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
-		if (tweetsRetweeted) {
-			println "found******************************"
-			if (user?.twitterUser?.accessToken) {
-				try {
-					if (tweetsRetweeted.status == RetweetStatus.PENDING) {
-						println "tweet id        " + tweetId
-						twitter.retweetStatus(tweetId)
-						tweetsRetweeted.status = RetweetStatus.DONE
-						tweetsRetweeted.save(flush: true);
+		if (user?.twitterUser?.accessToken) {
+			AccessToken accessToken = new AccessToken(user?.twitterUser?.accessToken, user?.twitterUser?.accessTokenSecret)
+			twitter.setOAuthAccessToken(accessToken)
+			if (tweetsRetweeted) {
+				println "found******************************"
+					try {
+						if (tweetsRetweeted.status == RetweetStatus.PENDING) {
+							println "tweet id        " + tweetId
+							twitter.retweetStatus(tweetId)
+							tweetsRetweeted.status = RetweetStatus.DONE
+							tweetsRetweeted.save(flush: true);
+						}
 					}
-				}
-				catch (TwitterException e) {
-					tweetsRetweeted.status = RetweetStatus.REJECTED
-					tweetsRetweeted.save(flush: true);
-					log.info("Error in retweeting status: \n${e.message}\n" + e.errorMessage)
-					log.info("Status Code*************************************************\n" + e.getStatusCode())
-				}
+					catch (TwitterException e) {
+						tweetsRetweeted.status = RetweetStatus.REJECTED
+						tweetsRetweeted.save(flush: true);
+						log.info("Error in retweeting status: \n${e.message}\n" + e.errorMessage)
+						log.info("Status Code*************************************************\n" + e.getStatusCode())
+					}
 			} else {
-				tweetsRetweeted.status= RetweetStatus.REJECTED
-				tweetsRetweeted.save(flush: true);
+				println "not found******************************************"
 			}
 		} else {
-			println "not found******************************************"
+			tweetsRetweeted.status= RetweetStatus.REJECTED
+			tweetsRetweeted.save(flush: true);
 		}
 		return tweetsRetweeted
 	}
