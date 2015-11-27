@@ -7,7 +7,7 @@ class RetweetJob {
 
     def twitterService
     static triggers = {
-        simple repeatInterval: 3 * 60 * 1000 //300000l // execute job once in 3 minute
+        simple repeatInterval: 5 * 60 * 1000 //300000l // execute job once in 3 minute
     }
 
     def execute() {
