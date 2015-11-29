@@ -8,6 +8,8 @@ class TweetsRetweeted {
 
     long reTweetId
     RetweetStatus status = RetweetStatus.PENDING
+    long reTweetTime
 
     static belongsTo = [twitterUser: TwitterUser]
+
 }
