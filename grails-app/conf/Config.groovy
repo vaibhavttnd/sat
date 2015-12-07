@@ -194,3 +194,7 @@ twitter4j {
 }
 
 //grails.allowedDomain="intelligrape.com"
+retweet {
+    jobInterval = 1 // in minutes
+    skipJobInterval = 2 // in minutes (should be greater than jobInterval
+}

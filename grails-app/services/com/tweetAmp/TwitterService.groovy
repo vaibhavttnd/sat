@@ -51,6 +51,15 @@ class TwitterService {
 		return tweetsRetweeted
 	}
 
+    def retweet(List<TweetsRetweeted> reTweets) {
+        reTweets.each { TweetsRetweeted tweetsRetweeted ->
+            log.info("**********************RETWEETING*************************** tweet id " + tweetsRetweeted?.id)
+            TwitterUser twitterUser = tweetsRetweeted?.twitterUser
+            User user = User.findByTwitterUser(twitterUser)
+            retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
+        }
+    }
+
 	TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
 		println "retweeting*************************************************" + user?.email
 		TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
@@ -83,24 +92,46 @@ class TwitterService {
 		return tweetsRetweeted
 	}
 
-	void createNewObjects(Set<Long> userIds, Long tweetId) {
-		try {
-			Set<User> users = User.getAll(userIds.toList())
-			users.each { User user ->
-				TwitterUser credential = user.twitterUser
-				TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
-				if (credential && !tweetsRetweeted) {
-					tweetsRetweeted = new TweetsRetweeted(reTweetId: tweetId, status: RetweetStatus.PENDING)
-					tweetsRetweeted.reTweetId = tweetId
-					tweetsRetweeted.twitterUser = credential
-					credential.addToRetweets(tweetsRetweeted).save(failOnError: true, flush: true)
-				}
-			}
-			println "*********************************Objects created*********************************************"
-		}
-		catch (Exception e) {
-			println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" + e
-			e.printStackTrace(System.out)
-		}
-	}
+    void createNewObjects(Set<Long> userIds, Long tweetId) {
+        try {
+            Set<User> users = User.getAll(userIds.toList())
+            long now=(new Date()).getTime();
+            users.each { User user ->
+                TwitterUser credential = user.twitterUser
+                TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
+                if (credential && !tweetsRetweeted) {
+                    now+=(randomTimeGenerator()*60000)
+                    println  "............................................................\ncreateing new one at "+now
+                    tweetsRetweeted = new TweetsRetweeted(status: RetweetStatus.PENDING)
+                    tweetsRetweeted.reTweetTime=now
+                    tweetsRetweeted.reTweetId = tweetId
+                    tweetsRetweeted.twitterUser = credential
+                    tweetsRetweeted.save(failOnError: true,flush: true)
+                    println "............................................................ "+tweetsRetweeted.reTweetTime
+                    credential.addToRetweets(tweetsRetweeted)
+                    println "............................................................ "+tweetsRetweeted.reTweetTime
+                            credential.save(failOnError: true, flush: true)
+                }
+            }
+            println "*********************************Objects created*********************************************"
+        }
+        catch (Exception e) {
+            println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" + e
+            e.printStackTrace(System.out)
+        }
+    }
+
+    int randomTimeGenerator(){
+        new Random().nextInt(11) + 10
+    }
+
+    def scheduleTweets(List<TweetsRetweeted> tweetsRetweetedList) {
+        long time = new Date().getTime()
+        tweetsRetweetedList.each { TweetsRetweeted retweet ->
+            time += randomTimeGenerator() * 6000
+            retweet.reTweetTime = time
+            retweet.save(flush: true)
+        }
+    }
+
 }

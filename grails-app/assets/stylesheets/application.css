@@ -211,3 +211,19 @@ div.standard-user-welcome a {
     font-size: 15px;
     color: white;
 }
+
+.prevLink{
+    padding: 6px;
+}
+
+.step{
+    padding: 4px;
+}
+
+.currentStep{
+    padding: 4px;
+}
+
+.nextLink{
+    padding: 6px;
+}
