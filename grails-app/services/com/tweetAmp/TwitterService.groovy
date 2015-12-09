@@ -51,15 +51,6 @@ class TwitterService {
 		return tweetsRetweeted
 	}
 
-    def retweet(List<TweetsRetweeted> reTweets) {
-        reTweets.each { TweetsRetweeted tweetsRetweeted ->
-            log.info("**********************RETWEETING*************************** tweet id " + tweetsRetweeted?.id)
-            TwitterUser twitterUser = tweetsRetweeted?.twitterUser
-            User user = User.findByTwitterUser(twitterUser)
-            retweetWithSpecificUser(user, twitter, tweetsRetweeted?.reTweetId)
-        }
-    }
-
 	TweetsRetweeted retweetWithSpecificUser(User user, Twitter twitter, Long tweetId) {
 		println "retweeting*************************************************" + user?.email
 		TweetsRetweeted tweetsRetweeted = TweetsRetweeted.findByTwitterUserAndReTweetId(user.twitterUser, tweetId)
@@ -125,13 +116,5 @@ class TwitterService {
         new Random().nextInt(11) + 10
     }
 
-    def scheduleTweets(List<TweetsRetweeted> tweetsRetweetedList) {
-        long time = new Date().getTime()
-        tweetsRetweetedList.each { TweetsRetweeted retweet ->
-            time += randomTimeGenerator() * 6000
-            retweet.reTweetTime = time
-            retweet.save(flush: true)
-        }
-    }
 
 }
