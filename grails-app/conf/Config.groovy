@@ -2,7 +2,7 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
- grails.config.locations = [ "/usr/share/tomcat7/lib/tweetamp-config.groovy"]
+ grails.config.locations = [ "file:/usr/share/tomcat7/lib/tweetamp-config.groovy"]
 //                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
